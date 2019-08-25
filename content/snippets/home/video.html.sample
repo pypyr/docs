@@ -1,0 +1,5 @@
+{{ $video := resources.Get "video/pypyr-show-me-what-you-got.mp4" | resources.Fingerprint }}
+<video autoplay loop muted playsinline>
+  <source src="video/pypyr-show-me-what-you-got.webm" type="video/webm">
+  <source src="{{ $video.RelPermalink }}" type="video/mp4">
+</video>

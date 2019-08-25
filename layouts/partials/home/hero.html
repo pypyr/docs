@@ -1,0 +1,34 @@
+{{ $title := .Site.Title | markdownify }}
+<div class="home-hero">
+  <img class="home-hero-img" src="{{ (resources.Get $.Site.Params.logo | fingerprint ).Permalink }}" alt="{{ $title }} logo">
+  <header class="home-hero-title">
+    {{ with .Params.h1 }}
+    <h1>{{.}}</h1>
+    {{ else }}
+    <h1>{{.Title}}</h1>
+    {{ end }}
+    {{ with .Params.h2 }}
+    <h2>{{.}}</h2>
+    {{ end }}
+    {{ with .Params.h3 }}
+    <h3>{{.}}</h3>
+    {{ end }}
+    {{ with .Params.subtitle }}
+    <span class="subtitle">{{. | markdownify }}</span>
+    {{ end }}
+  </header>
+  {{ with .Params.install_command }}
+  <div class="home-hero-install">
+    <!-- {{ highlight . "fish" "" }} -->
+    {{ partial "app-window.html" (dict "title" "term" "lang" "fish" "content" . ) }}
+  </div>
+  {{ end }}
+  <div class="home-hero-2-col">
+    <div class="home-hero-left">
+      {{ highlight (readFile "snippets/home/code-sample.yaml") "yaml" "" }}
+    </div>
+    <div class="home-hero-right">
+      {{ partial "app-window.html" (dict "title" "term" "lang" "fish" "content" (readFile "snippets/home/console-output.txt") ) }}
+    </div>
+  </div>
+</div>

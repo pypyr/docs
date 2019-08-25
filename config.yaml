@@ -1,0 +1,203 @@
+baseURL: https://pypyr.io/
+languageCode: en-us
+title: pypyr
+enableGitInfo: true
+enableEmoji: true
+enableRobotsTXT: true
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+  tableOfContents:
+    endLevel: 4
+    ordered: true
+    startLevel: 2
+menu:
+  top:
+    - name: docs
+      url: /docs/
+      weight: 10
+    - name: updates
+      url: /updates/
+      weight: 20
+    - name: topics
+      url: /topics/
+      weight: 30
+    - identifier: twitter
+      pre: svg/twitter-logo.html
+      url: https://twitter.com/pypyrpipes/
+      weight: 40
+    - identifier: github
+      pre: svg/github-mark-and-logo.html
+      url: https://github.com/pypyr/pypyr-cli/
+      weight: 50
+  footer_social:
+    - name: twitter
+      pre: svg/twitter-icon.html
+      url: https://twitter.com/pypyrpipes/
+      weight: 10
+    - name: github
+      pre: svg/github-icon.html
+      url: https://github.com/pypyr/pypyr-cli/
+      weight: 20
+    - name: discord
+      pre: svg/discord-icon.html
+      url: https://discordapp.com/invite/8353JkB
+      weight: 30
+  footer_notices:
+    - name: cookie notice
+      url: /privacy
+      weight: 10
+    - name: licensing 
+      url: /licensing
+      weight: 20
+    - name: media kit
+      url: /media-kit
+      weight: 30
+  docs:
+    - name: getting started
+      identifier: getting-started
+      weight: 10
+    - name: cli
+      identifier: cli
+      weight: 20
+    - name: pipelines
+      weight: 30
+    - name: context parsers
+      identifier: context-parsers
+      weight: 40
+    - name: decorators
+      weight: 50
+    - name: steps
+      weight: 60
+    - name: substitutions
+      weight: 70
+    - name: plugins
+      weight: 80
+    - name: api
+      weight: 90
+    - name: contributing
+      weight: 100
+module:
+  imports:
+    path: github.com/pypyr/pypyr-docs
+# paginate: 3
+paginatePath: archive
+taxonomies:
+  category: categories
+  topic: topics
+related:
+  threshold: 80
+  includeNewer: true
+  toLower: false
+  indices:
+  - name: topics
+    weight: 100
+  - name: categories
+    weight: 10
+params:
+  # custom_css: ["css/myfile.css"] # put these files in ./assets/css/myfile.css
+  # custom_js: ["js/myfile.js", "js/anotherfile.js"] # put these in ./assets/js/myfile.js et.
+  # font_href: https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Roboto+Mono:400,400i&display=swap
+  logo: images/pypyr-logotype.svg # in ./assets
+  google_analytics_tag: UA-147150909-1
+  # list_fields:
+  #   - fallback: title
+  #     heading: title
+  #     islink: true
+  #     field: linktitle
+  #   - heading: description
+  #     field: description
+  # list_include_date: false
+  # list_pages_to_list: all, regular-only, section-regular-children or regular-recursive. defaults all.
+  # list_paginate: 10
+  # list_show_auto_description: true
+  # list_show_auto_title: true 
+  # list_show_section_tabs: false
+  # list_show_table_heading: true
+  # list_show_top_level_section_tabs: false
+  # list_sort: default value is: lists/sort/weight-linktitle.html
+  # list_sort_group_by_param: group by property name for list_sort = lists/sort/group-by-param.html 
+  # list_sort_param: order by property name for list_sort = lists/sort/group-by-param.html or lists/sort/param.html
+  # list_style: section-list/table
+  # page_show_auto_description: true
+  # page_show_auto_title: true
+  # show_auto_heading_only_on_empty_content: true
+  seo_enable_structured_data: true
+  seo_enable_strict_validate: true
+  seo_app_name: pypyr
+  seo_app_description: Open-source task-runner for yaml pipeline workflow automation, script orchestration. A devops CI/CD automation tool.
+  seo_app_os: MacOS, Linux, Windows, FreeBSD, anywhere Python runs
+  seo_app_category: DeveloperApplication
+  seo_app_requirements: Python 3.6 or higher
+  # seo_app_rating_value: "1"
+  # seo_app_rating_count: 1
+  seo_app_price: 0
+  # seo_app_currency: "USD"
+  seo_article_author: pypyr contributor
+  # seo_article_author_url: https://github.com/yaythomas
+  # seo_article_author_same_as: 
+  # - https://github.com/yaythomas
+  # seo_article_headline: override per page
+  seo_article_image: 
+    - url: images/1x1/pypyr-taskrunner-yaml-pipeline-automation-1200x1200.png
+      height: 1200
+      width: 1200
+    - url: images/4x3/pypyr-taskrunner-yaml-pipeline-automation-1200x900.png
+      height: 900
+      width: 1200
+    - url: images/16x9/pypyr-taskrunner-yaml-pipeline-automation-1920x1080.png
+      height: 1080
+      width: 1920
+  # seo_article_keywords: abc, def, ghi
+  seo_article_enable_for_this_page: true
+  seo_article_type: TechArticle # or Article
+  # seo_description: goes in meta head description. if not set, falls back to .Description
+  seo_is_carousel: true
+  seo_org_id: https://pypyr.io/#organization
+  seo_org_name: pypyr for "the" <angled> \ / ? & win <, >, @ and ^
+  seo_org_url: https://pypyr.io/
+  seo_org_description: The pypyr project is a free open-source task-runner cli & python api.
+  seo_org_logo_url: images/pypyr-taskrunner-logo-square.svg
+  seo_org_logo_height: 112
+  seo_org_logo_width: 112
+  seo_org_same_as:
+    - https://github.com/pypyr/
+    - https://twitter.com/pypyrpipes/
+  # seo_title_append_site_name: true. Append " | site .title" to page title. Default true.
+  # seo_validate_title_max: 60
+  seo_validate_description_max: 120
+  # show_logo_on_home: false
+  # show_title_in_header: true
+  social_enable: true
+  social_enable_strict_validate: true
+  # social_fb_app_id: "fb app id"
+  # social_og_title: "og title here"
+  # social_og_description: Description for social sharing here, max 200 chars. if not set, falls back to seo_description, then .Description
+  social_og_image: images/1.91x1/pypyr-taskrunner-yaml-pipeline-automation-1200x628.png
+  social_og_image_alt: pypyr is an open-source task-runner for automation pipelines defined in simple human-readable yaml.
+  social_og_image_height: 628
+  social_og_image_width: 1200
+  social_og_image_type: image/png
+  social_og_site_name: pypyr technical documentation
+  social_og_type: "website" # article or website or video.movie
+  social_twitter_card: summary_large_image # summary_large_image or summary
+  social_twitter_site: "@pypyrpipes"
+  # social_twitter_creator: "@creator"
+  # social_twitter_description: twitter description here max 200
+  # social_twitter_title: title here 50-70 chars, max 70
+  # social_twitter_image: images/1.91x1/pypyr-taskrunner-yaml-pipeline-automation-1200x628.png
+  # Images for this Card support an aspect ratio of 2:1 with minimum dimensions of 300x157 or maximum of 4096x4096 pixels. Images must be less than 5MB in size. JPG, PNG, WEBP and GIF formats are supported
+  # social_twitter_image_alt: alt text for image max 420
+  source_control_links:
+    org: https://github.com/pypyr/
+    repo: https://github.com/pypyr/pypyr-cli/
+    bug: https://github.com/pypyr/pypyr-cli/issues/new?title=Re:%%20%s&labels=bug
+    edit: https://github.com/pypyr/docs/edit/master/%s
+    typo: https://github.com/pypyr/docs/issues/new?title=docs%%20issue:%s&body=File:%%20[%s](%s)
+  tagline: easy pipeline task runner
+  taxonomy_sidebar:
+    - topics
+    - categories

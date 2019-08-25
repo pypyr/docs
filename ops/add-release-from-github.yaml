@@ -1,0 +1,79 @@
+steps:
+  - name: pypyr.steps.contextsetf
+    in:
+      contextSetf:
+        payload: 
+          query: !sic
+            'query($owner: String!, $repo: String!, $last: Int!) {
+              repository (owner:$owner, name:$repo){ 
+                releases (last:$last) {
+                  edges {
+                    node {
+                          id
+                          name
+                          createdAt
+                          url
+                          description
+                          descriptionHTML
+                          shortDescriptionHTML
+                          publishedAt
+                          author {
+                            id
+                            name
+                            login
+                            url
+                          }
+                        tag {
+                          id
+                        }
+                        tagName
+                    }
+                  }
+                }
+              }
+            }'
+          variables:
+            owner: pypyr
+            repo: pypyr-cli
+            last: 25
+  - name: pypyr.steps.py
+    in:
+      pycode: | 
+              import json
+              context['jsonPayload'] = json.dumps(context['payload'], ensure_ascii=False)
+  - name: pypyr.steps.echo
+    run: False
+    in:
+      echoMe: hello -d '{jsonPayload}' and \n -DDDDD '{payload}'
+  - name: pypyr.steps.env
+    in:
+      env:
+        get:
+          bearerToken: GITHUB_BEARER_TOKEN
+  - name: pypyr.steps.cmd
+    run: True
+    in:
+      cmd: |-
+            curl -H "Authorization: bearer {bearerToken}" -H 'Content-Type: application/json' -X POST -d '{jsonPayload}' -o ./ops/gh-releases.json https://api.github.com/graphql
+  - name: pypyr.steps.fetchjson
+    in:
+      fetchJson:
+        path: ./ops/gh-releases.json
+        key: releases
+  - name: pypyr.steps.filereplace
+    foreach: '{releases[data][repository][releases][edges]}'
+    run: False
+    in:
+      fileReplace:
+        in: ./ops/templates/release.md
+        out: ./content/updates/releases/{i[node][tagName]}.md
+        replacePairs:
+          <<tag>>: '{i[node][tagName]}'
+          <<date>>: '{i[node][publishedAt]}'
+          <<short-description>>: '{i[node][name]}'
+          <<h2>>: '{i[node][name]}'
+          <<description>>: '{i[node][description]}'
+          <<release-url>>: '{i[node][url]}'
+          <<author-name>>: '{i[node][author][login]}'
+          <<author-url>>: '{i[node][author][url]}'
+

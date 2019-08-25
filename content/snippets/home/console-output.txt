@@ -1,0 +1,24 @@
+$ pypyr show-me-what-you-got
+o hai!
+any cmd you like
+ninja shell power
+any python you like
+gimme a 1
+gimme a 2
+gimme a 3
+say once
+say twice
+say thrice
+
+$ pypyr show-me-what-you-got sayBye=true  
+o hai!
+any cmd you like
+ninja shell power
+any python you like
+gimme a 1
+gimme a 2
+gimme a 3
+say once
+say twice
+say thrice
+k bye!

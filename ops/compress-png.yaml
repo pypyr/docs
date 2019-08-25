@@ -1,0 +1,30 @@
+steps:
+  - name: pypyr.steps.default
+    in:
+      defaults:
+        in: ./tmp/img-drop/
+        out: ./assets/images/
+  - name: pypyr.steps.glob
+    in:
+      glob: '{in}/**/*.png'
+  - name: pypyr.steps.py
+    in:
+      pycode: |
+        from pathlib import Path
+        in_dir = Path(context['in'])
+        out = Path(context['out'])
+        paths = []
+        for p in context['globOut']:
+          path_in = Path(p)
+          paths.append({
+            'in': path_in,
+            'out': out.joinpath(path_in.relative_to(in_dir))
+          })
+
+        context['paths'] = paths
+  - name: pypyr.steps.cmd
+    comment: already 8bit, and lossy_transparent doesn't alter output filesize
+    description: optimizing png
+    foreach: '{paths}'
+    in:
+      cmd: zopflipng -y {i[in]} {i[out]}

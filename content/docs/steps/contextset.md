@@ -1,0 +1,73 @@
+---
+title: pypyr.steps.contextset
+linktitle: contextset
+date: 2020-06-30T20:28:42+01:00
+description: Copy entire context keys.
+draft: false
+card_extra_summary:
+  heading: input context property
+  details: "`contextSet` (dict)"
+categories: [steps]
+# keywords: ""
+menu:
+  docs:
+    parent: steps
+    name: contextset
+seo_article_headline: Copy context key values in a task-runner pipeline.
+seo_description: Copy context keys with their entire values from other context keys in a task-runner pipeline context.
+# social_og_description: 200 chars, if blank fall back to seo_description then description
+# social_og_title: contextset -- if blank fall back to seo_article_headline > .Title. Max 70 chars
+# social_og_image_alt: max 420 chars
+topics: [context]
+---
+# pypyr.steps.contextset
+## copy values & structures from one part of context to another
+Sets context values from already existing context values.
+
+This is handy if you need to prepare certain keys in context where a
+next step might need a specific key. If you already have the value in
+context, you can create a new key (or update existing key) with that
+value.
+
+`contextset` and [contextsetf]({{< ref "contextsetf" >}}) overwrite existing 
+keys. If you want to merge new values into an existing destination hierarchy, 
+use [contextmerge]({{< ref "contextmerge" >}}) instead.
+
+So let's say you already have context['currentKey'] = ['eggs']. 
+If you set `newKey: currentKey`, you'll end up with:
+
+```yaml
+currentKey: eggs
+newKey: eggs
+```
+
+## examples
+For example, say your context looks like this,
+
+```yaml
+key1: value1
+key2: value2
+key3: value3
+```
+
+and your pipeline yaml looks like this:
+
+```yaml
+steps:
+  - name: pypyr.steps.contextset
+    in:
+      contextSet:
+        key2: key1
+        key4: key3
+```
+
+This will result in context like this:
+
+```yaml
+key1: value1
+key2: value1
+key3: value3
+key4: value3
+```
+
+See a worked [example for contextset here](https://github.com/pypyr/pypyr-example/tree/master/pipelines/contextset.yaml).

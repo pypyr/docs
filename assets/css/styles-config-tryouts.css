@@ -1,0 +1,107 @@
+/* customize me by adding your own ./assets/css/styles-config.css file.
+   easy is just to copy this file to your own assets directory:
+   $ cp ./themes/pypyr-docs/assets/css/style.config.css ./assets/css/    
+
+   freely edit the values in this new file.
+   hugo will automatically use this new file ./assets/css/styles-config.css in your
+   own assets directory instead of this default file here at
+   ./themes/pypyr-docs/assets/css/style.config.css.
+   this way you don't have to worry about tricky merges from the pypyr-docs
+   theme master every time there's an update.
+*/
+:root {
+  --primary: #80cbc4; /* bermuda */
+  --primary-dark-variant: #4f9a94;
+  --primary-light-variant: #b2fef7;
+  --secondary: #8BB0CC; /* blue double split complementary */
+  --secondary-dark-variant: #5c819b;
+  --secondary-light-variant: #bce2ff;
+  --secondary: #496f94; /* light variation from blue stone compound */
+  --secondary-dark-variant: #174466;
+  --secondary-light-variant: #799dc5;
+  --secondary: #d9b08c; /* peach this is good*/
+  --secondary: #bcaaa4; /* material brown. only one that passes AAA */
+  --secondary-dark-variant: #8c7b75;
+  --secondary-light-variant: #efdcd5;
+  --secondary: #E6A59E; /* shilo */
+  --secondary-dark-variant: #b37670;
+  --secondary-light-variant: #ffd7cf;
+  --secondary: #EAB4AE; /* lighter than shilo */
+  --secondary-dark-variant: #b7847f;
+  --secondary-light-variant: #ffe6e0;
+  --secondary: #a59ad6; /* blue bell */
+  --secondary-dark-variant: #756ca4;
+  --secondary-light-variant: #d7cbff;
+  /* --secondary: #B2A8DC; lighter than blue bell */
+  /* --secondary: #8BBEE5; */
+  /* --secondary: #5c6bc0; */
+  /* --secondary: #ff8a65; atomic tangerine ff8a65 */
+/*  light yellow original
+  --secondary: #e6ee9c;
+  --secondary-dark-variant: #b3bc6d;
+  --secondary-light-variant: #ffffce; */
+/* --primary: #69f0ae;
+--primary-dark-variant: #2bbd7e;
+--primary-light-variant: #9fffe0; */
+/* --secondary: #ccff90;
+--secondary-dark-variant: #99cc60;
+--secondary-light-variant: #ffffc2; */
+/* --primary: #A5D6A7;
+--primary-dark-variant: #75a478;
+--primary-light-variant: #d7ffd9; */
+/* --secondary: #69F0AE;
+--secondary-dark-variant: #2bbd7e;
+--secondary-light-variant: #9fffe0; */
+/* --primary: #c5e1a5;
+--primary-dark-variant: #94af76;
+--primary-light-variant: #f8ffd7; */
+/* --secondary: #69F0AE;
+--secondary-dark-variant: #2bbd7e;
+--secondary-light-variant: #9fffe0; */
+/*
+  default theme:
+  --primary: #bb86fc;
+  --primary-dark-variant: #3700b3;
+  --primary-light-variant: xxx;
+  --secondary: #03dac6;
+  --secondary-dark-variant: xxx;
+  --secondary-light-variant: xxx;
+*/
+  --background: #121212;
+  --surface: #121212;
+  --error: #cf6679;
+  --onprimary: #000;
+  --onsecondary: #000;
+  --onbackground: 255 255 255;
+  --onsurface: 255 255 255;
+  --onerror: 0 0 0;
+  --text-on-background-high: rgba(var(--onbackground) / 0.87);
+  --text-on-background-medium: rgba(var(--onbackground) / 0.6);
+  --text-on-background-disabled: rgba(var(--onbackground) / 0.38);
+  --text-on-surface-high: rgba(var(--onsurface) / 0.87);
+  --text-on-surface-medium: rgba(var(--onsurface) / 0.6);
+  --text-on-surface-disabled: rgba(var(--onsurface) / 0.38);
+  --text-on-error-high: rgba(var(--onerror) / 0.87);
+  --text-on-error-medium: rgba(var(--onerror) / 0.6);
+  --text-on-error-disabled: rgba(var(--onerror) / 0.38);
+  --text-on-secondary: rgba(0 0 0 / 0.87);
+  --elevation-overlay: 255 255 255;
+  --top-nav-logo-width: 16vw;
+  --top-nav-logo-responsive-width: 40vw;
+  --top-nav-columns: 5;
+  --top-nav-columns-responsive: 5;
+  --text-bottom-margin: calc(1.125 * 1.2rem);
+  --disabled-state: #000;
+  --body-padding: 8px;
+  /* --body-padding: 0.5rem; */
+  --text-line-length: 36rem;
+  --elevation-01: rgba(var(--elevation-overlay) / 0.05);
+  --elevation-02: rgba(var(--elevation-overlay) / 0.07);
+  --elevation-03: rgba(var(--elevation-overlay) / 0.08);
+  --elevation-04: rgba(var(--elevation-overlay) / 0.09);
+  --elevation-06: rgba(var(--elevation-overlay) / 0.11);
+  --elevation-08: rgba(var(--elevation-overlay) / 0.12);
+  --elevation-12: rgba(var(--elevation-overlay) / 0.14);
+  --elevation-16: rgba(var(--elevation-overlay) / 0.15);
+  --elevation-24: rgba(var(--elevation-overlay) / 0.16);
+}
