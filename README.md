@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # docs
 pypyr documentation source. edit documentation here.
 =======
@@ -38,4 +37,3 @@ Use git like you normally do.
 
 
 ## publishing website
->>>>>>> f4b11d3... content drafts. import pypyr-docs theme as hugo module.
