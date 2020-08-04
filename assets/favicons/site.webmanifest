@@ -1,0 +1,19 @@
+{
+    "name": "pypyr",
+    "short_name": "pypyr",
+    "icons": [
+        {
+            "src": "{{ (resources.Get "favicons/android-chrome-192x192.png" | fingerprint).RelPermalink }}",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "{{ (resources.Get "favicons/android-chrome-512x512.png" | fingerprint).RelPermalink }}",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#121212",
+    "background_color": "#121212",
+    "display": "standalone"
+}
