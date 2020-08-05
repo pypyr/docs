@@ -1,6 +1,6 @@
 ---
 title: built-in summary tables
-description: Convenient summary listing of all available items in a section on one page.
+description: Convenient one page summary listing of all available items in a section.
 date: 2020-08-05T20:46:07+01:00
 lastmod: 2020-08-05T20:46:07+01:00
 draft: false
