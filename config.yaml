@@ -100,6 +100,7 @@ related:
 params:
   # custom_css: ["css/myfile.css"] # put these files in ./assets/css/myfile.css
   # custom_js: ["js/myfile.js", "js/anotherfile.js"] # put these in ./assets/js/myfile.js et.
+  # date_format_byline: "2006-01-02 15:04"
   # date_format_git: "2006-01-02 15:04"
   # font_href: https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Roboto+Mono:400,400i&display=swap
   logo: images/pypyr-logotype.svg # in ./assets
@@ -125,7 +126,8 @@ params:
   # list_style: section-list/table
   # page_show_auto_description: true
   # page_show_auto_title: true
-  page_show_git_info: false
+  # page_show_git_info: false
+  # page_show_byline: true
   # show_auto_heading_only_on_empty_content: true
   seo_enable_structured_data: true
   seo_enable_strict_validate: true
