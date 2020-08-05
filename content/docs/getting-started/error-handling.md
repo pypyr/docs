@@ -40,6 +40,7 @@ runErrors:
 The last error will be the last item in the list. The first error will be the 
 first item in the list.
 
-You can use `runErrors` in your step-group's failure handler, or if you set 
-`swallow=True` on the failing step you can use `runErrors` in subsequent
-steps to provide exact error information.
+You can use `runErrors` in your step-group's 
+[failure handler]({{< ref "/docs/pipelines/pipeline-structure#on_failure" >}}), 
+or if you set `swallow=True` on the failing step you can use `runErrors` in 
+subsequent steps to provide exact error information.
