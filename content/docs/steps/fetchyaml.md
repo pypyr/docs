@@ -53,7 +53,7 @@ All inputs support [substitutions]({{< ref "docs/substitutions">}}).
 See some worked [examples of fetchyaml](https://github.com/pypyr/pypyr-example/blob/master/pipelines/fetchyaml.yaml).
 
 ## merging logic
-pypyr will parse the Yaml from the file and merge it into the pypyr context. 
+pypyr will parse the yaml from the file and merge it into the pypyr context. 
 This will overwrite existing values if the same keys are already in there.
 
 I.e if file yaml has
