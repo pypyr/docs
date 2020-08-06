@@ -18,7 +18,7 @@ seo_description: Parse json string from the cli input argument & create a strong
 # social_og_description: 200 chars, if blank fall back to seo_description then description
 # social_og_title: json -- if blank fall back to seo_article_headline > .Title. Max 70 chars
 # social_og_image_alt: max 420 chars
-topics: [args]
+topics: [args, json]
 ---
 # pypyr.parser.json
 ## parse json input string from cli
