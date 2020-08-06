@@ -1,6 +1,6 @@
 ---
 title: built-in pipelines
-description: ready-made pipelines that come with pypyr out of the box.
+description: Ready-made pipelines that come with pypyr out of the box.
 date: 2019-08-21
 publishdate: 2019-08-21
 lastmod: 2019-08-21
