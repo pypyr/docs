@@ -26,7 +26,7 @@ seo_description: Retry a pipeline step to a configurable maximum retry count wit
 # social_og_description: 200 chars, if blank fall back to seo_description then description
 # social_og_title: retry -- if blank fall back to seo_article_headline > .Title. Max 70 chars
 # social_og_image_alt: max 420 chars
-topics: [error handling]
+topics: [error handling, loops]
 ---
 # retry
 ## automatic retries
