@@ -24,4 +24,3 @@ seo_article_headline: pypyr task-runner for automation pipelines defined in yaml
 # seo_description: fall back to description
 show_default_header: false
 ---
-this is from ./content/_index.md
