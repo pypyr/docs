@@ -1,10 +1,10 @@
 ---
-title: Run a pipeline with the pypyr cli
+title: run a pipeline with the pypyr cli
 description: How to run a pypyr pipeline yaml from the cli
 date: 2019-08-21
 publishdate: 2019-08-21
 lastmod: 2019-08-21
-categories: [cli]
+categories: [pipelines]
 menu:
   docs:
     name: run a pipeline

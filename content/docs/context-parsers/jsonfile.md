@@ -7,7 +7,7 @@ draft: false
 card_extra_summary:
   heading: example input
   details: '`pypyr pipelinename ./path/sample.json`'
-categories: [context]
+categories: [context parsers]
 # keywords: ""
 menu:
   docs:

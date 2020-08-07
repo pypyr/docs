@@ -11,7 +11,7 @@ card_extra_summary:
           description: text to print to output
           ```
 card_extra_summary_is_code: True
-categories: [pipeline definition]
+# categories: [pipeline definition]
 # keywords: ""
 menu:
   docs:
@@ -22,7 +22,7 @@ seo_description: Pipeline authors can add text to print to output when a step ru
 # social_og_description: 200 chars, if blank fall back to seo_description then description
 # social_og_title: description -- if blank fall back to seo_article_headline > .Title. Max 70 chars
 # social_og_image_alt: max 420 chars
-topics: [debug, print]
+topics: [debug, print, pipeline format]
 ---
 # description
 ## provide step status output

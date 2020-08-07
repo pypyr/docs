@@ -6,7 +6,7 @@ date: 2019-08-21
 publishdate: 2019-08-21
 lastmod: 2019-08-21
 draft: false
-categories: [pipeline definition]
+# categories: [pipeline definition]
 menu:
   docs:
     identifier: decorators-overview
@@ -27,7 +27,7 @@ list_fields:
 seo_article_headline: Apply looping, conditional & error logic to any task-runner step.
 seo_description: Selectively run, skip, repeat & loop any single step in pipeline. Handle errors & automatic retries. 
 seo_is_carousel: true
-topics: [built-in summary tables]
+topics: [built-in summary tables, pipeline format]
 ---
 # step decorators
 ## conditional execution, looping & error handling for any step

@@ -11,7 +11,7 @@ card_extra_summary:
           foreach: ["one", "two", "three"]
           ```
 card_extra_summary_is_code: True
-categories: [pipeline definition]
+# categories: [pipeline definition]
 # keywords: ""
 menu:
   docs:
@@ -22,7 +22,7 @@ seo_description: Repeat (loop) any pipeline step, or your own custom code step, 
 # social_og_description: 200 chars, if blank fall back to seo_description then description
 # social_og_title: foreach -- if blank fall back to seo_article_headline > .Title. Max 70 chars
 # social_og_image_alt: max 420 chars
-topics: [control-of-flow, loops]
+topics: [control-of-flow, loops, pipeline format]
 ---
 # foreach
 ## repeat step for each item in list

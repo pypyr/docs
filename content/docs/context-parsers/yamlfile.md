@@ -7,7 +7,7 @@ draft: false
 card_extra_summary:
   heading: example input
   details: "`pypyr pipelinename ./path/sample.yaml`"
-categories: [context]
+categories: [context parsers]
 # keywords: ""
 menu:
   docs:

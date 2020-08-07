@@ -5,8 +5,7 @@ description: Run pipeline programmatically from the API in your own code.
 date: 2019-08-21
 publishdate: 2019-08-21
 lastmod: 2019-08-21
-categories: [ steps ]
-topics: [ custom code ]
+# categories: [ ]
 menu:
   docs:
     parent: api
@@ -14,6 +13,7 @@ menu:
 draft: false
 seo_article_headline: Run pipeline from API in your own code.
 seo_description: Use the Python API to run task-runner pipeline workflows from your own code in a few simple lines.
+topics: [ custom code ]
 ---
 # run a pipeline from the api
 ## main entrypoint api

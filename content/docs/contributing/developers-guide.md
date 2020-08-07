@@ -4,7 +4,7 @@ description: Handy developer & coding tips for pypyr contributors.
 date: 2019-08-21
 publishdate: 2019-08-21
 lastmod: 2019-08-21
-categories: [contributing]
+# categories: [contributing]
 menu:
   docs:
     parent: contributing

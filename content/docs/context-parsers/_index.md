@@ -6,8 +6,7 @@ date: 2019-08-21
 draft: false
 publishdate: 2019-08-21
 lastmod: 2019-08-21
-categories: [context]
-topics: [args]
+# categories: [context]
 menu:
   docs:
     identifier: context-parser-overview
@@ -28,7 +27,7 @@ list_style: section-list/table
 seo_is_carousel: true
 seo_article_headline: Built-in pypyr context parsers for cli args.
 seo_description: Parse task-runner pipeline custom cli input arguments as key-value pairs, comma delimited values, simple strings & more.
-topics: [built-in summary tables]
+topics: [built-in summary tables, context]
 ---
 # built-in context parsers
 pypyr has a whole bunch of ready-made built-in context parsers to make your 

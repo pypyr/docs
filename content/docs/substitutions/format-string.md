@@ -4,7 +4,7 @@ linktitle: format string
 date: 2020-06-13T21:38:57+01:00
 description: String interpolation with substitution tokens are for easy value replacement inside a pipeline workflow. Works with complex types, not just strings.
 draft: false
-categories: [expressions]
+# categories: [expressions]
 keywords: "token replacement, string substitutions"
 menu:
   docs:
@@ -16,7 +16,7 @@ card_extra_summary:
     heading: example
 seo_article_headline: Format string interpolation expressions in the pypyr task-runner.
 seo_description: String interpolation with substitution tokens are for easy type-safe value replacement inside a pipeline workflow.
-topics: []
+# topics: []
 ---
 # string interpolation
 ## string formatting expressions with replacement tokens

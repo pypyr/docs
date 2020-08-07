@@ -4,7 +4,7 @@ description: pypyr is open-source and your contributions are very welcome!
 date: 2019-08-21
 publishdate: 2019-08-21
 lastmod: 2019-08-21
-categories: [contributing]
+# categories: [contributing]
 menu:
   docs:
     parent: contributing

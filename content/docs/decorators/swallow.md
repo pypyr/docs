@@ -11,7 +11,7 @@ card_extra_summary:
           swallow: True
           ```
 card_extra_summary_is_code: True
-categories: [pipeline definition]
+# categories: [pipeline definition]
 # keywords: ""
 menu:
   docs:
@@ -22,7 +22,7 @@ seo_description: Swallow or catch exception on any pipeline step. This allows th
 # social_og_description: 200 chars, if blank fall back to seo_description then description
 # social_og_title: swallow -- if blank fall back to seo_article_headline > .Title. Max 70 chars
 # social_og_image_alt: max 420 chars
-topics: [error handling]
+topics: [error handling, pipeline format]
 ---
 # swallow
 ## ignore pipeline step error

@@ -1,8 +1,9 @@
 ---
 title: categories
-sectionSummaryStyle: section-summary/ul
+description: Browse pypyr technical documentation by category.
 cascade:
-    description: Browse pypyr technical documentation by Category.
     robots: noindex
-    seo_enable_strict_validate: false
+sectionSummaryStyle: section-summary/ul
+seo_article_headline: pypyr technical documentation categories.
+seo_description: Browse pypyr technical documentation by category.
 ---

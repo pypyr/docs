@@ -13,7 +13,7 @@ card_extra_summary:
               anotherkey: anothervalue
             ```
 card_extra_summary_is_code: True
-categories: [pipeline definition]
+# categories: [pipeline definition]
 # keywords: ""
 menu:
   docs:
@@ -24,7 +24,7 @@ seo_description: Set input arguments for an individual pipeline step with a map/
 # social_og_description: 200 chars, if blank fall back to seo_description then description
 # social_og_title: in -- if blank fall back to seo_article_headline > .Title. Max 70 chars
 # social_og_image_alt: max 420 chars
-topics: [context]
+topics: [context, pipeline format]
 ---
 # in
 ## add input arguments to step context

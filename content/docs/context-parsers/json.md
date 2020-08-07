@@ -7,7 +7,7 @@ draft: false
 card_extra_summary:
   heading: example input
   details: '`pypyr pipelinename {"key1": "value 1", "key2": 123}`'
-categories: [context]
+categories: [context parsers]
 # keywords: ""
 menu:
   docs:

@@ -8,8 +8,7 @@ lastmod: 2019-08-21
 # card_extra_summary:
 #   heading: input context property
 #   details: "`assert` (dict)"
-categories: [ context ]
-topics: [ custom code ]
+# categories: [ context ]
 menu:
   docs:
     parent: api
@@ -17,6 +16,7 @@ menu:
 draft: false
 seo_article_headline: Parse custom cli arguments for a task-runner pipeline.
 seo_description: Customize how you parse cli input arguments when you run a task-runner pipeline from the cli.
+topics: [ custom code, context ]
 ---
 # create a custom context parser
 ## parse custom cli arguments
