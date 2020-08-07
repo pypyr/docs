@@ -24,6 +24,8 @@ list_fields:
     field: card_extra_summary.details
 list_style: section-list/table
 seo_is_carousel: true
+seo_article_headline: Extend pypyr task-runner functionality with plug-ins.
+seo_description: Plug-ins provide extra functionality for external libraries & dependencies outside of the pypyr core.
 topics: [built-in summary tables]
 ---
 # plugins
