@@ -6,7 +6,6 @@ date: 2019-08-21
 publishdate: 2019-08-21
 lastmod: 2019-08-21
 categories: [pipelines]
-topics: [pipeline, yaml, format, structure, definition]
 menu:
   docs:
     parent: pipelines
@@ -16,6 +15,7 @@ sections_weight: 10
 draft: false
 seo_article_headline: Directory lookup order for task-runner pipelines on the filesystem.
 seo_description: Search for a matching pipeline first in the working directory & alternate location lookup sequence.
+# topics: []
 ---
 # pipeline yaml structure
 ## pypyr pipeline format
