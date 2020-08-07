@@ -6,7 +6,6 @@ description: Literal string values that should not have formatting expressions a
 draft: false
 categories: [expressions]
 keywords: "literal strings, pipeline execution"
-topics: [substitutions]
 menu:
   docs:
     parent: substitutions
@@ -17,6 +16,7 @@ card_extra_summary:
     heading: example
 seo_article_headline: Simplify escape sequences with literal strings.
 seo_description: Literal string values ignore formatting expressions in your pipeline steps & task automation sequences.
+# topics: []
 ---
 # sic strings
 ## literal string values
