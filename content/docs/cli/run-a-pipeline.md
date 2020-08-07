@@ -1,6 +1,6 @@
 ---
-title: run a pipeline with the pypyr cli
-description: how to run a pypyr pipeline yaml from the cli
+title: Run a pipeline with the pypyr cli
+description: How to run a pypyr pipeline yaml from the cli
 date: 2019-08-21
 publishdate: 2019-08-21
 lastmod: 2019-08-21
@@ -11,7 +11,9 @@ menu:
     parent: cli
 weight: -10
 draft: false
-# topics: [run, execute, pipeline, args, parser]
+seo_article_headline: How to run a task-runner automation pipeline from the cli.
+seo_description: Run your yaml automation pipelines easily with the simple pypyr cli.
+# topics: []
 ---
 # run a pipeline from the cli
 ## pass arguments & command line switches to the cli
