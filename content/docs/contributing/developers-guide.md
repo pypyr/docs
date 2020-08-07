@@ -5,11 +5,13 @@ date: 2019-08-21
 publishdate: 2019-08-21
 lastmod: 2019-08-21
 categories: [contributing]
-topics: [ custom code]
 menu:
   docs:
     parent: contributing
 draft: false
+seo_article_headline: Developer's guide for pypyr open-source contributors.
+seo_description: Developer's guide for coding style, testing, code coverage and pull requests.
+topics: [ custom code]
 ---
 # developer's guide
 ## coding style

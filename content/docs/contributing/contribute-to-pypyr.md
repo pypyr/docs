@@ -5,11 +5,13 @@ date: 2019-08-21
 publishdate: 2019-08-21
 lastmod: 2019-08-21
 categories: [contributing]
-topics: [open-source, contribute]
 menu:
   docs:
     parent: contributing
 draft: false
+seo_article_headline: How to contribute to pypyr open source software.
+seo_description: This contribution guide will help you contribute to open-source software even if you don't code.
+# topics: []
 ---
 # contribute to pypyr
 pypyr is open source. Your contributions are most welcome.
