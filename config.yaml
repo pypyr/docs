@@ -47,11 +47,11 @@ menu:
       url: https://discordapp.com/invite/8353JkB
       weight: 30
   footer_notices:
-    - name: cookie notice
-      url: /privacy
+    - name: privacy notice
+      url: /legal/privacy-notice
       weight: 10
     - name: licensing 
-      url: /licensing
+      url: /legal/licensing
       weight: 20
     - name: media kit
       url: /media-kit
