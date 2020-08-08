@@ -46,4 +46,6 @@
   --elevation-16: rgba(var(--elevation-overlay) / 0.15);
   --elevation-24: rgba(var(--elevation-overlay) / 0.16);
   --home-cards-min-width: clamp(280px, 25vw, var(--text-line-length));
+  --sensible-width-narrow: clamp(140px, 15vw, var(--text-line-length) / 2);
+  --sensible-width-wide: clamp(280px, 25vw, var(--text-line-length));
 }
