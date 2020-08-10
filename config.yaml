@@ -80,6 +80,9 @@ menu:
       weight: 90
     - name: contributing
       weight: 100
+    - name: thank you
+      identifier: thank-you
+      weight: 200
 module:
   imports:
     path: github.com/pypyr/pypyr-docs
