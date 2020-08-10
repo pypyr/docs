@@ -5,6 +5,17 @@ description: pypyr logo, images & banners for social media.
 draft: false
 lastmod: 2020-08-08T20:06:45+01:00
 publishdate: 2020-08-08T20:06:45+01:00
+sitemap_images:
+    - src: images/pypyr-taskrunner-logo-square.svg
+      title: pypyr logomark
+    - src: images/pypyr-logotype.svg
+      title: pypyr logotype
+    - src: images/16x9/pypyr-taskrunner-yaml-pipeline-automation-1920x1080.png
+      title: pypyr 16x9 banner
+    - src: images/4x3/pypyr-taskrunner-yaml-pipeline-automation-1200x900.png
+      title: pypyr 4x3 banner
+    - src: images/1x1/pypyr-taskrunner-yaml-pipeline-automation-1200x1200.png
+      title: pypyr 1x1 banner
 ---
 # press kit
 ## what is pypyr?
