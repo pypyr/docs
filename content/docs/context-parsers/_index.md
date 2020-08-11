@@ -29,7 +29,7 @@ seo_article_headline: Built-in pypyr context parsers for cli args.
 seo_description: Parse task-runner pipeline custom cli input arguments as key-value pairs, comma delimited values, simple strings & more.
 topics: [built-in summary tables, context]
 ---
-# built-in context parsers
+# context parsers
 pypyr has a whole bunch of ready-made built-in context parsers to make your 
 life easier. A context parser allows you to customize how you want to pass cli 
 arguments to your pipeline.
@@ -37,7 +37,6 @@ arguments to your pipeline.
 Making your own [custom context-parser]({{< ref "/docs/api/context-parser" >}}) 
 is super easy too.
 
-## built-in context parsers
 ```fish
 # everything after mypipeline goes to the context_parser
 $ pypyr mypipeline these are all context input arguments
@@ -51,7 +50,9 @@ command line.
 The chances are pretty good that the `context_parser` will take the
 context command arguments and put in into the pypyr context.
 
-The pypyr context is a dictionary that is in scope for the duration of
-the entire pipeline. The `context_parser` can initialize the context. Any
-step in the pipeline can add, edit or remove items from the context
-dictionary.
+The [pypyr context]({{< ref "/docs/getting-started/basic-concepts#context">}}) 
+is a dictionary that is in scope for the duration of the entire pipeline. The 
+`context_parser` can initialize the context. Any step in the pipeline can add, 
+edit or remove items from the context dictionary.
+
+## built-in context parsers
