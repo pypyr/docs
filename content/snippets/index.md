@@ -1,7 +1,7 @@
 ---
 _build:
-  render: false
   list: never
-cascade:
-  headless: true
+  publishResources: false
+  render: false
+headless: true
 ---
