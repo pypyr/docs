@@ -1,0 +1,10 @@
+steps:
+  - name: pypyr.steps.shell
+    in:
+      cmd:
+        run: rm -rf *
+        cwd: public
+  - name: pypyr.steps.cmd
+    in:
+      # causes probs w submodule: hugo --cleanDestinationDir --minify -e prod
+      cmd: hugo --minify -e prod

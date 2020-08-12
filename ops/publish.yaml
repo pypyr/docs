@@ -1,0 +1,58 @@
+context_parser: pypyr.parser.keys
+steps:
+  - name: pypyr.steps.default
+    in:
+      defaults:
+        init: False
+        update: False
+        nopush: False
+  - name: pypyr.steps.call
+    run: '{init}'
+    in:
+      call: create_pub_subdir
+  - name: pypyr.steps.cmd
+    run: '{update}'
+    comment: update modules/theme
+    in:
+      cmd: hugo mod get -u ./...
+  - name: pypyr.steps.pype
+    in:
+      pype:
+        name: ops/build
+  - pypyr.steps.nowutc
+  - name: pypyr.steps.cmd
+    in:
+      cmd:
+        run: git add .
+        cwd: public
+  - name: pypyr.steps.cmd
+    in:
+      cmd:
+        run: git commit -m "publish site {nowUtc}."
+        cwd: public
+  - name: pypyr.steps.cmd
+    skip: '{nopush}'
+    in:
+      cmd:
+        run: git push origin master
+        cwd: public
+  - name: pypyr.steps.cmd
+    comment: commit submodule ref change to parent repo.
+    in:
+      cmd: git add .
+  - name: pypyr.steps.cmd
+    in:
+      cmd: git commit -m "publish site {nowUtc}. public submodule update."
+  - name: pypyr.steps.cmd
+    comment: push parent submodule commit
+    skip: '{nopush}'
+    in:
+      cmd: git push origin master
+
+create_pub_subdir:
+  - name: pypyr.steps.cmd
+    in:
+      cmd: rm -rf public
+  - name: pypyr.steps.cmd
+    in:
+      cmd: git submodule add git@github.com:pypyr/pypyr.github.io.git public
