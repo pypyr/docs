@@ -205,7 +205,7 @@ params:
     org: https://github.com/pypyr/
     repo: https://github.com/pypyr/pypyr-cli/
     bug: https://github.com/pypyr/pypyr-cli/issues/new?title=Re:%%20%s&labels=bug
-    edit: https://github.com/pypyr/docs/edit/master/%s
+    edit: https://github.com/pypyr/docs/edit/master/content/%s
     typo: https://github.com/pypyr/docs/issues/new?title=docs%%20issue:%s&body=File:%%20[%s](%s)
   tagline: easy pipeline task runner
   taxonomy_sidebar:
