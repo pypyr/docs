@@ -34,7 +34,7 @@ steps:
             }'
           variables:
             owner: pypyr
-            repo: pypyr-cli
+            repo: pypyr
             last: 25
   - name: pypyr.steps.py
     in:

@@ -14,8 +14,8 @@ Here you will find technical documentation for using the pypyr task-runner. The
 documentation covers how to sequence your tasks in a pipeline in yaml format
 and how to run your pipeline tasks from the CLI or the Python API.
 
-[![build status](https://api.shippable.com/projects/58efdfe130eb380700e559a6/badge?branch=master)](https://app.shippable.com/github/pypyr/pypyr-cli)
-[![coverage status](https://api.shippable.com/projects/58efdfe130eb380700e559a6/coverageBadge?branch=master)](https://app.shippable.com/github/pypyr/pypyr-cli)
+[![build status](https://api.shippable.com/projects/58efdfe130eb380700e559a6/badge?branch=master)](https://app.shippable.com/github/pypyr/pypyr)
+[![coverage status](https://api.shippable.com/projects/58efdfe130eb380700e559a6/coverageBadge?branch=master)](https://app.shippable.com/github/pypyr/pypyr)
 [![pypi version](https://badge.fury.io/py/pypyr.svg)](https://pypi.python.org/pypi/pypyr/)
 
 ## pypyr is a task-runner cli & api

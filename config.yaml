@@ -31,7 +31,7 @@ menu:
       weight: 40
     - identifier: github
       pre: svg/github-mark-and-logo.html
-      url: https://github.com/pypyr/pypyr-cli/
+      url: https://github.com/pypyr/pypyr/
       weight: 50
   footer_social:
     - name: twitter
@@ -40,7 +40,7 @@ menu:
       weight: 10
     - name: github
       pre: svg/github-icon.html
-      url: https://github.com/pypyr/pypyr-cli/
+      url: https://github.com/pypyr/pypyr/
       weight: 20
     - name: discord
       pre: svg/discord-icon.html
@@ -203,8 +203,8 @@ params:
   # social_twitter_image_alt: alt text for image max 420
   source_control_links:
     org: https://github.com/pypyr/
-    repo: https://github.com/pypyr/pypyr-cli/
-    bug: https://github.com/pypyr/pypyr-cli/issues/new?title=Re:%%20%s&labels=bug
+    repo: https://github.com/pypyr/pypyr/
+    bug: https://github.com/pypyr/pypyr/issues/new?title=Re:%%20%s&labels=bug
     edit: https://github.com/pypyr/docs/edit/master/content/%s
     typo: https://github.com/pypyr/docs/issues/new?title=docs%%20issue:%s&body=File:%%20[%s](%s)
   tagline: easy pipeline task runner

@@ -36,7 +36,7 @@ a better place.
 
 If you don't code or that sounds like too much work, but you have an idea for a
 new step that would make your life better, feel very free to
-[get in touch](https://github.com/pypyr/pypyr-cli/issues/new?title=step%20suggestion:&labels=feature,type:%20step)
+[get in touch](https://github.com/pypyr/pypyr/issues/new?title=step%20suggestion:&labels=feature,type:%20step)
 with a feature request.
 
 ## step function signature

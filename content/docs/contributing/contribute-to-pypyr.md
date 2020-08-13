@@ -21,7 +21,7 @@ Feel free to join pypyr on
 
 ## bugs
 Well, you know. No one's perfect. Feel free to [create an
-issue](https://github.com/pypyr/pypyr-cli/issues/new).
+issue](https://github.com/pypyr/pypyr/issues/new).
 
 ## contribute to the core cli
 The usual jazz - create an issue, fork, code, test, PR. It might be an

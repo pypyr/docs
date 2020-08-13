@@ -22,7 +22,7 @@ seo_description: Create a custom pipeline loader to get pipelines from s3, consu
 ## load pipeline not on the local filesystem
 A pype loader is responsible for loading a pipeline.
 
-The default pype loader is [pypyr.pypeloaders.fileloader](https://github.com/pypyr/pypyr-cli/blob/master/pypyr/pypeloaders/fileloader.py).
+The default pype loader is [pypyr.pypeloaders.fileloader](https://github.com/pypyr/pypyr/blob/master/pypyr/pypeloaders/fileloader.py).
 
 This default loader loads pipelines from the local file-system, following the
 usual [pypyr pipeline look-up sequence]({{< ref "/docs/pipelines/lookup-order">}}).
