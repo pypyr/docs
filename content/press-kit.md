@@ -58,5 +58,8 @@ from [Type-Ø-Tones](https://type-o-tones.com/).
 ### 4x3
 {{< figure-asset src="images/4x3/pypyr-taskrunner-yaml-pipeline-automation-1200x900.png" class="sensible-width-wide" caption="pypyr 4x3 banner" alt="pypyr 4x3 banner">}}
 
+### 2x1
+{{< figure-asset src="images/2x1/pypyr-taskrunner-yaml-pipeline-automation-1200x600.png" class="sensible-width-wide" caption="pypyr 2x1 banner" alt="pypyr 2x1 banner">}}
+
 ### 1x1
 {{< figure-asset src="images/1x1/pypyr-taskrunner-yaml-pipeline-automation-1200x1200.png" class="sensible-width-wide" caption="pypyr 1x1 banner" alt="pypyr 1x1 banner">}}
