@@ -35,16 +35,12 @@ steps:
           variables:
             owner: pypyr
             repo: pypyr
-            last: 25
+            last: 1
   - name: pypyr.steps.py
     in:
       pycode: | 
               import json
               context['jsonPayload'] = json.dumps(context['payload'], ensure_ascii=False)
-  - name: pypyr.steps.echo
-    run: False
-    in:
-      echoMe: hello -d '{jsonPayload}' and \n -DDDDD '{payload}'
   - name: pypyr.steps.env
     in:
       env:
@@ -62,7 +58,7 @@ steps:
         key: releases
   - name: pypyr.steps.filereplace
     foreach: '{releases[data][repository][releases][edges]}'
-    run: False
+    run: True
     in:
       fileReplace:
         in: ./ops/templates/release.md
