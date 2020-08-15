@@ -25,7 +25,7 @@ topics: [context]
 Merges values into context, preserving the existing hierarchy while only
 updating the differing values as specified in the `contextMerge` input.
 
-By comparison, [contextset]({{< ref "contextset" >}}) and 
+By comparison, [contextcopy]({{< ref "contextcopy" >}}) and 
 [contextsetf]({{< ref "contextsetf" >}}) overwrite the destination hierarchy 
 that is in context already.
 

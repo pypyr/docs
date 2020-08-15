@@ -33,10 +33,10 @@ The actual pipeline looks like this:
 # pypyr echo text goes here
 context_parser: pypyr.parser.string
 steps:
-  - name: pypyr.steps.contextset
+  - name: pypyr.steps.contextcopy
     comment: assign input arg to echoMe so echo step can echo it
     in:
-      contextSet:
+      contextCopy:
         echoMe: argString
   - pypyr.steps.echo
 ```
