@@ -65,7 +65,7 @@ can signal from your step you want to break out of the loop reporting success.
 If you use any context variables in your `stop` condition, these need to exist
 before the loop starts. You can initialize these in the `in` arguments for the 
 same step, or alternatively somewhere in a preceding step like 
-`contextset` or `contextsetf`.
+`contextcopy` or `contextsetf`.
 
 {{% note tip %}}
 Remember that you can use 

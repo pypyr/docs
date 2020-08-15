@@ -61,8 +61,10 @@ properties that you set here in `in` do not endure after the step completes.
 
 If you want to set context properties that exist beyond the current step, use
 one of the [context]({{< ref "/topics/context">}}) steps, such as 
-[pypyr.steps.contextsetf]({{< ref "/docs/steps/contextsetf">}}) or 
-[pypyr.steps.default]({{< ref "/docs/steps/default">}}).
+
+- [pypyr.steps.contextsetf]({{< ref "/docs/steps/contextsetf">}})
+- [pypyr.steps.contextcopy]({{< ref "/docs/steps/contextcopy">}})
+- [pypyr.steps.default]({{< ref "/docs/steps/default">}})
 
 ## set context parameters in preceding steps
 Although `in` is handy to set input parameters for a specific step, you can
@@ -87,10 +89,10 @@ steps:
       arb: arb substitution value
       contextSetf:
         newKey: 'XXX {arb} YYY'
-  - name: pypyr.steps.contextset
+  - name: pypyr.steps.contextcopy
     comment: copy newKey to echoMe
     in:
-      contextSet:
+      contextCopy:
         echoMe: newKey
   - pypyr.steps.echo # output echoMe, set in previous step
 ```

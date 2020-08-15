@@ -1,35 +1,35 @@
 ---
-title: pypyr.steps.contextset
-linktitle: contextset
+title: pypyr.steps.contextcopy
+linktitle: contextcopy
 date: 2020-06-30T20:28:42+01:00
 description: Copy entire context keys.
 draft: false
 card_extra_summary:
   heading: input context property
-  details: "`contextSet` (dict)"
+  details: "`contextCopy` (dict)"
 categories: [steps]
 # keywords: ""
 menu:
   docs:
     parent: steps
-    name: contextset
+    name: contextcopy
 seo_article_headline: Copy context key values in a task-runner pipeline.
 seo_description: Copy context keys with their entire values from other context keys in a task-runner pipeline context.
 # social_og_description: 200 chars, if blank fall back to seo_description then description
-# social_og_title: contextset -- if blank fall back to seo_article_headline > .Title. Max 70 chars
+# social_og_title: contextcopy -- if blank fall back to seo_article_headline > .Title. Max 70 chars
 # social_og_image_alt: max 420 chars
 topics: [context]
 ---
-# pypyr.steps.contextset
+# pypyr.steps.contextcopy
 ## copy values & structures from one part of context to another
-Sets context values from already existing context values.
+Copies context values from already existing context values.
 
 This is handy if you need to prepare certain keys in context where a
 next step might need a specific key. If you already have the value in
 context, you can create a new key (or update existing key) with that
 value.
 
-`contextset` and [contextsetf]({{< ref "contextsetf" >}}) overwrite existing 
+`contextcopy` and [contextsetf]({{< ref "contextsetf" >}}) overwrite existing 
 keys. If you want to merge new values into an existing destination hierarchy, 
 use [contextmerge]({{< ref "contextmerge" >}}) instead.
 
@@ -54,9 +54,9 @@ and your pipeline yaml looks like this:
 
 ```yaml
 steps:
-  - name: pypyr.steps.contextset
+  - name: pypyr.steps.contextcopy
     in:
-      contextSet:
+      contextCopy:
         key2: key1
         key4: key3
 ```
@@ -70,4 +70,4 @@ key3: value3
 key4: value3
 ```
 
-See a worked [example for contextset here](https://github.com/pypyr/pypyr-example/tree/master/pipelines/contextset.yaml).
+See a worked [example for contextcopy](https://github.com/pypyr/pypyr-example/tree/master/pipelines/contextcopy.yaml).

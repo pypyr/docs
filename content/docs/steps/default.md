@@ -33,7 +33,7 @@ This step sets the contents of the context key `defaults` into context
 where keys in `defaults` do not exist in context already. The contents
 of the `defaults` key must be a dictionary.
 
-By comparison, the `in` step decorator, and the steps [contextset]({{< ref "contextset" >}}),
+By comparison, the `in` step decorator, and the steps [contextcopy]({{< ref "contextcopy" >}}),
 [contextsetf]({{< ref "contextsetf" >}}) and [contextmerge]({{< ref "contextmerge" >}})
 overwrite values even if they are in context already.
 

@@ -81,7 +81,7 @@ newkey_dict:
 reflect the context at that point in time, and not any later changes to the 
 source values.
 
-[contextset]({{< ref "contextset" >}}) and `contextsetf` overwrite existing 
+[contextcopy]({{< ref "contextcopy" >}}) and `contextsetf` overwrite existing 
 keys. If you want to merge new values into an existing destination hierarchy,
 use [contextmerge]({{< ref "contextmerge" >}}) instead.
 
@@ -126,9 +126,10 @@ checks, null checks or if an item in a list or dict exists.
 ```yaml
 arb1: null
 arb2: ''
-arb3: eggy
 arb4: [1,1,2,3,5,8]
 contextSetf:
+  arb3: eggy # you can now use arb3 below in this same contextSetf step
+  fromArb: '{arb3}'
   isNull: !py arb1 is None # make a bool based on None
   isEmpty: !py bool(arb2) # use truthy, empty strings are false
   ternaryResult: !py "'eggs' if arb3 == 'eggy' else 'ham'"
