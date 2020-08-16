@@ -1,11 +1,11 @@
 ---
 title: pypyr.steps.assert
 linktitle: assert
-date: 2019-08-21
+date: 2020-08-12
 description: Stop pipeline if item in context is not as expected.
 draft: false
-publishdate: 2019-08-21
-lastmod: 2019-08-21
+publishdate: 2020-08-13
+lastmod: 2020-08-16
 card_extra_summary:
   heading: input context property
   details: "`assert` (dict)"
@@ -51,6 +51,8 @@ Uses these context keys:
 If `assert['this']` evaluates to `False` raises error.
 
 If you also specify `assert['equals']`, raises error if `assert['this'] != assert['equals']`.
+
+The step raises an exception of type `AssertionError` if the assertion fails.
 
 All inputs support string [substitutions]({{< ref "/docs/substitutions">}}).
 
