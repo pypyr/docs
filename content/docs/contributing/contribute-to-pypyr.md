@@ -8,7 +8,6 @@ lastmod: 2020-08-16
 menu:
   docs:
     parent: contributing
-draft: false
 seo_article_headline: How to contribute to pypyr open source software.
 seo_description: This contribution guide will help you contribute to open-source software even if you don't code.
 # topics: []

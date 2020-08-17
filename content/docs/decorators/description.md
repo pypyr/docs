@@ -3,7 +3,6 @@ title: description decorator
 linktitle: description
 date: 2020-07-11T20:35:07+01:00
 description: Descriptive text that prints to output when step runs.
-draft: false
 card_extra_summary:
   heading: example
   details: |

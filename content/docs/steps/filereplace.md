@@ -3,7 +3,6 @@ title: pypyr.steps.filereplace
 linktitle: filereplace
 date: 2020-07-03T18:00:13+01:00
 description: Find & replace any arbitrary search strings in a file.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`fileReplace` (dict)"

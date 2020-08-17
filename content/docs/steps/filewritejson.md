@@ -3,7 +3,6 @@ title: pypyr.steps.filewritejson
 linktitle: filewritejson
 date: 2020-07-06T11:38:51+01:00
 description: Write payload to file in json format.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`fileWriteJson` (dict)"

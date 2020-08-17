@@ -2,7 +2,6 @@
 title: privacy notice
 date: 2020-08-12
 description: pypyr website privacy & cookie notice.
-draft: false
 publishdate: 2020-08-13
 lastmod: 2020-08-16
 ---

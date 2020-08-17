@@ -3,7 +3,6 @@ title: pypyr.steps.fileformatjson
 linktitle: fileformatjson
 date: 2020-07-02T17:23:30+01:00
 description: Find & replace substitution {tokens} in a json file.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`fileFormatJson` (dict)"

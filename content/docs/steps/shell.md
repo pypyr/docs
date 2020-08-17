@@ -3,7 +3,6 @@ title: pypyr.steps.shell
 linktitle: shell
 date: 2020-07-07T11:53:28+01:00
 description: Run commands in the default shell. Use for pipes, wildcards, $ENVs, \~
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`cmd` (dict | str)"

@@ -8,7 +8,6 @@ lastmod: 2020-08-16
 menu:
   docs:
     parent: getting-started
-draft: false
 seo_article_headline: Task-runner pipelines, steps, step-groups & context.
 seo_description: Automation by defining sequences of steps & modular step groups in a pipeline. Use context to pass values between steps.
 # topics: [pipeline, tutorial, args]

@@ -8,7 +8,6 @@ lastmod: 2020-08-16
 menu:
   docs:
     parent: getting-started
-draft: false
 seo_article_headline: Overview of error handling in a task-runner pipeline.
 seo_description: Retry, swallow or ignore errors in a pipeline. Add extra diagnostic info to exceptions.
 topics: [error handling]

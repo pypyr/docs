@@ -3,7 +3,6 @@ title: pypyr.steps.pathcheck
 linktitle: pathcheck
 date: 2020-07-06T13:06:55+01:00
 description: Check if paths exist on filesystem.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`pathCheck` (list | str)"

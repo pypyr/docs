@@ -3,7 +3,6 @@ title: pypyr.steps.contextcopy
 linktitle: contextcopy
 date: 2020-08-15T20:28:42+01:00
 description: Copy entire context keys.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`contextCopy` (dict)"

@@ -3,7 +3,6 @@ title: pypyr.steps.default
 linktitle: default
 date: 2020-07-01T12:22:55+01:00
 description: Set values if they do not exist already.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`defaults` (dict)"

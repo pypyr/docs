@@ -3,7 +3,6 @@ title: pypyr.steps.call
 linktitle: call
 description: Call another step-group. Continue from the same place after the called groups complete.
 date: 2020-08-12
-draft: false
 publishdate: 2020-08-13
 lastmod: 2020-08-16
 card_extra_summary:

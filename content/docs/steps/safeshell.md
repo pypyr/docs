@@ -3,7 +3,6 @@ title: pypyr.steps.safeshell
 linktitle: safeshell
 date: 2020-07-07T11:17:29+01:00
 description: Deprecated alias for `cmd`
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`cmd` (dict | str)"

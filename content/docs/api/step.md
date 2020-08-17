@@ -13,7 +13,6 @@ menu:
   docs:
     parent: api
     name: step
-draft: false
 seo_article_headline: Easily code custom pipeline steps.
 seo_description: Create a custom pypyr pipeline task-runner step in a few lines of Python code. Ready-made retries & loops for your code.
 topics: [ custom code ]

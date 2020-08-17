@@ -3,7 +3,6 @@ title: pypyr.parser.keys
 linktitle: keys
 date: 2020-07-09T12:06:01+01:00
 description: Boolean cli switches `True` if exist.
-draft: false
 card_extra_summary:
   heading: example input
   details: "`pypyr pipelinename param1 'par am2' param3`"

@@ -3,7 +3,6 @@ title: pypyr.steps.tar
 linktitle: tar
 date: 2020-07-07T17:42:21+01:00
 description: Archive and/or extract tars with/without compression. Supports gzip, bzip2 & lzma.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`tar` (dict)"

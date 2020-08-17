@@ -3,7 +3,6 @@ title: pypyr.steps.echo
 linktitle: echo
 date: 2020-08-12
 description: Echo context value of `echoMe` to the output.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`echoMe` (any)"

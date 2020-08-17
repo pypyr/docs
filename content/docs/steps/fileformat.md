@@ -3,7 +3,6 @@ title: pypyr.steps.fileformat
 linktitle: fileformat
 date: 2020-07-01T20:17:37+01:00
 description: Find & replace substitution {tokens} in any file.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`fileFormat` (dict)"

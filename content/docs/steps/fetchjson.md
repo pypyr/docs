@@ -3,7 +3,6 @@ title: pypyr.steps.fetchjson
 linktitle: fetchjson
 date: 2020-07-01T19:02:21+01:00
 description: Load json file into pypyr context.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`fetchJson` (dict)"

@@ -14,7 +14,6 @@ menu:
   docs:
     parent: api
     name: pipeline loader
-draft: false
 seo_article_headline: Customize how & from where you load task-runner pipelines.
 seo_description: Create a custom pipeline loader to get pipelines from s3, consul or your own pipeline storage system.
 ---

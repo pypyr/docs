@@ -3,7 +3,6 @@ title: pypyr.steps.nowutc
 linktitle: nowutc
 date: 2020-07-07T10:19:23+01:00
 description: Saves current utc date-time to context `nowUtc`.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`nowUtcIn` (str)"

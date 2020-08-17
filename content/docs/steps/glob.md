@@ -3,7 +3,6 @@ title: pypyr.steps.glob
 linktitle: glob
 date: 2020-07-06T12:26:50+01:00
 description: Get paths from glob expression.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`glob` (dict)"

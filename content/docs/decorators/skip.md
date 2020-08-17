@@ -3,7 +3,6 @@ title: skip decorator
 linktitle: skip
 date: 2020-07-14T11:38:26+01:00
 description: Skip this step if condition True.
-draft: false
 card_extra_summary:
   heading: example
   details: |

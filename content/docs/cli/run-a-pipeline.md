@@ -10,7 +10,6 @@ menu:
     name: run a pipeline
     parent: cli
 weight: -10
-draft: false
 seo_article_headline: How to run a task-runner automation pipeline from the cli.
 seo_description: Run your yaml automation pipelines easily with the simple pypyr cli.
 # topics: []

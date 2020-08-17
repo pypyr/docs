@@ -3,7 +3,6 @@ title: pypyr.steps.fetchyaml
 linktitle: fetchyaml
 date: 2020-07-01T20:02:35+01:00
 description: Load yaml file into pypyr context.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`fetchYaml` (dict)"

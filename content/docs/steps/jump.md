@@ -3,7 +3,6 @@ title: pypyr.steps.jump
 linktitle: jump
 date: 2020-07-06T12:43:39+01:00
 description: Jump to another step-group. The rest of the current step-group doesn't run.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`jump` (dict | str)"

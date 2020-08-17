@@ -3,7 +3,6 @@ title: pypyr.parser.keyvaluepairs
 linktitle: keyvaluepairs
 date: 2020-07-09T12:26:36+01:00
 description: Pass key-value pairs from cli input args to the pipeline.
-draft: false
 card_extra_summary:
   heading: example input
   details: '`pypyr pipelinename param1=value1 param2="value 2" "param 3"=value3`'

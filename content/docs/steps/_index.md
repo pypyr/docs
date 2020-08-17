@@ -5,7 +5,6 @@ description: A listing of pypyr built-in ready-made steps. Scroll through all py
 date: 2020-08-12
 publishdate: 2020-08-13
 lastmod: 2020-08-16
-draft: false
 menu:
   docs:
     identifier: steps-overview

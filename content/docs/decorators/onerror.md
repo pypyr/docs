@@ -3,7 +3,6 @@ title: onError decorator
 linktitle: onError
 date: 2020-07-11T21:42:31+01:00
 description: Add custom error data on step error.
-draft: false
 card_extra_summary:
   heading: example
   details: |

@@ -3,7 +3,6 @@ title: pypyr.steps.filewriteyaml
 linktitle: filewriteyaml
 date: 2020-07-06T12:07:43+01:00
 description: Write payload to file in yaml format.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`fileWriteYaml` (dict)"

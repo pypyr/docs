@@ -10,7 +10,6 @@ menu:
   docs:
     parent: api
     name: run pipeline
-draft: false
 seo_article_headline: Run pipeline from API in your own code.
 seo_description: Use the Python API to run task-runner pipeline workflows from your own code in a few simple lines.
 topics: [ custom code ]

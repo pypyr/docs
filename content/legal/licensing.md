@@ -2,7 +2,6 @@
 title: copyright & licensing
 date: 2020-08-08T15:04:34+01:00
 description: pypyr copyright & licensing statement.
-draft: false
 lastmod: 2020-08-08T15:04:34+01:00
 publishdate: 2020-08-08T15:04:34+01:00
 ---

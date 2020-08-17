@@ -3,7 +3,6 @@ title: swallow decorator
 linktitle: swallow
 date: 2020-07-11T22:04:10+01:00
 description: Swallow step error & continue with pipeline.
-draft: false
 card_extra_summary:
   heading: example
   details: |

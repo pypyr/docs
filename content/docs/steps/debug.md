@@ -3,7 +3,6 @@ title: pypyr.steps.debug
 linktitle: debug
 date: 2020-07-01T12:03:17+01:00
 description: Pretty print context to output.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`debug` (dict)"

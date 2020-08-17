@@ -3,7 +3,6 @@ title: pypyr.parser.string
 linktitle: string
 date: 2020-07-09T16:52:56+01:00
 description: Concatenate all cli input args into single string `argString`.
-draft: false
 card_extra_summary:
   heading: example input
   details: "`pypyr pipelinename arbitrary string here`"

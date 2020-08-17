@@ -3,7 +3,6 @@ title: comment decorator
 linktitle: comment
 date: 2020-07-11T20:13:51+01:00
 description: Annotations for pipeline authors.
-draft: false
 card_extra_summary:
   heading: example
   details: |

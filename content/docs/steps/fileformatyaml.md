@@ -3,7 +3,6 @@ title: pypyr.steps.fileformatyaml
 linktitle: fileformatyaml
 date: 2020-07-02T17:23:36+01:00
 description: Find & replace substitution {tokens} in a yaml file.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`fileFormatYaml` (dict)"
