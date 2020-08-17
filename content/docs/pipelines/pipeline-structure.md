@@ -2,9 +2,9 @@
 title: pipeline yaml structure
 linktitle: pipeline structure
 description: The format & structure of a pipeline.
-date: 2019-08-21
-publishdate: 2019-08-21
-lastmod: 2019-08-21
+date: 2020-08-12
+publishdate: 2020-08-13
+lastmod: 2020-08-16
 # categories: [pipelines]
 menu:
   docs:
@@ -122,16 +122,22 @@ sequence completes.
 `on_failure` is a list of steps to execute in sequence. Runs when any of the above
 hits an unhandled exception.
 
-When `on_failure` completes, pypyr will quit and report an error, with a non-zero
-exit code. In other words, `on_failure` doesn't swallow the exception for you,
-it just gives you the opportunity to do something about it.
-
 This is optional: if `on_failure` isn't specified, pypyr will just finish the
 pipeline reporting the error.
 
+See here for more details on 
+[how failure handlers work]({{< ref "/docs/getting-started/error-handling#failure-handlers">}}).
+
+When `on_failure` completes, pypyr will quit and report an error, with a non-zero
+exit code. In other words, `on_failure` doesn't swallow the exception for you,
+it just gives you the opportunity to do something about it. If you want to 
+cancel the error condition, see how to 
+[quit failure handler without raising error]({{< ref "/docs/getting-started/error-handling#dont-quit-pipeline-reporting-failure">}}).
+
 If `on_failure` encounters another exception while processing an exception, then
 pypyr will log and report both that exception and the original cause's 
-exception.
+exception, although the original cause exception is what pypyr highlights on 
+CLI exit and raises to API consumers.
 
 You can use built-in steps or code your own steps exactly like you would for
 the `steps` step-group - it uses the same function signature.

@@ -2,9 +2,9 @@
 title: plugins overview
 linktitle: plugins
 description: A listing of pypyr's official plug-ins. Add AWS & Slack functions to your pipelines.
-date: 2019-08-21
-publishdate: 2019-08-21
-lastmod: 2019-08-21
+date: 2020-08-12
+publishdate: 2020-08-13
+lastmod: 2020-08-16
 draft: false
 menu:
   docs:

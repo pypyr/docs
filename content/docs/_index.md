@@ -2,9 +2,9 @@
 title: pypyr docs
 linktitle: docs
 description: pypyr help documentation
-date: 2019-08-21
-publishdate: 2019-08-21
-lastmod: 2019-08-21
+date: 2020-08-12
+publishdate: 2020-08-13
+lastmod: 2020-08-16
 draft: false
 seo_article_headline: pypyr technical help documentation & usage instructions home.
 seo_description: pypyr is a task-runner cli & api for yaml pipelines. This is technical documentation for the open-source pypyr project.

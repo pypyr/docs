@@ -29,6 +29,11 @@ you're nested in child pipelines or a step-group call-chain.
 You can always use `pypyr.steps.stop` as a simple step, because it doesn't
 need any input context properties.
 
+If you use a Stop instruction inside a 
+[failure handler]({{< ref "/docs/getting-started/error-handling#failure-handlers" >}}) 
+it will stop processing at that point AND not quit reporting failure. Do this 
+when you want to handle an error condition and not raise an error to the caller.
+
 ## example
 ```yaml
 - name: pypyr.steps.echo

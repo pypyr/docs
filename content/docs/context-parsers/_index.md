@@ -2,10 +2,10 @@
 title: context parsers
 # linktitle: pypyr context parser overview
 description: pypyr context parsers initialize the context from your own custom cli input arguments.
-date: 2019-08-21
+date: 2020-08-12
 draft: false
-publishdate: 2019-08-21
-lastmod: 2019-08-21
+publishdate: 2020-08-13
+lastmod: 2020-08-16
 # categories: [context]
 menu:
   docs:

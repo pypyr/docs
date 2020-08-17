@@ -73,7 +73,7 @@ Error while running step pypyr.steps.assert at pipeline yaml line: 3, col: 5
 Something went wrong. Will now try to run on_failure.
 the error was: this is a custom error
 
-ContextError: assert False evaluated to False.
+AssertionError: assert False evaluated to False.
 ```
 
 ## create custom exception object
@@ -121,5 +121,5 @@ Something went wrong. Will now try to run on_failure.
 the error code: 123
 the error description: my err FROM SUBSTITUTION EXPRESSION description
 
-ContextError: assert False evaluated to False.
+AssertionError: assert False evaluated to False.
 ```

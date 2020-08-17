@@ -2,9 +2,9 @@
 title: custom step
 linktitle: step
 description: Create your own custom step.
-date: 2019-08-21
-publishdate: 2019-08-21
-lastmod: 2019-08-21
+date: 2020-08-12
+publishdate: 2020-08-13
+lastmod: 2020-08-16
 # card_extra_summary:
 #   heading: input context property
 #   details: "`assert` (dict)"

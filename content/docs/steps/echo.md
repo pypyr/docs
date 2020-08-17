@@ -1,15 +1,15 @@
 ---
 title: pypyr.steps.echo
 linktitle: echo
-date: 2019-08-21
+date: 2020-08-12
 description: Echo context value of `echoMe` to the output.
 draft: false
 card_extra_summary:
   heading: input context property
   details: "`echoMe` (any)"
 categories: [steps]
-lastmod: 2019-08-21
-publishdate: 2019-08-21
+lastmod: 2020-08-16
+publishdate: 2020-08-13
 menu:
   docs:
     parent: steps
