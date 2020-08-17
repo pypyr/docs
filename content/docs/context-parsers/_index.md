@@ -24,9 +24,9 @@ list_fields:
   - heading: example cli input
     field: card_extra_summary.details
 list_style: section-list/table
-seo_is_carousel: true
 seo_article_headline: Built-in pypyr context parsers for cli args.
 seo_description: Parse task-runner pipeline custom cli input arguments as key-value pairs, comma delimited values, simple strings & more.
+seo_is_carousel: true
 topics: [built-in summary tables, context]
 ---
 # context parsers
