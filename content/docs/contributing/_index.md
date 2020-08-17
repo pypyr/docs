@@ -10,4 +10,5 @@ menu:
     weight: -100
 seo_article_headline: How to contribute to pypyr open source software.
 seo_description: pypyr is an open-source task-runner. This contribution guide will help you contribute to open-source software.
+seo_is_carousel: true
 ---

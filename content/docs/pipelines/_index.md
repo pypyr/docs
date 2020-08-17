@@ -9,4 +9,5 @@ menu:
     weight: -100
 seo_article_headline: pypyr is a task-runner that runs pipelines defined in yaml.
 seo_description: Overview of pypyr's pipeline format, pipeline lookup order & built-in pipelines.
+seo_is_carousel: true
 ---
