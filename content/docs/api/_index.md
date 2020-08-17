@@ -1,9 +1,9 @@
 ---
 title: api
 description: Easily extend pypyr with the simple Python API. Create your own steps and context argument parsers. Call pypyr programmatically from your own code.
-date: 2019-08-21
-publishdate: 2019-08-21
-lastmod: 2019-08-21
+date: 2020-08-12
+publishdate: 2020-08-13
+lastmod: 2020-08-16
 # categories: [developers]
 menu:
   docs:

@@ -2,9 +2,9 @@
 title: task-runner for automation pipelines defined in yaml
 linktitle: pypyr
 description: pypyr is a simple task-runner CLI & API with human readable yaml pipelines. Agentless task automation, CI/CD & devops.
-date: 2019-08-21
-publishdate: 2019-08-21
-lastmod: 2019-08-21
+date: 2020-08-12
+publishdate: 2020-08-13
+lastmod: 2020-08-16
 draft: false
 # h1: task runner for workflows defined in yaml
 h1: task runner for automation pipelines

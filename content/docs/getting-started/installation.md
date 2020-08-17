@@ -1,9 +1,9 @@
 ---
 title: install pypyr
 description: How to install pypyr with pip & how to run pypyr via docker
-date: 2019-08-21
-publishdate: 2019-08-21
-lastmod: 2019-08-21
+date: 2020-08-12
+publishdate: 2020-08-13
+lastmod: 2020-08-16
 categories: [install]
 menu:
   docs:

@@ -95,6 +95,6 @@ The output from this is:
 ```text
 $ pypyr swallow-with-onerror
 pypyr.steps.assert Ignoring error because swallow is True for this step.
-pypyr.errors.ContextError: assert False evaluated to False.
+AssertionError: assert False evaluated to False.
 the error was: CUSTOM ERROR HERE
 ```

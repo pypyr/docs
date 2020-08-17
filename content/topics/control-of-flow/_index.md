@@ -1,9 +1,9 @@
 ---
 title: control-of-flow
 description: Flow control for your pipelines. Conditional execution, loops, jump between steps & stop processing.
-date: 2019-08-21
-publishdate: 2019-08-21
-lastmod: 2019-08-21
+date: 2020-08-12
+publishdate: 2020-08-13
+lastmod: 2020-08-16
 draft: false
 seo_article_headline: Control-of-Flow for a task-runner pipeline.
 seo_description: Conditional execution, loops, jump between steps & stop processing instructions in a pipeline.

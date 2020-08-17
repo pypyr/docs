@@ -1,9 +1,9 @@
 ---
 title: basic concepts
 description: Basic concepts of pypyr. Learn the fundamentals of how pipelines, step-groups, steps & context fit together.
-date: 2019-08-21
-publishdate: 2019-08-21
-lastmod: 2019-08-21
+date: 2020-08-12
+publishdate: 2020-08-13
+lastmod: 2020-08-16
 # categories: [install]
 menu:
   docs:

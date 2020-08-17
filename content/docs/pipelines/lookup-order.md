@@ -2,10 +2,10 @@
 title: pipeline look-up order
 linktitle: lookup order
 description: pypyr looks for pipeline files & custom code modules on disk in these directories.
-date: 2019-08-21
+date: 2020-08-12
 draft: false
-publishdate: 2019-08-21
-lastmod: 2019-08-21
+publishdate: 2020-08-13
+lastmod: 2020-08-16
 categories: [pipelines]
 menu:
   docs:
