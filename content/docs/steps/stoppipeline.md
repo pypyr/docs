@@ -3,7 +3,6 @@ title: pypyr.steps.stoppipeline
 linktitle: stoppipeline
 date: 2020-07-07T17:26:12+01:00
 description: Stop current pipeline.
-draft: false
 card_extra_summary:
   heading: input context property
   # details: "`stoppipeline` (dict)"

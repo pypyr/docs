@@ -8,7 +8,6 @@ lastmod: 2020-08-16
 menu:
   docs:
     parent: contributing
-draft: false
 seo_article_headline: Developer's guide for pypyr open-source contributors.
 seo_description: Developer's guide for coding style, testing, code coverage and pull requests.
 topics: [ custom code]

@@ -2,7 +2,6 @@
 title: press kit
 date: 2020-08-08T20:06:45+01:00
 description: pypyr logo, images & banners for social media.
-draft: false
 lastmod: 2020-08-08T20:06:45+01:00
 publishdate: 2020-08-08T20:06:45+01:00
 sitemap_images:

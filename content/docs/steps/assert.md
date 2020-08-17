@@ -3,7 +3,6 @@ title: pypyr.steps.assert
 linktitle: assert
 date: 2020-08-12
 description: Stop pipeline if item in context is not as expected.
-draft: false
 publishdate: 2020-08-13
 lastmod: 2020-08-16
 card_extra_summary:

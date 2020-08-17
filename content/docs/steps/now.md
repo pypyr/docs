@@ -3,7 +3,6 @@ title: pypyr.steps.now
 linktitle: now
 date: 2020-07-07T10:14:55+01:00
 description: Saves current local date-time to context `now`.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`nowIn` (str)"

@@ -9,7 +9,6 @@ menu:
   docs:
     name: custom args
     parent: cli
-draft: false
 seo_article_headline: Passing custom args with the pipeline task-runner cli.
 seo_description: Pass your own custom optional arguments from the cli to the task-runner pipeline & set your own default values.
 topics: [args]

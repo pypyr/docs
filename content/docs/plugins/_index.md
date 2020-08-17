@@ -5,7 +5,6 @@ description: A listing of pypyr's official plug-ins. Add AWS & Slack functions t
 date: 2020-08-12
 publishdate: 2020-08-13
 lastmod: 2020-08-16
-draft: false
 menu:
   docs:
     identifier: plugins-overview

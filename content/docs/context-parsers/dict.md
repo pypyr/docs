@@ -3,7 +3,6 @@ title: pypyr.parser.dict
 linktitle: dict
 date: 2020-07-08T18:44:23+01:00
 description: Parse cli key=value pairs into `argDict`
-draft: false
 card_extra_summary:
   heading: example input
   details: '`pypyr pipelinename param1=value1 param2="value 2" param3=value3`'

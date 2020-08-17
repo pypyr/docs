@@ -4,7 +4,6 @@ description: Use string formatting expressions to make substitutions or token re
 date: 2020-08-12
 publishdate: 2020-08-13
 lastmod: 2020-08-16
-draft: false
 menu:
   docs:
     identifier: substitutions-overview

@@ -3,7 +3,6 @@ title: pypyr.steps.pypyrversion
 linktitle: pypyrversion
 date: 2020-07-07T10:10:38+01:00
 description: Write current pypyr version number to output.
-draft: false
 card_extra_summary:
   heading: input context property
   # details: 

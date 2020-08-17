@@ -3,7 +3,6 @@ title: in decorator
 linktitle: in
 date: 2020-07-11T12:56:32+01:00
 description: Add arguments to context for the current step.
-draft: false
 card_extra_summary:
   heading: example
   details: |

@@ -5,7 +5,6 @@ description: Selectively run, skip, repeat, loop & handle errors on individual s
 date: 2020-08-12
 publishdate: 2020-08-13
 lastmod: 2020-08-16
-draft: false
 # categories: [pipeline definition]
 menu:
   docs:

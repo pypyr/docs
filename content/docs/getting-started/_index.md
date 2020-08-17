@@ -2,7 +2,6 @@
 title: getting started
 description: Quick start to help if you're new to the pypyr task-runner.
 date: 2020-08-12
-draft: false
 # categories: [context]
 menu:
   docs:

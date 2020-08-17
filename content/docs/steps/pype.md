@@ -3,7 +3,6 @@ title: pypyr.steps.pype
 linktitle: pype
 date: 2020-07-06T18:44:14+01:00
 description: Call another pipeline from the current pipeline.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`pype` (dict)"

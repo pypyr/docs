@@ -3,7 +3,6 @@ title: pypyr.steps.envget
 linktitle: envget
 date: 2020-07-01T17:19:44+01:00
 description: Get $ENVs & use a default fallback if they don't exist.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`envget` (list)"

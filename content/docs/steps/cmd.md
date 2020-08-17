@@ -3,7 +3,6 @@ title: pypyr.steps.cmd
 linktitle: cmd
 date: 2020-06-13T21:38:57+01:00
 description: Run any external program, command, script.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`cmd` (dict | str)"

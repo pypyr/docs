@@ -3,7 +3,6 @@ title: while loop decorator
 linktitle: while
 date: 2020-07-14T13:09:24+01:00
 description: Repeat step until stop condition is `True` or up to the maximum iteration count.
-draft: false
 card_extra_summary:
   heading: example
   details: |

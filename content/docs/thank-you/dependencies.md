@@ -2,7 +2,6 @@
 title: dependencies
 date: 2020-08-10T14:18:44+01:00
 description: Listing the open-source libraries pypyr uses.
-draft: false
 lastmod: 2020-08-10T14:18:44+01:00
 menu:
   docs:

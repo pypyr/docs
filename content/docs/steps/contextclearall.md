@@ -3,7 +3,6 @@ title: pypyr.steps.contextclearall
 linktitle: contextclearall
 date: 2020-06-30T19:04:00+01:00
 description: Wipe the entire context.
-draft: false
 card_extra_summary:
   heading: input context property
   # details: 

@@ -9,7 +9,6 @@ menu:
   docs:
     title: run your first pipeline
     parent: getting-started
-draft: false
 weight: -5
 seo_article_headline: Tutorial showing you how to run your first task-runner pipeline.
 seo_description: An introduction to how to write & run your first pipeline with the pypyr task-runner to automate your own tasks.

@@ -3,7 +3,6 @@ title: format string interpolation
 linktitle: format string
 date: 2020-06-13T21:38:57+01:00
 description: String interpolation with substitution tokens are for easy value replacement inside a pipeline workflow. Works with complex types, not just strings.
-draft: false
 # categories: [expressions]
 keywords: "token replacement, string substitutions"
 menu:

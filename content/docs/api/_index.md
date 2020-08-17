@@ -11,7 +11,6 @@ menu:
     name: overview
     parent: api
     weight: -100
-draft: false
 seo_article_headline: Simple pipeline task-runner runner Python API for workflow automation.
 seo_description: Easily extend pypyr with your own custom steps, cli input arguments & invoke pipelines programmatically from the API.
 seo_is_carousel: true

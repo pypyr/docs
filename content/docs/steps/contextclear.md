@@ -3,7 +3,6 @@ title: pypyr.steps.contextclear
 linktitle: contextclear
 date: 2020-06-30T19:03:21+01:00
 description: Remove specified items from context.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`contextClear` (list)"

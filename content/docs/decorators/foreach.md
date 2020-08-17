@@ -3,7 +3,6 @@ title: foreach loop decorator
 linktitle: foreach
 date: 2020-07-10T19:07:51+01:00
 description: Repeat step for each item in list.
-draft: false
 card_extra_summary:
   heading: example
   details:  |

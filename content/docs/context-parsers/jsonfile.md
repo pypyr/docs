@@ -3,7 +3,6 @@ title: pypyr.parser.jsonfile
 linktitle: jsonfile
 date: 2020-07-09T11:19:55+01:00
 description: Put json file into context from a cli arg path input.
-draft: false
 card_extra_summary:
   heading: example input
   details: '`pypyr pipelinename ./path/sample.json`'

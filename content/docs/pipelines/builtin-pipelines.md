@@ -8,7 +8,6 @@ categories: [pipelines]
 menu:
   docs:
     parent: pipelines
-draft: false
 seo_article_headline: pypyr comes with ready-made pipelines out of the box.
 seo_description: pypyr comes with some basic pipelines to run easy smoke test & install verification functionality.
 topics: [built-in summary tables]

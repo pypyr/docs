@@ -3,7 +3,6 @@ title: pypyr.steps.py
 linktitle: py
 date: 2020-07-06T13:17:22+01:00
 description: Execute inline python code.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`pycode` (string)"

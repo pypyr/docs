@@ -3,7 +3,6 @@ title: pypyr.steps.contextmerge
 linktitle: contextmerge
 date: 2020-06-30T19:51:26+01:00
 description: Merges values into context, preserving the existing context hierarchy.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`contextMerge` (dict)"

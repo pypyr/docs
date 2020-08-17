@@ -3,7 +3,6 @@ title: pypyr.steps.contextsetf
 linktitle: contextsetf
 date: 2020-06-30T20:28:46+01:00
 description: Set & format context keys.
-draft: false
 card_extra_summary:
   heading: input context property
   details: "`contextSetf` (dict)"

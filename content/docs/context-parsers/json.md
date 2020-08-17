@@ -3,7 +3,6 @@ title: pypyr.parser.json
 linktitle: json
 date: 2020-07-08T19:18:15+01:00
 description: Put json input string from cli arg into context.
-draft: false
 card_extra_summary:
   heading: example input
   details: '`pypyr pipelinename {"key1": "value 1", "key2": 123}`'

@@ -3,7 +3,6 @@ title: pypyr.steps.stopstepgroup
 linktitle: stopstepgroup
 date: 2020-07-07T17:36:13+01:00
 description: Stop current step-group.
-draft: false
 card_extra_summary:
   heading: input context property
   # details: "`stopstepgroup` (dict)"

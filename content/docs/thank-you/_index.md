@@ -3,7 +3,6 @@ title: thank you
 # linktitle: thank-you
 date: 2020-08-10T14:15:57+01:00
 description: pypyr acknowledgements, dependencies & thank yous
-draft: false
 lastmod: 2020-08-10T14:15:57+01:00
 menu:
   docs:

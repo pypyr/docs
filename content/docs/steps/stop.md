@@ -3,7 +3,6 @@ title: pypyr.steps.stop
 linktitle: stop
 date: 2020-07-07T17:19:20+01:00
 description: Stop pypyr entirely.
-draft: false
 card_extra_summary:
   heading: input context property
   # details: "`stop` (dict)"

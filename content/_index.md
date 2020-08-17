@@ -5,7 +5,6 @@ description: pypyr is a simple task-runner CLI & API with human readable yaml pi
 date: 2020-08-12
 publishdate: 2020-08-13
 lastmod: 2020-08-16
-draft: false
 # h1: task runner for workflows defined in yaml
 h1: task runner for automation pipelines
 h2: script sequential task workflow steps in yaml

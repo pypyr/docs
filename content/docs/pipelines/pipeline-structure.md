@@ -12,7 +12,6 @@ menu:
     weight: 10
 weight: 10
 sections_weight: 10
-draft: false
 seo_article_headline: Directory lookup order for task-runner pipelines on the filesystem.
 seo_description: Search for a matching pipeline first in the working directory & alternate location lookup sequence.
 topics: [pipeline format]

@@ -3,7 +3,6 @@ title: run decorator
 linktitle: run
 date: 2020-07-14T11:02:07+01:00
 description: Run this step only if condition True.
-draft: false
 card_extra_summary:
   heading: example
   details:  |
