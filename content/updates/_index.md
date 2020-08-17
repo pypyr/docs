@@ -8,5 +8,6 @@ cascade:
     list_show_top_level_section_tabs: true
     list_sort: list/sort/hugo-default.html
     list_style: section-list/cards
-seo_is_carousel: true
+    seo_is_carousel: true
+# lastmod: 2020-08-17
 ---
