@@ -1,6 +1,3 @@
-# docs
-pypyr documentation source. edit documentation here.
-=======
 # the pypyr project documentation website source
 https://pypyr.io/ website source. Edit website content & documentation here in 
 this repo.
