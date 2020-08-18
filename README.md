@@ -50,6 +50,9 @@ To publish *without* getting the latest theme:
 `$ pypyr ops/publish`
 
 To build & commit changes *without* pushing to origin:
+
 `$ pypyr ops/publish update nopush`
+
 or without updating theme:
+
 `$ pypyr ops/publish nopush`
