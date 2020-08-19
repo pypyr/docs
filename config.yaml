@@ -76,6 +76,11 @@ menu:
       weight: 70
     - name: plugins
       weight: 80
+    - name: aws
+      parent: plugins
+    - name: steps
+      identifier: aws-steps
+      parent: aws
     - name: api
       weight: 90
     - name: contributing
@@ -105,6 +110,10 @@ params:
   # custom_js: ["js/myfile.js", "js/anotherfile.js"] # put these in ./assets/js/myfile.js et.
   # date_format_byline: "2006-01-02 15:04"
   # date_format_git: "2006-01-02 15:04"
+  feedback_show: True
+  feedback_bug: https://github.com/pypyr/pypyr/issues/new?title=Re:%%20%s&labels=bug
+  feedback_edit: https://github.com/pypyr/docs/edit/master/content/%s
+  feedback_typo: https://github.com/pypyr/docs/issues/new?title=docs%%20issue:%s&body=File:%%20[%s](%s)
   # font_href: https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Roboto+Mono:400,400i&display=swap
   logo: images/pypyr-logotype.svg # in ./assets
   google_analytics_tag: UA-147150909-1
@@ -201,13 +210,7 @@ params:
   # social_twitter_image: images/1.91x1/pypyr-taskrunner-yaml-pipeline-automation-1200x628.png
   # Images for this Card support an aspect ratio of 2:1 with minimum dimensions of 300x157 or maximum of 4096x4096 pixels. Images must be less than 5MB in size. JPG, PNG, WEBP and GIF formats are supported
   # social_twitter_image_alt: alt text for image max 420
-  source_control_links:
-    org: https://github.com/pypyr/
-    repo: https://github.com/pypyr/pypyr/
-    bug: https://github.com/pypyr/pypyr/issues/new?title=Re:%%20%s&labels=bug
-    edit: https://github.com/pypyr/docs/edit/master/content/%s
-    typo: https://github.com/pypyr/docs/issues/new?title=docs%%20issue:%s&body=File:%%20[%s](%s)
-  tagline: easy pipeline task runner
+  tagline: automation pipeline task runner
   taxonomy_sidebar:
     - topics
     - categories
