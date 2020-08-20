@@ -10,6 +10,7 @@ menu:
   docs:
     parent: pipelines
     name: lookup order
+weight: -20
 seo_article_headline: Directory lookup order for task-runner pipelines on the filesystem.
 seo_description: Search for a matching pipeline first in the working directory & alternate location lookup sequence.
 # topics: [control-of-flow]
