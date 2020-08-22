@@ -81,6 +81,11 @@ menu:
     - name: steps
       identifier: aws-steps
       parent: aws
+    - name: slack
+      parent: plugins
+    - name: steps
+      identifier: slack-steps
+      parent: slack
     - name: api
       weight: 90
     - name: contributing
