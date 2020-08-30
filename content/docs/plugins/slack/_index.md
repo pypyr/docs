@@ -21,9 +21,10 @@ Send messages to [slack](https://slack.com/) from pypyr. This is useful
 for sending notifications on success or failure conditions in your
 pipelines. Or for sending a message just because you can.
 
-[![build status](https://api.shippable.com/projects/58efdfe19755e8070035afd9/badge?branch=master)](https://app.shippable.com/github/pypyr/pypyr-slack)
-[![coverage status](https://api.shippable.com/projects/58efdfe19755e8070035afd9/coverageBadge?branch=master)](https://app.shippable.com/github/pypyr/pypyr-slack)
+[![build status](https://github.com/pypyr/pypyr-slack/workflows/lint-test-build/badge.svg)](https://github.com/pypyr/pypyr-slack/actions)
+[![coverage status](https://codecov.io/gh/pypyr/pypyr-slack/branch/master/graph/badge.svg)](https://codecov.io/gh/pypyr/pypyr-slack)
 [![pypi version](https://badge.fury.io/py/pypyrslack.svg)](https://pypi.python.org/pypi/pypyrslack/)
+[![apache 2.0 license](https://img.shields.io/github/license/pypyr/pypyr-slack)](https://opensource.org/licenses/Apache-2.0)
 
 ## installation
 ```bash
