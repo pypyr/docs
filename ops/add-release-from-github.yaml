@@ -1,4 +1,12 @@
+context_parser: pypyr.parser.keyvaluepairs
 steps:
+  - name: pypyr.steps.default
+    in:
+      defaults:
+        owner: pypyr
+        repo: pypyr
+        last: 1
+        out: ./content/updates/releases
   - name: pypyr.steps.contextsetf
     in:
       contextSetf:
@@ -33,9 +41,9 @@ steps:
               }
             }'
           variables:
-            owner: pypyr
-            repo: pypyr
-            last: 1
+            owner: '{owner}'
+            repo: '{repo}'
+            last: '{last}'
   - name: pypyr.steps.py
     in:
       pycode: | 
@@ -62,8 +70,9 @@ steps:
     in:
       fileReplace:
         in: ./ops/templates/release.md
-        out: ./content/updates/releases/{i[node][tagName]}.md
+        out: '{out}/{i[node][tagName]}.md'
         replacePairs:
+          <<repo>>: '{repo}'
           <<tag>>: '{i[node][tagName]}'
           <<date>>: '{i[node][publishedAt]}'
           <<short-description>>: '{i[node][name]}'
