@@ -1,4 +1,4 @@
-- title: stitch together commands, applications & scripts into a repeatable pipeline
+- title: combine commands, applications & scripts into a repeatable pipeline
   description: You can run any combination of command, shell, external 
     executable, any callable, external script & inline code in the same 
     pipeline, alongside composable built-in steps that do useful things like 
