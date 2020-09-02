@@ -2,4 +2,4 @@ module github.com/pypyr/docs
 
 go 1.14
 
-require github.com/pypyr/pypyr-docs v0.0.0-20200820111107-ddd2f4f605fa // indirect
+require github.com/pypyr/pypyr-docs v0.0.0-20200902194915-c15c10975c58 // indirect
