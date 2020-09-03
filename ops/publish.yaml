@@ -7,30 +7,36 @@ steps:
         update: False
         nopush: False
   - name: pypyr.steps.call
+    description: --> initialize ./public submodule
     run: '{init}'
     in:
       call: create_pub_subdir
   - name: pypyr.steps.cmd
-    run: '{update}'
     comment: update modules/theme
+    description: --> update theme module
+    run: '{update}'
     in:
       cmd: hugo mod get -u ./...
   - name: pypyr.steps.pype
+    description: --> running ops/build pipeline
     in:
       pype:
         name: ops/build
   - pypyr.steps.nowutc
   - name: pypyr.steps.cmd
+    description: --> add ./public changes to git staging
     in:
       cmd:
         run: git add .
         cwd: public
   - name: pypyr.steps.cmd
+    description: --> commit ./public changes to git staging
     in:
       cmd:
         run: git commit -m "publish site {nowUtc}."
         cwd: public
   - name: pypyr.steps.cmd
+    description: --> push ./public changes to origin
     skip: '{nopush}'
     in:
       cmd:
@@ -38,21 +44,26 @@ steps:
         cwd: public
   - name: pypyr.steps.cmd
     comment: commit submodule ref change to parent repo.
+    description: --> add submodule ref changes to parent repo
     in:
       cmd: git add .
   - name: pypyr.steps.cmd
+    description: --> commit submodule ref changes to parent repo
     in:
       cmd: git commit -m "publish site {nowUtc}. public submodule update."
   - name: pypyr.steps.cmd
     comment: push parent submodule commit
+    description: --> push submodule ref changes to parent repo origin
     skip: '{nopush}'
     in:
       cmd: git push origin master
 
 create_pub_subdir:
   - name: pypyr.steps.cmd
+    description: --> delete all of ./public
     in:
       cmd: rm -rf public
   - name: pypyr.steps.cmd
+    description: --> adding ./public submodule
     in:
       cmd: git submodule add git@github.com:pypyr/pypyr.github.io.git public
