@@ -178,7 +178,7 @@ steps:
 With this pipeline, you can switch from the cli whether you want to wait for 
 user input or not like this:
 
-{{< app-window title="term" lang="bash" >}}
+{{< app-window title="term" lang="text" >}}
 $ pypyr stdin-example
 enter client side value here:
 user input here
