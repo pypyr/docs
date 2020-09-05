@@ -46,7 +46,7 @@ steps:
     comment: commit submodule ref change to parent repo.
     description: --> add submodule ref changes to parent repo
     in:
-      cmd: git add .
+      cmd: git add public
   - name: pypyr.steps.cmd
     description: --> commit submodule ref changes to parent repo
     in:
