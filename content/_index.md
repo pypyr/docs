@@ -22,4 +22,7 @@ install_command: $ pip install pypyr
 seo_article_headline: pypyr task-runner for automation pipelines defined in yaml
 # seo_description: fall back to description
 show_default_header: false
+cascade:
+  _build:
+    publishResources: false
 ---
