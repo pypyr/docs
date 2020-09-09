@@ -25,7 +25,7 @@
   --text-on-error-medium: rgba(var(--on-error) / 0.6);
   --text-on-error-disabled: rgba(var(--on-error) / 0.38);
   --text-on-secondary: rgba(0 0 0 / 0.87);
-  --top-nav-logo-width: clamp(200px, 16vw, 500px);
+  --top-nav-logo-width: clamp(200px, 16vw, 350px);
   --top-nav-logo-responsive-width: 40vw;
   --top-nav-columns: 5;
   --top-nav-columns-responsive: 5;
