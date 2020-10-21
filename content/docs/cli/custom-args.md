@@ -14,14 +14,14 @@ seo_description: Pass your own custom optional arguments from the cli to the tas
 topics: [args]
 ---
 # pass custom optional arguments from the cli
-## pass custom arguments to a pipeline from the cli
-You can easily pass your own arguments to your pipelines from the cli. You can 
-decide per pipeline what style of arguments work better for that specific
-pipeline, for example key-value pairs, or a single string, or boolean switches.
+You can pass your own arguments to your pipelines from the cli without writing 
+any code. You can decide per pipeline what style of arguments work better for 
+that specific pipeline, for example key-value pairs, or a single string, or 
+boolean switches.
 
 See [context parsers]({{< ref "/docs/context-parsers/">}}) for more information
-on how to pass your own arguments to a pipeline and using the runtime values in 
-the pipeline.
+on how to pass your own arguments to a pipeline and how to use those runtime 
+values in the pipeline.
 
 ## boolean switches
 ```yaml
