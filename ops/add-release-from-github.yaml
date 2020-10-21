@@ -7,10 +7,11 @@ steps:
         repo: pypyr
         last: 1
         out: ./content/updates/releases
+        template: ./ops/templates/release.md
   - name: pypyr.steps.contextsetf
     in:
       contextSetf:
-        payload: 
+        payload: !jsonify
           query: !sic
             'query($owner: String!, $repo: String!, $last: Int!) {
               repository (owner:$owner, name:$repo){ 
@@ -44,32 +45,32 @@ steps:
             owner: '{owner}'
             repo: '{repo}'
             last: '{last}'
-  - name: pypyr.steps.py
-    in:
-      pycode: | 
-              import json
-              context['jsonPayload'] = json.dumps(context['payload'], ensure_ascii=False)
   - name: pypyr.steps.env
+    description: --> getting bearer token from $ENV
     in:
       env:
         get:
           bearerToken: GITHUB_BEARER_TOKEN
   - name: pypyr.steps.cmd
-    run: True
+    description: --> getting release data from github
     in:
-      cmd: |-
-            curl -H "Authorization: bearer {bearerToken}" -H 'Content-Type: application/json' -X POST -d '{jsonPayload}' -o ./ops/gh-releases.json https://api.github.com/graphql
-  - name: pypyr.steps.fetchjson
+      cmd:
+        run: |-
+            curl -H "Authorization: bearer {bearerToken}" -H 'Content-Type: application/json' -X POST -d '{payload}' https://api.github.com/graphql
+        save: True
+  - name: pypyr.steps.jsonparse
+    description: --> parsing github response data
     in:
-      fetchJson:
-        path: ./ops/gh-releases.json
+      jsonParse:
+        json: '{cmdOut[stdout]:ff}'
         key: releases
   - name: pypyr.steps.filereplace
+    description: --> generating output files at {out}
     foreach: '{releases[data][repository][releases][edges]}'
     run: True
     in:
       fileReplace:
-        in: ./ops/templates/release.md
+        in: '{template}'
         out: '{out}/{i[node][tagName]}.md'
         replacePairs:
           <<repo>>: '{repo}'
