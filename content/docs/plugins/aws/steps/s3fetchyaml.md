@@ -30,7 +30,7 @@ s3Fetch:
   methodArgs: # mandatory
     Bucket: '{bucket}'
     Key: arb.yaml
-  outKey: 'destination pypyr context key' # optional
+  key: 'destination pypyr context key' # optional
 ```
 
 - `clientArgs` go to the aws s3 client constructor. These are optional.
@@ -38,7 +38,7 @@ s3Fetch:
    values are:
     - `Bucket`
     - `Key`
-- `outKey` writes fetched yaml to this context key. If not specified, yaml 
+- `key` writes fetched yaml to this context key. If not specified, yaml 
   writes directly to context root.
 
 The `s3Fetch` input context supports [text {substitution} formatting expressions]({{< ref "/docs/substitutions">}}).
@@ -73,7 +73,9 @@ Check here for all available arguments with detailed explanations of each:
 <http://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.get_object>
 
 ## output
-pypyr will merge yaml parsed from the file into the pypyr context. Use the `outKey` input to control whether you want the resulting structure to merge into the root or into its own key. 
+pypyr will merge yaml parsed from the file into the pypyr context. Use the 
+`key` input to control whether you want the resulting structure to merge into 
+the root or into its own key. 
 
 This will overwrite existing values if the same keys are already in there.
 
@@ -85,7 +87,7 @@ eggs: boiled
 
 but context `{'eggs': 'fried'}` already exists, resulting `context['eggs']` will be 'boiled'.
 
-If you do not specify `outKey`, the yaml should not be a list at the top
+If you do not specify `key`, the yaml should not be a list at the top
 level, but rather a mapping. So the top-level yaml should not look like
 this:
 
