@@ -105,6 +105,15 @@ This is generally not what typical programming languages do on a strict string
 truthy, where any given string value other than null/empty will evaluate 
 `True`, but more often than not within the context of a pipeline it saves you 
 some footwork specially having to cast strings to booleans first.
+
+If you do want the more typical string truthy evaluation, use an explicit 
+py-string like this:
+
+```yaml
+myString: arbitrary string here
+
+run: !py bool(myString)
+```
 {{% /note %}}
 
 ## order of precedence

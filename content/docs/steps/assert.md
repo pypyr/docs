@@ -4,7 +4,6 @@ linktitle: assert
 date: 2020-08-12
 description: Stop pipeline if item in context is not as expected.
 publishdate: 2020-08-13
-lastmod: 2020-08-16
 card_extra_summary:
   heading: input context property
   details: "`assert` (dict)"
@@ -21,62 +20,134 @@ topics: [ control-of-flow, debug ]
 ---
 # pypyr.steps.assert
 ## stop pipeline execution if condition false
-Assert that something is `True` or equal to something else.
+Assert that something is `True` or equal to something else. The step raises an 
+exception of type `AssertionError` if the assertion fails.
+
+You can express an assert in three different ways:
 
 ```yaml
   - name: pypyr.steps.assert
-    comment: evaluate as truthy
+    comment: evaluates `assert` as truthy
+    in:
+      assert: '{evaluateMe}'
+  - name: pypyr.steps.assert
+    comment: evaluate `this` as truthy
     in:
       assert:
         this: '{evaluateMe}'
   - name: pypyr.steps.assert
-    comment: compare two complex types - list with nested dictionaries.
+    comment: assert that two things are equal
     in:
       assert:
         this: '{complexThing1}'
         equals: '{complexThing2}'
 ```
 
+The first two mostly do the same thing, so use whichever pleases your eye more. 
+The only difference is in how pypyr 
+[processes mappings for truthy]({{<ref "#asserting-mappings-as-truthy" >}}).
+
 Uses these context keys:
 
-- `assert`
-  - `this`
-    - mandatory
-      - If `equals` not specified, evaluates as a boolean.
-  - `equals`
-    - optional
+- `assert` - evaluate this as truthy when `this` or `equals` do not exist. 
+  - `this` (optional)
+      - If `equals` not specified, evaluates as a boolean truthy.
+  - `equals` (optional)
       - If specified, compares `this` to `equals`
 
-If `assert['this']` evaluates to `False` raises error.
+If `this` evaluates to `False` raises error.
 
-If you also specify `assert['equals']`, raises error if `assert['this'] != assert['equals']`.
+If you also specify `equals`, raises error if `this != equals`.
 
-The step raises an exception of type `AssertionError` if the assertion fails.
+When you do specify an `equals` condition, you must also have a `this` 
+condition set to which to compare it.
 
 All inputs support string [substitutions]({{< ref "/docs/substitutions">}}).
 
-## examples
-### boolean
+## truthy bool evaluation
+The standard 
+[Python truth value testing](https://docs.python.org/3/library/stdtypes.html#truth-value-testing)
+rules apply.
+
+Simply put, this means that `1`, `TRUE`, `True` and `true` will be `True`.
+
+`None` or empty, `0`,`''`, `[]`, `{}` will be `False`.
+
+{{% note tip %}}
+pypyr will interpret case insensitive string `"true"`, `"1"` & `"1.0"` 
+as boolean `True`. All other string values, including empty string, evaluate to 
+`False`.
+
+This is generally not what typical programming languages do on a strict string
+truthy, where any given string value other than null/empty will evaluate 
+`True`, but more often than not within the context of a pipeline where you are 
+processing text-based flags it saves you some footwork specially having to 
+cast strings to booleans first.
+
+If you do want the more typical string truthy evaluation, use an explicit 
+py-string like this:
+
 ```yaml
-assert: # continue pipeline
-  this: True
-assert: # stop pipeline
-  this: False
+myString: arbitrary string here
+
+assert: !py bool(myString)
+```
+{{% /note %}}
+
+## asserting mappings as truthy
+If you happen to be asserting a mapping (aka dictionary) that contains a 
+"this" or "equals" key that is *not* meant as a pypyr instruction, use the 2nd 
+form where you set your mapping as the `this` condition.
+
+If your mapping/dict doesn't contain a non-pypyr this/equals, feel free to save 
+yourself some typing and use the simplified `assert: '{mydict}'` form.
+
+```yaml
+- name: pypyr.steps.assert
+  comment: setting assert to an arbitrary mapping  
+           evaluates the whole mapping as truthy.
+  in:
+    arb_dict:
+      mykey: my value
+      anotherkey: another value
+    assert: '{arb_dict}'
+
+- name: pypyr.steps.assert
+  comment: if your mapping has a "this" or "equals" that 
+           is not meant for pypyr, you can prevent pypyr 
+           from interpreting it as a processing instruction 
+           by setting the mapping under "this".
+  in:
+    arb_dict_with_this:
+      mykey: my value
+      this: this "this" is not meant as a pypyr instruction
+      equals: this "equals" is not meant as a pypyr instruction
+    assert:
+      this: '{arb_dict_with_this}'
+```
+
+## examples
+### boolean & truthy
+```yaml
+assert: False # stop pipeline
+
+assert: True # continue pipeline
+
+assert: '{myObj}' # evaluate myObj as truthy
 ```
 
 ### substitutions
 
 ```yaml
 interestingValue: True
-assert:
-  this: '{interestingValue}' # continue with pipeline
+
+assert: '{interestingValue}' # continue with pipeline
 ```
 
 ### non-0 numbers evaluate to True
 
 ```yaml
-assert:
-  this: 1 # non-0 numbers assert to True. continue with pipeline
+assert: 1 # non-0 numbers assert to True. continue with pipeline
 ```
 
 ### string equality
@@ -92,6 +163,7 @@ assert:
 ```yaml
 k1: 'down'
 k2: 'down'
+
 assert:
   this: '{k1} the valleys wild'
   equals: '{k2} the valleys wild' # substituted strings equal. continue pipeline.
@@ -110,6 +182,7 @@ assert:
 ```yaml
 numberOne: 123.45
 numberTwo: 678.9
+
 assert:
   this: '{numberOne}'
   equals: '{numberTwo}' # substituted numbers not equal. Stop pipeline.
@@ -125,6 +198,7 @@ complexOne:
     k3:
       - sub list 1
       - sub list 2
+
 complexTwo:
   - thing1
   - k1: value1
@@ -132,6 +206,7 @@ complexTwo:
     k3:
       - sub list 1
       - sub list 2
+
 assert:
   this: '{complexOne}'
   equals: '{complexTwo}' # substituted types equal. Continue pipeline.
