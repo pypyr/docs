@@ -56,12 +56,14 @@ formatting.
 Debug supports the following optional inputs:
 
 ```yaml
-debug: # optional
-  keys: keytodump # optional. str for a single key name to print.
-                  # or a list of key names to print ['key1', 'key2'].
-                  # if not specified, print entire context.
-  format: False # optional. Boolean, defaults False.
-                # Applies formatting expressions to output.
+- name: pypyr.steps.debug
+  in:
+    debug: # optional
+      keys: keytodump # optional. str for a single key name to print.
+                      # or a list of key names to print ['key1', 'key2'].
+                      # if not specified, print entire context.
+      format: False # optional. Boolean, defaults False.
+                    # Applies formatting expressions to output.
 ```
 
 See some worked examples to [use debug to pretty print context](https://github.com/pypyr/pypyr-example/blob/master/pipelines/debug.yaml).
