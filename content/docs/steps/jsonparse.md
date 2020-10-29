@@ -88,7 +88,8 @@ response json string into context using `jsonparse`.
   comment: because save is True, output saves to cmdOut.
   in:
     cmd:
-      run: curl -H 'Content-Type: application/json' -X GET https://httpbin.org/json
+      run: |-
+        curl -H 'Content-Type: application/json' -X GET https://httpbin.org/json
       save: True
 
 - name: pypyr.steps.echo
