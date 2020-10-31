@@ -82,8 +82,9 @@ control of the child pipeline execution:
 The default values apply when you do not specify an option at all.
 
 All inputs support [substitutions]({{< ref "/docs/substitutions">}}). This 
-means you can dynamically set which pipeline you want to run and also set at
-run-time what parameters to use for the child pipeline.
+means you can 
+[dynamically set which pipeline you want to run](#dynamically-choose-which-pipeline-to-run) 
+and also set at run-time what parameters to use for the child pipeline.
 
 ### name
 Name of child pipeline to execute. The pipeline name resolves to a pipeline in
@@ -129,12 +130,12 @@ pype:
     key5: 'BEGIN {expression} END' 
 ```
 
-If you set `args`, you implicitly set `useParentContext` to `False`. Thus by
-default the parent context is not available in the child pipeline if you set
-`args`. More often than not this is the desired behavior, because it allows each
-pipeline in the execution chain to use its own context keys without having to
-worry about resetting or changing context keys from different pipelines that 
-share the same name.
+If you set `args`, pypyr implicitly sets [useParentContext](#useparentcontext) 
+to `False` unless you explicitly change it. Thus by default the parent context 
+is not available in the child pipeline if you set `args`. More often than not 
+this is the desired behavior, because it allows each pipeline in the execution 
+chain to use its own context keys without having to worry about resetting or 
+changing context keys from different pipelines that share the same name.
 
 {Format expressions} you use in `args` evaluate against the parent context 
 before the child executes.
@@ -215,7 +216,8 @@ If you specify `failure`, but you don't set `groups`, pypyr will default to
 running the standard `steps` group as entry-point for the child pipeline.
 
 ### pipeArg
-String to pass to the child pipeline context_parser. Equivalent to `context` 
+String to pass to the child pipeline 
+[context_parser]({{< ref "/docs/context-parsers" >}}). Equivalent to `context` 
 arg on the pypyr cli. pypyr only uses this if [skipParse](#skipparse) is 
 `False`.
 
@@ -226,6 +228,7 @@ $ pypyr child-pipeline arg1=value1 arg2=value2
 ```
 
 You can do the same thing via `pype` as follows:
+
 ```yaml
 - name: pypyr.steps.pype
   comment: call child pipeline, passing arg string 
@@ -234,8 +237,22 @@ You can do the same thing via `pype` as follows:
     pype:
       name: child-pipeline
       pipeArg: arg1=value1 arg2=value2
-      skipParse: False
 ```
+
+If you set `pipeArg`, pypyr implicitly sets [skipParse](#skipparse) to `False` 
+unless you explicitly change it. If you explicitly set `skipParse` to `True`, 
+the child pipeline will skip the context parser even if you set a value for 
+`pipeArg`.
+
+If you set `pipeArg`, pypyr implicitly sets [useParentContext](#useparentcontext) 
+to `False` unless you change it. Thus by default the parent context is not 
+available in the child pipeline if you set `pipeArg`. More often than not this 
+is the desired behavior, because it allows each pipeline in the execution chain 
+to use its own context keys without having to worry about resetting or changing 
+context keys from different pipelines that share the same name.
+
+If you explicitly set `useParentContext` to `True` in addition to using 
+`pipeArg`, pypyr will merge all specified values into the parent context.
 
 {{% note tip %}}
 Generally, prefer to use `args` or `useParentContext=True` instead of passing
@@ -246,6 +263,10 @@ will have to parse the `pipeArg` string to initialize the child context, making
 for extra inefficient processing, if nothing else.
 {{% /note %}}
 
+If you combine `args` and `pipeArg`, pypyr will merge values resulting from 
+both into the child context. In this case, if also `useParentContext` is 
+`True`, `args` and `pipeArg` both merge into the parent context.
+ 
 ### raiseError
 If `True`, errors in child raise up to parent.
 
@@ -262,7 +283,7 @@ when calling from a parent pipeline the parent is responsible for creating
 the appropriate context using `args` or `useParentContext=True`. The default
 `False` for `skipParse` allows for exactly this.
 
-If you still want the child's `context_parser_` to run when invoking the child
+If you still want the child's `context_parser` to run when invoking the child
 via `pype` in a parent pipeline, set `skipParse` to `False`. In this case, use
 [pipeArg](#pipearg) to pass the input arg string to the child's `context_parser`.
 
@@ -274,9 +295,9 @@ If `False`, the child creates its own, fresh context that does not contain any
 of the parent's keys. pypyr destroys the child's context upon completion of the 
 child pipeline and updates to the child context do not reach the parent context.      
 
-If you use [args](#args) to initialize the child pipeline context, 
-`useParentContext` is implicitly `False`, so you do not need to set it 
-explicitly unless you really want to.
+If you use [args](#args) and/or [pipeArg](#pipearg) to initialize the child 
+pipeline context, `useParentContext` is implicitly `False`, so you do not need 
+to set it explicitly unless you really want to.
 
 {{% note tip %}}
 If the child pipeline shares the parent context, be careful that the child does
@@ -296,6 +317,45 @@ Load the child pipeline with this loader. The default is the standard pypyr
 This is useful if you are loading your pipelines using a 
 [custom loader]({{< ref "/docs/api/pipeline-loader" >}}) to fetch your 
 pipelines from your own external systems or locations.
+
+## dynamically choose which pipeline to run
+You can use [substitution expressions]({{< ref "/docs/substitutions">}}) to set 
+the child pipeline you want to execute dynamically at run-time. You can do this 
+as a simple substitution of the pipeline name, or you could use a look-up table 
+for more advanced mappings:
+
+```yaml
+steps:
+  - name: pypyr.steps.pype
+    in:
+      my_pipeline_name: dynamic-pype-child-1
+      pype:
+        name: '{my_pipeline_name}'
+  - name: pypyr.steps.default
+    in:
+      defaults:
+        lookup_table:
+          pipe2: dynamic-pype-child-2
+          pipe3: dynamic-pype-child-3
+          pipe4: dynamic-pype-child-4
+  - name: pypyr.steps.pype
+    in:
+      pype:
+        name: '{lookup_table[pipe2]}'
+  - name: pypyr.steps.pype
+    in:
+      pick_pipe: pipe3
+      pype:
+        name: !py lookup_table[pick_pipe]
+```
+
+This pipeline will run, in order:
+1. dynamic-pype-child-1
+2. dynamic-pype-child-2
+3. dynamic-pype-child-3
+
+You can find the example for 
+[dynamic pipeline execution in the pypyr example repo](https://github.com/pypyr/pypyr-example/blob/master/pipelines/dynamic-pype.yaml).
 
 ## recursion
 Yes, you can call another pipeline recursively - i.e a child pipeline can call 
