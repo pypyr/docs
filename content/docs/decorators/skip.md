@@ -88,3 +88,20 @@ begin
 you'll see me.
 end
 ```
+
+## skip step if variable exists
+You can use a [py string expression]({{< ref
+"/docs/substitutions/py-strings">}}) to skip a step based on whether a key
+exists in context.
+
+```yaml
+- name: pypyr.steps.echo
+  skip: !py "'myvar' in locals()" 
+  in:
+    echoMe: skip this step if myvar exists in context.
+
+- name: pypyr.steps.echo
+  skip: !py "'myvar' not in locals()" 
+  in:
+    echoMe: do not skip this step if myvar exists in context.
+```

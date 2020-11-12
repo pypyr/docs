@@ -188,6 +188,20 @@ assert:
   equals: '{numberTwo}' # substituted numbers not equal. Stop pipeline.
 ```
 
+### existence check
+You can check if a key exists in context using a [py string expression]({{< ref
+"/docs/substitutions/py-strings">}}):
+
+```yaml
+myvar: 123
+
+# myvar exists in context. continue with pipeline.
+assert: !py "'myvar' in locals()"
+
+# only continue if myvar does NOT exist in context.
+assert: !py "'myvar' not in locals()"
+```
+
 ### complex types
 
 ```yaml

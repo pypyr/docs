@@ -84,6 +84,23 @@ you'll see me.
 end
 ```
 
+## only run step if variable exists
+You can use a [py string expression]({{< ref
+"/docs/substitutions/py-strings">}}) only to run a step if a key exists in 
+context.
+
+```yaml
+- name: pypyr.steps.echo
+  run: !py "'myvar' in locals()" 
+  in:
+    echoMe: You'll only see me if myvar exists in context.
+
+- name: pypyr.steps.echo
+  run: !py "'myvar' not in locals()" 
+  in:
+    echoMe: You'll only see me if myvar does NOT exist in context.
+```
+
 ## combine run & skip
 You can combine `run` and `skip` on the same step, only to run the step in
 certain conditions and to skip it on other conditions. Remember that `skip`
