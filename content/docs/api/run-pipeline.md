@@ -275,7 +275,7 @@ from pypyr import pipelinerunner
 pypyr.log.logger.set_root_logger()
 
 # For a pipeline that you'd run from the cli like this:
-# $ pypyr run-pipeline/my-pipe arbkey=pipe anotherkey=song
+# $ pypyr pipeline-dir/my-pipe arbkey=pipe anotherkey=song
 
 context_out = pipelinerunner.main_with_context(
     pipeline_name='pipeline-dir/my-pipe',
