@@ -75,5 +75,5 @@
 - title: agentless pipeline execution
   description: Simple install via `pip`. With bigger devops & workflow 
     automation platforms providing the execution environment in itself is a not 
-    a trivial task. pypyr is lightweight Python application with no further 
+    a trivial task. pypyr is a lightweight Python application with no further 
     dependencies. You can even run pypyr from its ready-made docker container.
