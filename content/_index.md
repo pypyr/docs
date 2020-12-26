@@ -10,6 +10,10 @@ h1: task runner for automation pipelines
 h2: script sequential task workflow steps in yaml
 # h3: easy loops, conditional execution & retries
 h3: conditional execution, loops, error handling & retries
+show_support: pypyr is free & open-source.
+  
+  
+  You can show your support by ⭐ [starring the pypyr repo on github](https://github.com/pypyr/pypyr) ⭐!
 subtitle: For when your shell scripts get out of hand. Less tricky than makefile.
     
     

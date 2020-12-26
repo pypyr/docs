@@ -23,6 +23,11 @@
     {{ partial "app-window.html" (dict "title" "term" "lang" "fish" "content" . ) }}
   </div>
   {{ end }}
+  {{ with .Params.show_support }}
+  <div class="home-hero-show-support">
+    {{ . | markdownify }}
+  </div>
+  {{ end }}
   <div class="home-hero-2-col">
     <div class="home-hero-left">
       {{ highlight (readFile "snippets/home/code-sample.yaml") "yaml" "" }}
