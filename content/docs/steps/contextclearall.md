@@ -36,3 +36,6 @@ steps:
   - pypyr.steps.contextclearall
   - another.arb.step
 ```
+
+`contextclearall` also wipes all the imports from any preceding 
+[pyimport]({{< ref "pyimport" >}}) steps.

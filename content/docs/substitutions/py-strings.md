@@ -28,6 +28,8 @@ A py string looks like this:
 !py <<your python expression here>>
 ```
 
+Context keys exist as variables of the same name.
+
 For example, if `context['key']` is 'abc', the following will return
 True: `!py len(key) == 3"`
 
@@ -73,10 +75,81 @@ A py string can return any type, not just strings or bools. So if your expressio
 evaluates to a list, dict, tuple, or decimal, or any given type, the py string
 expression will return the actual type of the expression result.
 
-The py string expression has the usual python builtins available to it,
-in addition to the Context dictionary. In other words, you can use
-functions like `abs`, `len` - full list here
+## import modules
+The py string expression has the usual python builtins available to it, in
+addition to everything in the Context dictionary. In other words, you can use
+functions like `abs`, `len` & `max` without doing anything special. See here for
+a full list of python builtins 
 <https://docs.python.org/3/library/functions.html>.
+
+You can use any Python standard library modules, external libraries in the
+current environment and also your own code by using the 
+[pyimport]({{< ref "/docs/steps/pyimport" >}}) step to import references.
+
+## inline functions
+If you do not want to put your own functions in a separate .py file, you can 
+can 
+[create your own functions or methods in a py step]({{< ref "/docs/steps/py#create-reusable-functions--classes" >}})
+and reference these in any !py strings following that step in the pipeline.
+
+## check if a variable exists
+!py strings are useful selectively to run a step based upon whether certain keys
+exist in context.
+
+All the Context keys exist in the `locals()` and `globals()` namespace as
+variables of the same name.
+
+This means you can use the built-in `vars()` or `dir()` function to find
+variables that exist in the local namespace. This is useful when you only want
+to run a step if a certain key was previously set in context.
+
+In this example, all the `echo` steps will only run if their `run` condition
+evaluates to `True`. Checking against `vars()`, `dirs()`, `locals()` or
+`globals()` is functionally equivalent here.
+
+```yaml
+- name: pypyr.steps.default
+  description: set some arbitrary values in context
+  in:
+    defaults:
+      breakfastList: ['eggs', 'spam', 'bacon']
+      thisIsAnInt: 5
+      thisIsABool: True
+      thisIsAnotherBool: False
+
+- name: pypyr.steps.echo
+  run: !py "'breakfastList' in vars()"
+  in:
+    echoMe: 1. you will see me only if breakfastList exists
+
+- name: pypyr.steps.echo
+  run: !py "'thisIsAnInt' in dir()"
+  in:
+    echoMe: 2
+
+- name: pypyr.steps.echo
+  run: !py "'thisIsABool' in locals()"
+  in:
+    echoMe: 3
+
+- name: pypyr.steps.echo
+  run: !py "'thisIsAnotherBool' in globals()"
+  in:
+    echoMe: 4
+```
+
+This will output:
+
+```text
+set some arbitrary values in context
+1. you will see me only if breakfastList exists
+2
+3
+4
+```
+
+The !py string runs in a single global scope, so locals() and globals() both 
+refer to the same namespace dictionary. 
 
 ## special characters
 In pipeline yaml, if the first character of the py string is a yaml
@@ -100,7 +173,7 @@ don't.
            double quotes to prevent malformed yaml.
   run: !py "'spam' in ['eggs', 'spam', 'bacon']"
   in:
-    echoMe: you should see me because spam is in breakfast!
+    echoMe: you should see me because spam is in breakfast listing!
 ```
 
 ## examples

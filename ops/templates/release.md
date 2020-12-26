@@ -15,6 +15,14 @@ Release Date: <<date>>
 
 <<description>>
 
+## how to upgrade
+If you want to upgrade (and you totally should!): 
+
+```text
+$ pip install --upgrade pypyr
+```
+
+## source
 You can find [<<repo>> release <<tag>> on github](<<release-url>>), where you can 
 click through to associated Issues, Pull Requests and Users.
 

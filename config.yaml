@@ -42,9 +42,9 @@ menu:
       pre: svg/github-icon.html
       url: https://github.com/pypyr/pypyr/
       weight: 20
-    - name: discord
-      pre: svg/discord-icon.html
-      url: https://discordapp.com/invite/8353JkB
+    - name: forum
+      pre: svg/discussions-icon.html
+      url: https://github.com/pypyr/pypyr/discussions
       weight: 30
   footer_notices:
     - name: privacy

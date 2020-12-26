@@ -15,20 +15,20 @@ seo_description: This contribution guide will help you contribute to open-source
 # contribute to pypyr
 pypyr is open source. Your contributions are most welcome.
 
-Feel free to join pypyr on
-[discord](https://discordapp.com/invite/8353JkB).
+Feel free to join the pypyr discussion on the 
+[pypyr community discussion forum](https://github.com/pypyr/pypyr/discussions).
 
 ## bugs
 Well, you know. No one's perfect. Feel free to [create an
 issue](https://github.com/pypyr/pypyr/issues/new).
 
 ## contribute to the core cli
-The usual jazz - create an issue, fork, code, test, PR. It might be an
-idea to discuss your idea on discord or via the Issues list first before
-you go off and write a huge amount of code - you never know, something
-might already be in the works, or maybe it's not quite right for the
-core-cli (you're still welcome to fork and go wild regardless, of
-course, it just mightn't get merged back in here).
+The usual jazz - create an issue, fork, code, test, PR. It might be an idea to
+discuss your idea on the discussion forum or via the Issues list first before
+you go off and write a huge amount of code - you never know, something might
+already be in the works, or maybe it's not quite right for the core-cli (you're
+still welcome to fork and go wild regardless, of course, it just mightn't get
+merged back in here).
 
 
 ## roll your own plug-in
