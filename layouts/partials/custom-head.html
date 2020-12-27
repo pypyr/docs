@@ -2,7 +2,6 @@
 <link rel="icon" type="image/png" sizes="32x32" href="{{ (resources.Get "favicons/favicon-32x32.png" | fingerprint).RelPermalink }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ (resources.Get "favicons/favicon-16x16.png" | fingerprint).RelPermalink }}">
 <link rel="manifest" href="{{ (resources.Get "favicons/site.webmanifest" | resources.ExecuteAsTemplate "favicons/site.webmanifest" . | fingerprint).RelPermalink }}">
-<link rel="mask-icon" href="{{ (resources.Get "favicons/safari-pinned-tab.svg" | fingerprint).RelPermalink }}" color="#4f9a94">
 <link rel="shortcut icon" href="{{ (resources.Get "favicons/favicon.ico" | fingerprint).RelPermalink }}">
 <meta name="msapplication-TileColor" content="#00aba9">
 <meta name="msapplication-config" content="{{ (resources.Get "favicons/browserconfig.xml" | resources.ExecuteAsTemplate "favicons/browserconfig.xml" . | fingerprint).RelPermalink }}">
