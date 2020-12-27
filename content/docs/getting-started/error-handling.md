@@ -182,8 +182,7 @@ call_me:
       echoMe: B
   - name: pypyr.steps.assert
     in:
-      assert:
-        this: False
+      assert: False
   - name: pypyr.steps.echo
     in:
       echoMe: unreachable
@@ -229,8 +228,7 @@ notification on both success and failure.
 steps:
   - name: pypyr.steps.assert
     in:
-      assert:
-        this: False
+      assert: False
   - name: pypyr.steps.echo
     in:
       echoMe: unreachable
@@ -304,8 +302,7 @@ only the currently called or jumped to group, you can use any of
 steps:
   - name: pypyr.steps.assert
     in:
-      assert:
-        this: False
+      assert: False
   - name: pypyr.steps.echo
     in:
       echoMe: unreachable
@@ -371,8 +368,7 @@ steps:
   - name: pypyr.steps.assert
     swallow: True
     in:
-      assert:
-        this: False
+      assert: False
   - name: pypyr.steps.echo
     in:
       echoMe: there was a problem on line {runErrors[0][line]}
@@ -431,8 +427,7 @@ to the error by using the
   comment: deliberately raise error
            with custom error object
   in:
-    assert:
-      this: False
+    assert: False
   onError:
     myerr_code: 123
     myerr_description: "my err description"
@@ -452,8 +447,7 @@ assertion condition fails.
 steps:
   - name: pypyr.steps.assert
     in:
-      assert:
-        this: False
+      assert: False
   - name: pypyr.steps.echo
     comment: this step won't ever run because pipeline always
              fails on previous step.
