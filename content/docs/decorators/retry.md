@@ -76,8 +76,7 @@ steps:
       max: 4
       sleep: 0.5
     in:
-      assert:
-        this: !py retryCounter == 3
+      assert: !py retryCounter == 3
   - name: pypyr.steps.echo
     in:
       echoMe: end. you'll see me only after previous step succeeds.
@@ -109,8 +108,7 @@ steps:
              immediately with no delay between
              retries.
     in:
-      assert:
-          this: False
+      assert: False
     retry:
       max: 0 # 0 or null means indefinitely
   - name: pypyr.steps.echo
@@ -157,15 +155,13 @@ steps:
 retry_me:
     - name: pypyr.steps.echo
       in:
-        echoMe: "running retry {retryCounter}"
+        echoMe: running retry {retryCounter}
     - name: pypyr.steps.assert
       in:
-        assert:
-          this: False
+        assert: False
     - name: pypyr.steps.echo
       in:
         echoMe: you won't see me, because the previous step always errs.
-
 ```
 
 This will result in:
@@ -212,19 +208,21 @@ For all other errors, use `module.errorname`, e.g `mypackage.mymodule.myerror`
 # ./retry-retryon.yaml
 steps:
   - name: pypyr.steps.py
-    description: this step will retry infinitely until the cmd does not return an error.
+    description: this step will retry infinitely until the cmd does not return 
+                 an error unless an unexpected error that is NOT in retryOn 
+                 occurs.
     comment: retries 1 & 2 raise ValueError, 
-              retry 3 raise KeyError.
-              KeyError is not in retryOn, so will quit step reporting failure.
+             retry 3 raise KeyError.
+             KeyError is not in retryOn, so will quit step reporting failure.
     retry:
       # will ONLY retry these errors. All other stop processing.
       retryOn: ['KeyError', 'pypyr.errors.ContextError']
     in:
-      pycode: |
-              if context['retryCounter'] == 3:
-                raise ValueError('this won't retry!')
-              else:
-                raise KeyError('this will retry')
+      py: |
+        if retryCounter == 3:
+          raise ValueError("this won't retry!")
+        else:
+          raise KeyError('this will retry')
   - name: pypyr.steps.echo
     in:
       echoMe: this won't run because the previous step always errors.
@@ -251,19 +249,20 @@ $ echo $?
 
 ### stop processing on specific error type
 ```yaml
-# ./retry-retrystopon
+# pypyr retry-stopon
 steps:
   - name: pypyr.steps.py
-    description: this step will retry infinitely until the cmd does not return an error.
+    description: this step will retry infinitely until the cmd does not return 
+                 an error or until a StopOn error happens.
     retry:
       # will stop retry on these errors. All others will carry on retry processing.
       stopOn: ['ValueError', 'pypyr.errors.ContextError']
     in:
-      pycode: |
-              if context['retryCounter'] == 3:
-                raise ValueError('this will STOP processing!')
-              else:
-                raise KeyError('this will retry')
+      py: |
+        if retryCounter == 3:
+          raise ValueError('this will STOP processing!')
+        else:
+          raise KeyError('this will retry')
   - name: pypyr.steps.echo
     in:
       echoMe: this won't run because the previous step always errors.
@@ -272,7 +271,7 @@ steps:
 This will result in:
 
 ```text
-$ pypyr retry-retrystopon
+$ pypyr retry-stopon
 this step will retry infinitely until the cmd does not return an error.
 retry: ignoring error because retryCounter < max.
 KeyError: 'this will retry'

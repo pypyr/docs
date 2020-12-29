@@ -52,8 +52,7 @@ steps:
     comment: deliberately raise error
              with custom error info
     in:
-      assert:
-        this: False
+      assert: False
     onError: this is a custom error
 on_failure:
   - name: pypyr.steps.echo
@@ -95,8 +94,7 @@ steps:
     comment: deliberately raise error
              with custom error object
     in:
-      assert:
-        this: False
+      assert: False
     onError:
       myerr_code: 123
       myerr_description: "my err {arbKey} description"

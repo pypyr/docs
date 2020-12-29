@@ -30,7 +30,7 @@ steps:
   - name: pypyr.steps.py
     comment: deliberately raise arbitrary error
     in:
-      pycode: raise ValueError('arb')
+      py: raise ValueError('arb')
   - name: pypyr.steps.echo
     comment: this step will never run,
              because the previous step
@@ -51,7 +51,7 @@ steps:
   - name: pypyr.steps.py
     swallow: True
     in:
-      pycode: raise ValueError('arb')
+      py: raise ValueError('arb')
   - name: pypyr.steps.echo
     in:
       echoMe: You'll see me, because you told pypyr to swallow the error in the previous step.
@@ -75,7 +75,7 @@ steps:
       echoMe: A
   - name: pypyr.steps.py
     in:
-      pycode: raise ValueError('arb')
+      py: raise ValueError('arb')
   - name: pypyr.steps.echo
     comment: this step will never run,
             because the previous step
@@ -124,7 +124,7 @@ steps:
       echoMe: A
   - name: pypyr.steps.py
     in:
-      pycode: raise ValueError('arb')
+      py: raise ValueError('arb')
   - name: pypyr.steps.echo
     in:
       echoMe: unreachable
@@ -374,7 +374,7 @@ steps:
       echoMe: there was a problem on line {runErrors[0][line]}
   - name: pypyr.steps.py
     in:
-      pycode: raise ValueError('arb')
+      py: raise ValueError('arb')
   - name: pypyr.steps.echo
     in:
       echoMe: unreachable
@@ -476,7 +476,7 @@ steps:
       echoMe: begin
   - name: pypyr.steps.py
     in:
-      pycode: raise ValueError('arb error text here')
+      py: raise ValueError('arb error text here')
   - name: pypyr.steps.echo
     comment: this step won't ever run 
              because pipeline always

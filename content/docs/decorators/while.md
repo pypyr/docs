@@ -94,10 +94,11 @@ steps:
     in:
       # initialize the stop boolean here
       stopWhenImTrue: False
-      pycode: |
-                print(f"this is while {context['whileCounter']} executing like a boss.")
-                if context['whileCounter'] == 3:
-                  context['stopWhenImTrue'] = True
+      py: |
+        print(f"this is while {whileCounter} executing like a boss.")
+        if whileCounter == 3:
+          stopWhenImTrue = True
+          save('stopWhenImTrue')
     while:
       stop: '{stopWhenImTrue}'
   - name: pypyr.steps.echo

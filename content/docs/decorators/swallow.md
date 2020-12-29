@@ -44,8 +44,7 @@ steps:
              step will swallow the error
              and proceed with pipeline.
     in:
-      assert:
-        this: False
+      assert: False
     swallow: True
   - name: pypyr.steps.echo
     comment: this will run even though
@@ -76,8 +75,7 @@ steps:
              step will swallow the error
              and proceed with pipeline.
     in:
-      assert:
-        this: False
+      assert: False
     onError: CUSTOM ERROR HERE
     swallow: True
   - name: pypyr.steps.echo
@@ -86,7 +84,7 @@ steps:
              because you swallowed the error.
              the custom error is in runErrors.
     in:
-        echoMe: "the error was: {runErrors[0][customError]}"
+      echoMe: "the error was: {runErrors[0][customError]}"
 ```
 
 The output from this is:

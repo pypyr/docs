@@ -231,7 +231,7 @@ Setting an input context is optional.
 steps:
   - name: pypyr.steps.py
     in:
-      pycode: print('hello hello!')
+      py: print('hello hello!')
   - name: pypyr.steps.contextsetf
     in:
       contextSetf:
