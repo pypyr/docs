@@ -66,7 +66,7 @@ steps:
         key: releases
   - name: pypyr.steps.filereplace
     description: --> generating output files at {out}
-    foreach: '{releases[data][repository][releases][edges]}'
+    foreach: '{releases[data][repository][releases][edges]:ff}'
     run: True
     in:
       fileReplace:
@@ -76,9 +76,9 @@ steps:
           <<repo>>: '{repo}'
           <<tag>>: '{i[node][tagName]}'
           <<date>>: '{i[node][publishedAt]}'
-          <<short-description>>: '{i[node][name]}'
+          <<short-description>>: '{i[node][name]:ff}'
           <<h2>>: '{i[node][name]}'
-          <<description>>: '{i[node][description]}'
+          <<description>>: '{i[node][description]:ff}'
           <<release-url>>: '{i[node][url]}'
           <<author-name>>: '{i[node][author][login]}'
           <<author-url>>: '{i[node][author][url]}'
