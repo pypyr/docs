@@ -57,14 +57,35 @@ steps:
       echoMe: You'll see me, because you told pypyr to swallow the error in the previous step.
 ```
 
+## retry on error
+You can make a any step retry automatically on error by setting the [retry
+step decorator]({{< ref "/docs/decorators/retry" >}}).
+
+```yaml
+steps:
+  - name: pypyr.steps.cmd
+    comment: automatically retry curl to an unreliable url.
+             pipeline proceeds with next step as soon as curl succeeds.
+             will retry 4X with 0.5s sleep between retries.
+             if the 4th retry still fails, raise error & report failure.
+    retry:
+      max: 4
+      sleep: 0.5
+    in:
+      cmd: curl https://arb-unreliable-url-example/
+```
+
 ## failure handlers
 A failure handler is an optional step-group that pypyr jumps to when an error 
 happens. In traditional programming terms, it's pretty much a `catch` block. 
 Once the failure handler completes, the pipeline exits reporting failure.
 
-Any given step-group can be a failure handler. If you don't explicitly specify 
-a failure handler pypyr will look for a step group named `on_failure`. If 
-`on_failure` doesn't exist it doesn't matter, pypyr will still quit the 
+pypyr looks for a failure handler if `swallow` on the failing step is `False`
+and only after any `retry` on the step exhausts.
+
+Any given step-group can be a failure handler. If you don't explicitly
+specify a failure handler pypyr will look for a step group named `on_failure`.
+If `on_failure` doesn't exist it doesn't matter, pypyr will still quit the
 pipeline reporting the original error.
 
 ```yaml
