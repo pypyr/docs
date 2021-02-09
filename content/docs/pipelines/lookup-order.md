@@ -116,5 +116,25 @@ $ pypyr --dir dir subdir1/pipe-2
 
 $ pypyr --dir dir subdir2/pipe-3
 
-$ pypyr --dir pipe-4
+$ pypyr --dir dir pipe-4
 {{< /app-window >}}
+
+## shared pipeline directories
+The `--dir` switch can refer to any accessible directory on your file-system,
+it doesn't have to be a sub-directory of from wherever you execute pypyr.
+
+So if you had a shared pipeline library on your file-system, for example at
+`/Users/captainhook/shared-pipelines/`, you can run your pipelines from
+anywhere else like this:
+
+{{< app-window title="term" lang="fish" >}}
+$ echo $PWD
+/git/myproject
+
+$ pypyr --dir ~/shared-pipelines subdir1/my-shared-pipe
+
+{{< /app-window >}}
+
+The above example will run `~/shared-pipelines/subdir1/my-shared-pipe.yaml`, and
+resolve all pipeline names and custom code from the directory specified by the
+`--dir` input.
