@@ -29,9 +29,9 @@ seo_is_carousel: true
 topics: [built-in summary tables, context]
 ---
 # context parsers
-pypyr has a whole bunch of ready-made built-in context parsers to make your 
-life easier. A context parser allows you to customize how you want to pass cli 
-arguments to your pipeline.
+A context parser allows you to customize how you want to pass cli arguments to
+your pipeline. pypyr has a whole bunch of ready-made built-in context parsers to
+make your life easier. 
 
 Making your own [custom context-parser]({{< ref "/docs/api/context-parser" >}}) 
 is super easy too.
