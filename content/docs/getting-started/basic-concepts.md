@@ -5,6 +5,7 @@ date: 2020-08-12
 publishdate: 2020-08-13
 lastmod: 2020-08-16
 # categories: [install]
+weight: -3
 menu:
   docs:
     parent: getting-started
