@@ -55,6 +55,49 @@ values for optional arguments coming from the cli.
 By comparison, `contextsetf` will always set the variable, overwriting a
 variable even if it exists already.
 
+```yaml
+steps:
+  - name: pypyr.steps.contextsetf
+    comment: set some arbitrary variables
+    in:
+      contextSetf:
+        var1: my value
+        var2: 2
+        var3: True
+
+  - name: pypyr.steps.echo
+    comment: use the variables in subsequent steps
+    run: '{var3}'
+    in:
+      echoMe: |
+              var1 is '{var1}'
+              var2 is {var2}
+```
+
+### environment variables
+You can set a pypyr variable from an [environment variable]({{< ref
+"/topics/environment-variables" >}}).
+
+```yaml
+steps:
+- name: pypyr.steps.envget
+  comment: get env $MACAVITY
+           assign it to pypyr variable theHiddenPaw
+           if env $MACAVITY doesn't exist, use the default value
+  in:
+    envGet:
+      env: MACAVITY
+      key: theHiddenPaw
+      default: but macavity wasn't there!
+
+- name: pypyr.steps.echo
+  comment: theHiddenPaw was set from env $MACAVITY
+  in:
+    echoMe: the master criminal {theHiddenPaw}
+```
+
+
+
 ### load variables from a file
 You can load & initialize variables from a json or yaml file.
 
