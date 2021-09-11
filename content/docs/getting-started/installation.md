@@ -9,7 +9,7 @@ menu:
   docs:
     title: install pypyr
     parent: getting-started
-weight: -10
+weight: -90
 seo_article_headline: How to install the pypyr pipeline task-runner.
 seo_description: pypyr installs quickly & easily via pip. Or, the ready-made docker container is a drop-in replacement for the cli.
 # topics: [install, pypi, docker]

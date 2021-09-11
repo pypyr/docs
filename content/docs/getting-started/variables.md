@@ -7,7 +7,7 @@ menu:
   docs:
     title: variables
     parent: getting-started
-weight: -1
+weight: -60
 seo_article_headline: How to use variables in a task-runner pipeline.
 seo_description: Use local & global variables in a pypyr pipeline to parameterize your pipelines.
 topics: [context]
