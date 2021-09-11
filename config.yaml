@@ -95,7 +95,7 @@ menu:
       weight: 200
 module:
   imports:
-    path: github.com/pypyr/pypyr-docs
+    - path: github.com/pypyr/pypyr-docs
 # paginate: 3
 paginatePath: archive
 taxonomies:
