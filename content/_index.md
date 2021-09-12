@@ -22,6 +22,9 @@ subtitle: For when your shell scripts get out of hand. Less tricky than makefile
     
     Automate anything by combining commands, different scripts in 
     different languages & applications into one pipeline process.
+
+
+    If you're new, [get started here](/docs/getting-started).
 install_command: $ pip install pypyr
 seo_article_headline: "pypyr: task-runner for automation pipelines defined in yaml"
 # seo_description: fall back to description

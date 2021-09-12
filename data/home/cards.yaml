@@ -1,79 +1,100 @@
 - title: combine commands, applications & scripts into a repeatable pipeline
-  description: You can run any combination of command, shell, external 
-    executable, any callable, external script & inline code in the same 
-    pipeline, alongside composable built-in steps that do useful things like 
-    read & write files, format json & yaml and manipulate data structures. 
+  description: You can run any combination of [command](/docs/steps/cmd/),
+    [shell](/docs/steps/shell/), external executable, any callable, external
+    script & [inline code](/topics/inline-code/) in the same pipeline, alongside
+    composable [built-in steps](/docs/steps/) that do useful things like read & 
+    write files, format json & yaml and [manipulate data structures](/topics/context/). 
   # img:
   #   url: images/placeholder400x400.svg
   #   alt: img1 alt
+
 - title: human-friendly pipelines
-  description: The pipeline yaml format is human readable, human editable, 
-    human mergeable. You're meant to author pipelines by hand - because it's 
-    easy, and deliberately so! Definitely source-control your pipelines & get 
-    easy text-based diffs so you're not spending time deciphering opaque 
-    machine generated syntax & worrying about weird xml or json. Author your 
-    pipelines in whatever text editor makes you happy.
+  description: The [pipeline yaml format](/docs/pipelines/pipeline-structure/)
+    is human readable, human editable, human mergeable. You're meant to author
+    pipelines by hand - because it's easy, and deliberately so! Definitely
+    source-control your pipelines & get easy text-based diffs so you're not
+    spending time deciphering opaque machine generated syntax & worrying about
+    weird xml or json. Author your pipelines in whatever text editor makes you
+    happy.
   # img:
   #   url: images/placeholder400x400.svg
   #   alt: img2 alt
+
 - title: control flow with conditional execution, branching & looping
   description: Run your own code, scripts and commands in foreach and while 
-    loops. Conditionally run or skip your custom code based upon switches you 
-    control. You apply pypyr's control flow to your commands & scripts without 
-    having to do any coding. No more trying to remember how a bash IF statement 
-    works!
+    [loops](/docs/getting-started/loops). [Conditionally run or
+    skip](/docs/getting-started/conditional-logic/) your custom code based upon
+    switches you control. You apply pypyr's [control of
+    flow](/topics/control-of-flow/) to your commands & scripts without having to
+    do any coding. No more trying to remember how a bash IF statement works!
   # img:
   #   url: images/placeholder400x400.svg
   #   alt: img3 alt
+
 - title: pass your own custom cli args
   description: You can use pypyr as a framework to write your own console 
-    applications without having to write code to capture, parse & validate 
-    input cli args. So you can avoid all that repetitive plumbing when you're 
-    trying to automate something useful in a script.
+    applications without having to write code to capture, parse & validate [input cli args](/docs/cli/custom-args/). 
+    
+    So you can avoid all that repetitive plumbing when you're trying to automate
+    something useful in a script.
+
 - title: automatic retries, error handling & compensations
-  description: Automatically retry your own commands & scripts when they fail, 
-    keep on retrying until it succeeds or until a retry limit you set. 
-    Selectively choose which errors should stop your pipeline execution. Use 
-    failure handlers with multiple steps to catch exceptions and to encapsulate 
-    more complex error handling logic.
+  description: Automatically [retry](/docs/decorators/retry/) your own 
+    commands & scripts when they fail, keep on retrying until it succeeds or 
+    until a retry limit you set. Selectively choose which errors should stop
+    your pipeline execution. Use [failure handlers](/docs/getting-started/error-handling/#failure-handlers)
+    with multiple steps to catch exceptions and to encapsulate more complex error
+    handling logic.
+    
 - title: variable interpolation & substitution
-  description: Use string interpolation or variable substitution to replace a 
-    placeholder `{token}` with variable values. This works for strings, obviously, 
-    but also any complex type! You can replace a string `{placeholder}` with an 
-    entire data structure like a list or a map, or other simple types like int 
-    or bool.
+  description: Use string interpolation or [variable substitution](/docs/substitutions/format-string/) 
+    to replace a placeholder `{token}` with variable values. This works for
+    strings, obviously, but also any complex type! You can replace a string
+    `{placeholder}` with an entire data structure like a list or a map, or other
+    simple types like int or bool.
+
 - title: configuration file tokenization
-  description: Load, merge, format & interpolate values to-and-from text-based 
-    configuration files such as yaml and json. pypyr is very useful to prepare 
-    configuration files & templates you need to bootstrap bigger systems like 
-    Terraform, Cloudformation & Heat, where you might need to inject your own 
-    variable values into the configuration file on the fly rather than duplicate 
-    configuration per environment.
+  description: Load, merge, format & interpolate values to-and-from [text-based 
+    configuration files](/topics/filesystem/) such as yaml and json. pypyr is
+    very useful to prepare configuration files & templates you need to bootstrap
+    bigger systems like Terraform, Cloudformation & Heat, where you might need
+    to inject your own variable values into the configuration file on the fly
+    rather than duplicate configuration per environment.
+
 - title: cli & api
-  description: The pypyr cli favors minimal typing and sensible defaults. You 
-    can also invoke your pipelines from code using the Python pipeline API from 
-    a single, simple entry-point function. 
+  description: The [pypyr CLI](/docs/cli/) favors minimal typing and sensible 
+    defaults. You can also invoke your pipelines from code using the
+    Python [pipeline API](/docs/api/run-pipeline/) from a single, simple
+    entry-point function. 
+
 - title: lotsa built-in steps & your own custom tasks
-  description: pypyr has >30 ready-made built-in steps that you can use as you 
-    see fit in your own pipelines. Coding your own step is as simple as bit of 
-    Python in a single function definition. Your own custom steps co-exist with 
-    built-in steps with exactly the same power and functionality for loops, 
-    retries & flow control without you having to write any extra code.
+  description: pypyr has >30 ready-made [built-in steps](/docs/steps/) that you 
+    can use as you see fit in your own pipelines. Coding your own step is as
+    simple as bit of Python in a [single function definition](/docs/api/step/).
+    Your own custom steps co-exist with built-in steps with exactly the same
+    power and functionality for loops, retries & flow control without you having
+    to write any extra code.
+
 - title: compose your tasks with modular step sequences
   description: Pipelines can call other pipelines. Organize your tasks into 
-    repeatable sequences using step groups within a pipeline so you modularize & 
-    isolate more complex task sequences. 
+    repeatable sequences using [step groups](/docs/getting-started/basic-concepts/#step-group) 
+    within a pipeline so you modularize & isolate more complex task sequences.
+
 - title: lots of documentation
   description: Plenty clear help documentation with examples. You're reading 
     it right now. If you're new, [let's start at the very beginning](/docs/getting-started).
+
 - title: devops, ci & cd automation tool
   description: You can automate any task sequence you want with pypyr. It so 
     happens that pypyr is particularly strong at consolidating the ad hoc 
     scripts that you tend to accrete over time for your CI/CD devops functions. 
     Run the exact same CI/CD process locally as you would on your cloud 
-    provider. No more commits like "ci build test 5 please work this time". 
+    provider. No more commits like "ci build test 5 please work this time".
+
 - title: agentless pipeline execution
-  description: Simple install via `pip`. With bigger devops & workflow 
-    automation platforms providing the execution environment in itself is a not 
-    a trivial task. pypyr is a lightweight Python application with no further 
-    dependencies. You can even run pypyr from its ready-made docker container.
+  description: |
+    [Quick install](/docs/getting-started/installation) via `pip`.
+    With bigger devops & workflow automation platforms providing the execution
+    environment in itself is a not a trivial task. pypyr is a lightweight Python
+    application with no further dependencies. You can even run pypyr from its
+    ready-made docker container.
