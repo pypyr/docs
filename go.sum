@@ -22,3 +22,7 @@ github.com/pypyr/pypyr-docs v0.0.0-20201226190956-bf80a7601336 h1:QffM8WFG5QOzAx
 github.com/pypyr/pypyr-docs v0.0.0-20201226190956-bf80a7601336/go.mod h1:Pm9ogDwdGC/bo+D1v1sBMUbSprQHEs7CcEZ33QMILkM=
 github.com/pypyr/pypyr-docs v0.0.0-20201227133334-16999e653a05 h1:X3+ZOir0XhBBkRAC++Wl0IzAKMg9scff6/mf7+UmNCs=
 github.com/pypyr/pypyr-docs v0.0.0-20201227133334-16999e653a05/go.mod h1:Pm9ogDwdGC/bo+D1v1sBMUbSprQHEs7CcEZ33QMILkM=
+github.com/pypyr/pypyr-docs v0.0.0-20210911155940-37a9f7c07633 h1:OGRvQHBZtnAo43Q+rqYi02lsLARCK1BmzilLai0RZcc=
+github.com/pypyr/pypyr-docs v0.0.0-20210911155940-37a9f7c07633/go.mod h1:Pm9ogDwdGC/bo+D1v1sBMUbSprQHEs7CcEZ33QMILkM=
+github.com/pypyr/pypyr-docs v0.0.0-20210911160612-4fcb1101a39a h1:2jIkvgmP8H0Pnvdrs8D3ODkNdOTd8Un9P3LR2yU3ZgA=
+github.com/pypyr/pypyr-docs v0.0.0-20210911160612-4fcb1101a39a/go.mod h1:Pm9ogDwdGC/bo+D1v1sBMUbSprQHEs7CcEZ33QMILkM=
