@@ -20,7 +20,7 @@ with the following handy steps:
 
 You can call other pipelines from within a pipeline with:
 
-- [pypyr.steps.pype](< ref "/docs/steps/pype">)
+- [pypyr.steps.pype]({{< ref "/docs/steps/pype">}})
 
 On top of this, you can control which individual steps should run or not
 using the conditional step decorators:
@@ -35,7 +35,7 @@ Looping happens on the step-level, using the following step decorators:
 
 You can set a `while` or `foreach` loop on any given step, including on
 a [call]({{< ref "/docs/steps/call">}}) step or a 
-[pype](< ref "/docs/steps/pype">) step, which lets you call another
+[pype]({{< ref "/docs/steps/pype">}}) step, which lets you call another
 step-group or an entire pipeline repeatedly in a loop.
 
 ## control-of-flow instructions
