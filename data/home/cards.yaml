@@ -76,9 +76,11 @@
     to write any extra code.
 
 - title: compose your tasks with modular step sequences
-  description: Pipelines can call other pipelines. Organize your tasks into 
-    repeatable sequences using [step groups](/docs/getting-started/basic-concepts/#step-group) 
-    within a pipeline so you modularize & isolate more complex task sequences.
+  description: |
+    [Pipelines can call other pipelines](/docs/steps/pype). Organize your tasks
+    into repeatable sequences using [step
+    groups](/docs/getting-started/basic-concepts/#step-group) within a pipeline
+    so you modularize & isolate more complex task sequences.
 
 - title: lots of documentation
   description: Plenty clear help documentation with examples. You're reading 
