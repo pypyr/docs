@@ -73,10 +73,10 @@ steps:
     in:
       echoMe: begin
 
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     comment: set variables for use in run/skip later
     in:
-      contextSetf:
+      set:
         arbVar1: False
         arbVar2: arbitrary str
         # arbVar3 will eval True
@@ -183,10 +183,10 @@ steps:
     in:
       echoMe: begin
 
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     comment: set arbitrary variables to use in later step run/skip conditions
     in:
-      contextSetf:
+      set:
         breakfasts:
           - fish
           - bacon

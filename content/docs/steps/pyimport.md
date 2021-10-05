@@ -39,13 +39,13 @@ This allows you to use any importable Python code in your !py strings.
       from pathlib import Path
       from fractions import Fraction as myfraction
       
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   comment: use your pyimports anywhere you can use a formatting expression.
            here using it to eval a bool for the "run" condition.
            and also in the step arguments.
   run: !py math.sqrt(1764) == 42
   in:
-    contextSetf:
+    set:
       my_number: 1764
       my_url: http://arbhost/blah
       my_filename: file

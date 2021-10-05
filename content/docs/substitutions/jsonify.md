@@ -21,9 +21,9 @@ topics: [json]
 Use `jsonify` to serialize a pypyr context object to a json string.
 
 ```yaml
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   in:
-    contextSetf:
+    set:
         myJsonDict: !jsonify
             k1: v1
             k2: 123
@@ -76,13 +76,13 @@ A `jsonify` structure can contain pypyr formatting expressions for
 [sic strings to avoid processing curly braces]({{< relref "sic-strings" >}}).
 
 ```yaml
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   comment: combine jsonify with other formatting expressions
   in:
     a_string: hello there
     replace_me: 123
     
-    contextSetf:
+    set:
       arb_payload: !jsonify
         k1: value {a_string}
         k2: !py hex(255)
@@ -117,13 +117,13 @@ to prevent pypyr from interpreting the json string's {curly braces} as pypyr for
 expressions:
 
 ```yaml
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   comment: combine jsonify with other formatting expressions
   in:
     a_string: hello there
     replace_me: 123
     
-    contextSetf:
+    set:
       arb_payload: !jsonify
         k1: value {a_string}
         k2: !py hex(255)

@@ -54,11 +54,11 @@ steps:
     run: 0
     in:
       echoMe: 0 in a boolean context means False.
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     comment: set some arb values to use in 
              next steps.
     in:
-      contextSetf:
+      set:
         isAnotherThing: 1 # int 1 evals true.
         isThing: False
         arbObj: [] # empty list

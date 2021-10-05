@@ -28,9 +28,9 @@ next step might need a specific key. If you already have the value in
 context, you can create a new key (or update existing key) with that
 value.
 
-`contextcopy` and [contextsetf]({{< ref "contextsetf" >}}) overwrite existing 
-keys. If you want to merge new values into an existing destination hierarchy, 
-use [contextmerge]({{< ref "contextmerge" >}}) instead.
+`contextcopy` and [set]({{< ref "set" >}}) overwrite existing keys. If you
+want to merge new values into an existing destination hierarchy, use
+[contextmerge]({{< ref "contextmerge" >}}) instead.
 
 So let's say you already have context['currentKey'] = ['eggs']. 
 If you set `newKey: currentKey`, you'll end up with:

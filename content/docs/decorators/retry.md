@@ -713,9 +713,9 @@ Use pypyr [format substitutions]({{< ref "/docs/substitutions">}}) to assign
 values to retry dynamically based on run-time parameters:
 
 ```yaml
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   in:
-    contextSetf:
+    set:
       my_sleep: [2, 4, 8]
       my_max: 3
       my_sleep_max: 6
@@ -762,7 +762,7 @@ pipeline this way.
 You can share common retry configuration and still use format substitution
 expressions to configure those values dynamically at run-time.
 
-In this example, the first `contextsetf` step sets the values that the shared
+In this example, the first `set` step sets the values that the shared
 retry configuration under `&commonRetryWithSubstitutions` will substitute at
 runtime:
 
@@ -783,9 +783,9 @@ common:
       base: '{base3_exponential_retry[base]}'
 
 steps:
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     in:
-      contextSetf:
+      set:
         base3_exponential_retry:
           sleep: 1
           max: 3

@@ -24,9 +24,9 @@ steps:
   - name: pypyr.steps.echo
     in:
       echoMe: piper {arbkey} that {anotherkey} again
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     in:
-      contextSetf:
+      set:
         myoutput: I was set in the pipeline!
         input_values:
           - '{arbkey}'
@@ -232,9 +232,9 @@ steps:
   - name: pypyr.steps.py
     in:
       py: print('hello hello!')
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     in:
-      contextSetf:
+      set:
         arbkey: I was set in the pipeline!
 ```
 

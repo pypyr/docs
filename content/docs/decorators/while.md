@@ -64,7 +64,7 @@ can signal from your step you want to break out of the loop reporting success.
 If you use any context variables in your `stop` condition, these need to exist
 before the loop starts. You can initialize these in the `in` arguments for the 
 same step, or alternatively somewhere in a preceding step like 
-`contextcopy` or `contextsetf`.
+`contextcopy` or `set`.
 
 {{% note tip %}}
 Remember that you can use 
@@ -175,12 +175,12 @@ steps:
   - name: pypyr.steps.echo
     in:
       echoMe: begin
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     comment: arbitrary context key with value "actual".
              the loop stop condition will be looking for
              value "expected" to stop the loop.
     in:
-      contextSetf:
+      set:
         arbKey: actual
   - name: pypyr.steps.echo
     comment: stop evaluates on every loop iteration.
@@ -394,13 +394,13 @@ loop_me:
   - name: pypyr.steps.echo
     in:
       echoMe: this is while {whileCounter} executing like a boss.
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     comment: set stopWhenImTrue to True on the 3rd iteration
              you're likely to do more meaningful work in your
              own pipelines.
     run: !py whileCounter == 3
     in:
-      contextSetf:
+      set:
         stopWhenImTrue: True
 ```
 

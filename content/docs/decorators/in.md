@@ -61,7 +61,7 @@ properties that you set here in `in` do not endure after the step completes.
 If you want to set context properties that exist beyond the current step, use
 one of the [context]({{< ref "/topics/context">}}) steps, such as 
 
-- [pypyr.steps.contextsetf]({{< ref "/docs/steps/contextsetf">}})
+- [pypyr.steps.set]({{< ref "/docs/steps/set">}})
 - [pypyr.steps.contextcopy]({{< ref "/docs/steps/contextcopy">}})
 - [pypyr.steps.default]({{< ref "/docs/steps/default">}})
 
@@ -76,17 +76,17 @@ context key.
 ```yaml
 # ./context-and-in.yaml
 steps:
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     comment: set echoMe for the following step here
     in:
-      contextSetf:
+      set:
         echoMe: arbitrary value here
   - pypyr.steps.echo # echo echoMe, set in previous step
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     comment: newKey will stay in context after this step
     in:
       arb: arb substitution value
-      contextSetf:
+      set:
         newKey: 'XXX {arb} YYY'
   - name: pypyr.steps.contextcopy
     comment: copy newKey to echoMe

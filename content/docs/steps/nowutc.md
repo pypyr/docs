@@ -54,15 +54,14 @@ See a worked [example for pipeline with now utc timestamp](https://github.com/py
 ## multiple timestamps in same pipeline
 If you have a pipeline where you want to refresh the timestamp multiple times, 
 while using the same formatting, you can save yourself some typing by using 
-[contextsetf]({{< ref "contextsetf" >}}) to specify the formatting `nowUtcIn`
-context property.
+[set]({{< ref "set" >}}) to specify the formatting `nowUtcIn` context property.
 
 ```yaml
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   comment: set datetime formatting string
            this will endure for the entire pipeline.
   in:
-    contextSetf:
+    set:
       nowUtcIn: '%A %Y %m/%d %H:%M in timezone %Z offset %z, localized to %x'
 - pypyr.steps.nowutc # uses nowUtcIn formatting from step 1
 - name: pypyr.steps.echo

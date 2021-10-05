@@ -168,11 +168,11 @@ inject it into a custom command:
 # ./foreach-variable-example.yaml
 context_parser: pypyr.parser.list
 steps:
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     comment: set defaults for optional cli args
     run: !py len(argList) == 0
     in:
-      contextSetf:
+      set:
         argList: ['one', 'two']
 
   - name: pypyr.steps.cmd

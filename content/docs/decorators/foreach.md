@@ -99,9 +99,9 @@ keys, or on the keys and values together:
 
 ```yaml
 steps:
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     in:
-      contextSetf:
+      set:
         my_mapping:
           a: b
           c: d
@@ -197,9 +197,9 @@ steps:
   - name: pypyr.steps.echo
     in:
       echoMe: begin
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     in:
-      contextSetf:
+      set:
         myThings:
           - name: thing 1
             isReady: True
@@ -239,7 +239,7 @@ want to iterate.
 When you `call` a group that contains another loop, pypyr will iterate the inner
 loop for each invocation of the outer. Pay attention to the value of `i` -
 because `i` will always be the iterator value of the current, innermost loop,
-grab the value of the parent's iterator with `contextsetf` before the inner loop
+grab the value of the parent's iterator with `set` before the inner loop
 starts.
 
 ```yaml
@@ -254,9 +254,9 @@ steps:
       echoMe: done!
 
 looping_group:
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     in:
-      contextSetf:
+      set:
         current_parent_iterator: '{i}'
   - name: pypyr.steps.echo
     foreach: ['one', 'two', 'three']
@@ -302,9 +302,9 @@ Calling a child pipeline that looks like this:
 ```yaml
 # ./foreach-nest-pype-child.yaml
 steps:
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     in:
-      contextSetf:
+      set:
         current_parent_iterator: '{i}'
   - name: pypyr.steps.echo
     foreach: ['one', 'two', 'three']
@@ -329,7 +329,7 @@ done!
 
 As with nesting loops with `call`, pay attention to the value of `i` - because
 `i` will always be the iterator value of the current, innermost loop, grab the
-value of the parent's iterator with `contextsetf` before the inner loop starts.
+value of the parent's iterator with `set` before the inner loop starts.
 
 ### flatten nested loops
 You can achieve the same thing by using the built-in itertools' handy
@@ -342,9 +342,9 @@ are nesting several levels deep.
   in:
     pyImport: from itertools import product
 
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   in:
-    contextSetf:
+    set:
       list_a: ['A', 'B', 'C']
       list_b: ['one', 'two', 'three']
 
@@ -374,5 +374,5 @@ done!
 
 Notice in this case `i` is the tuple that `product` returns, so you can use the
 tuple index to access the current values of the iterator without having to grab
-a reference to the parent iterator first with `contextsetf` as in the nested
+a reference to the parent iterator first with `set` as in the nested
 `call` or `pype` examples above.

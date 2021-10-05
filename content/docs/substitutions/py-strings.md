@@ -40,13 +40,13 @@ string formatting expressions, you don't surround the key name with
 ```yaml
 # ./pystrings.yaml
 steps:
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     comment: py strings use context keys directly, 
              without curlies around them.
              standard/normal str interpolation 
              uses {key} for replacement expression.
     in:
-      contextSetf:
+      set:
         arbKey: arb value
         arbInt: 123
         normal_str_format: use curly {arbKey} to format.

@@ -32,9 +32,10 @@ This step sets the contents of the context key `defaults` into context
 where keys in `defaults` do not exist in context already. The contents
 of the `defaults` key must be a dictionary.
 
-By comparison, the `in` step decorator, and the steps [contextcopy]({{< ref "contextcopy" >}}),
-[contextsetf]({{< ref "contextsetf" >}}) and [contextmerge]({{< ref "contextmerge" >}})
-overwrite values even if they are in context already.
+By comparison, the `in` step decorator, and also the steps
+[contextcopy]({{< ref "contextcopy" >}}), [set]({{< ref "set" >}}) and
+[contextmerge]({{< ref "contextmerge" >}}) overwrite values even if they are in
+context already.
 
 The recursive if-not-exists-then-set check happens for dictionaries, but
 not for items in Lists, Sets and Tuples. You can set default values of
@@ -57,10 +58,13 @@ key3: None
 And `defaults` input like this:
 
 ```yaml
-key1: updated value here won't overwrite since it already exists
-key2:
-    key2.2: value2.2
-key3: key 3 exists so I won't overwrite
+- name: pypyr.steps.default
+  in:
+    defaults:
+      key1: updated value here won't overwrite since it already exists
+      key2:
+          key2.2: value2.2
+      key3: key 3 exists so I won't overwrite
 ```
 
 Will result in context:

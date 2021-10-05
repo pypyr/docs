@@ -83,12 +83,12 @@ object:
 ```yaml
 # ./onerror-complex-obj.yaml
 steps:
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     comment: arbitrarily set a context value.
              will be using this value in error
              object.
     in:
-      contextSetf: 
+      set: 
         arbKey: FROM SUBSTITUTION EXPRESSION
   - name: pypyr.steps.assert
     comment: deliberately raise error

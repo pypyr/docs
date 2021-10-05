@@ -50,13 +50,13 @@ bit of json anywhere in the pipeline, you can do so without bothering with
 `parsejson`.
 
 ```yaml
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   comment: put hard-coded json document into pipeline context.
            notice for both the map & the list we're directly
            using valid json syntax.
            this works because yaml is a superset of json.
   in:
-    contextSetf:
+    set:
       myList: [1, 2, 3]
       myMap: {"a": "b", "c": "d"}
 ```

@@ -42,25 +42,25 @@ or explicitly overwrite them in a step.
 
 ### set variable in a step
 You can set variables using the following steps:
-- [contextsetf]({{< ref "/docs/steps/contextsetf" >}})
+- [set]({{< ref "/docs/steps/set" >}})
 - [default]({{< ref "/docs/steps/default" >}})
 
 These variables are available to all subsequent steps.
 
-The difference between `default` and `contextsetf` is that `default` _only_ sets
+The difference between `default` and `set` is that `default` _only_ sets
 a variable if it does not exist already. It will not overwrite existing
 variables. This makes `default` especially handy if you want to provide default
 values for optional arguments coming from the cli.
 
-By comparison, `contextsetf` will always set the variable, overwriting a
-variable even if it exists already.
+By comparison, `set` will always set the variable, overwriting a variable even
+if it exists already.
 
 ```yaml
 steps:
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     comment: set some arbitrary variables
     in:
-      contextSetf:
+      set:
         var1: my value
         var2: 2
         var3: True
@@ -160,14 +160,14 @@ substitution expression to pass these to the [echo step]({{< ref
 ```
 
 Instead of assigning `A` and `B` here in the step's `in`, you could also set `A`
-and `B` in any previous step as "global" variables using [contextsetf]({{< ref
-"/docs/steps/contextsetf" >}}) or [default]({{< ref "/docs/steps/default" >}}):
+and `B` in any previous step as "global" variables using [set]({{< ref
+"/docs/steps/set" >}}) or [default]({{< ref "/docs/steps/default" >}}):
 
 ```yaml
 steps:
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     in:
-      contextSetf:
+      set:
         A: down the
         B: valleys
 

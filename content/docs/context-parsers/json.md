@@ -35,20 +35,22 @@ context_parser: pypyr.parser.json
 steps:
   # echoMe will be set in the input json str
   - pypyr.steps.echo
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     comment: use the int as a strongly typed int
     in:
-        contextSetf:
-            intResult: !py keyInt * 2
+      set:
+        intResult: !py keyInt * 2
+
   - name: pypyr.steps.echo
     comment: print out result of int calculation
     in:
-        echoMe: "strongly typed happens automatically: {intResult}"
+      echoMe: "strongly typed happens automatically: {intResult}"
+
   - name: pypyr.steps.echo
     comment: only run if input bool is true
     run: '{keyBool}'
     in:
-        echoMe: you'll only see me if the bool was true
+      echoMe: you'll only see me if the bool was true
 ```
 
 You can run this pipeline as follows:

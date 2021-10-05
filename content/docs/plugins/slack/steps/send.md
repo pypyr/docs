@@ -69,9 +69,9 @@ steps:
       env:
         get:
           slackToken: SLACK_TOKEN
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     in:
-      contextSetf:
+      set:
         slackChannel: "#random"
   - name: pypyrslack.steps.send
     in:

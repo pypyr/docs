@@ -64,9 +64,9 @@ Supports string [substitutions]({{< ref "docs/substitutions">}}).
 ```yaml
 # ./echo-list.yaml
 steps:
-  - name: pypyr.steps.contextsetf
+  - name: pypyr.steps.set
     in:
-      contextSetf:
+      set:
         obj:
           - item1
           - item2

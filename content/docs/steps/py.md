@@ -80,10 +80,10 @@ relative to the working directory for you.
 When you are in a `py` step, context keys exist as variables of the same name. 
 
 ```yaml
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   comment: set some arbitrary values in context
   in:
-    contextSetf:
+    set:
       existing_value: 123
       existing_list: ['one', 'two', 'three']
       existing_dict:
@@ -182,9 +182,9 @@ in-place changes to mutable objects - but you won't break anything if you do, so
 don't worry about it.
 
 ```yaml
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   in:
-    contextSetf:
+    set:
       existing_value: 123
       existing_list: ['one', 'two', 'three']
       existing_dict:
@@ -322,11 +322,11 @@ in the py step itself, and you can also use these in subsequent py steps or in
       for i in range(3):
         my_function(i, 3)
 
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   comment: re-use class & function anywhere you can use a !py string.
   run: !py my_function(1, 2) == 3
   in:
-    contextSetf:
+    set:
       new_key: !py MyClass().do_thing(456)
 ```
 
@@ -350,10 +350,10 @@ In the following example, you can see how to access the context object, add or
 update values & how to import other modules:
 
 ```yaml
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   comment: set arb context to manipulate in the next step
   in:
-    contextSetf:
+    set:
       existing_key: existing value
       existing_dict:
         a: a value

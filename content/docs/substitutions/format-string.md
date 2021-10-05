@@ -294,8 +294,8 @@ my_map:
       - two
 ```
 
-## working with contextsetf
-When you use the [contextsetf step]({{< ref "docs/steps/contextsetf" >}}) pypyr 
+## assign variables with set
+When you use the [set step]({{< ref "docs/steps/set" >}}) pypyr 
 evaluates each assignment in order from the top down. Each assignment is 
 atomic.
 
@@ -303,11 +303,11 @@ This might look like a recursive format, but it isn't - it's just that each
 line evaluates individually before pypyr moves on to the next.
 
 ```yaml
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   comment: each assignment evaluates atomically,
            in order from the top down
   in:
-    contextSetf:
+    set:
       k3: 'the end'
       k2: '2 {k3}' # == '2 the end'
       k1: '1 {k2}' # == '1 2 the end'
@@ -358,9 +358,9 @@ context values you assemble in pypyr, so you effectively compose new
 configuration context structures from existing building blocks.
 
 ```yaml
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   in:
-    contextSetf: 
+    set: 
       newkey:
         nestedkey1: nested value 1
         nestedkey2:

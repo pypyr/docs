@@ -34,17 +34,12 @@ text that prints to output for pipeline consumer visibility, use
 [description]({{<ref "description">}}) instead.
 
 ```yaml
-- name: pypyr.steps.contextsetf
+- name: pypyr.steps.set
   comment: this comment is for pipeline authors.
            it is multi-line to prove a point.
            it probably describes a technical point
            about why the step is doing something.
   in:
-    contextSetf:
+    set:
       newKey: 'XXX {invalue} XXX'
 ```
-
- |
-          ```yaml
-          comment: arb text
-          ```

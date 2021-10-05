@@ -25,7 +25,7 @@ Merges values into context, preserving the existing hierarchy while only
 updating the differing values as specified in the `contextMerge` input.
 
 By comparison, [contextcopy]({{< ref "contextcopy" >}}) and 
-[contextsetf]({{< ref "contextsetf" >}}) overwrite the destination hierarchy 
+[set]({{< ref "set" >}}) overwrite the destination hierarchy 
 that is in context already.
 
 This step merges the contents of the context key `contextMerge` into
