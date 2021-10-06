@@ -28,7 +28,7 @@ $ pip install --upgrade pypyr
 ```
 
 ## python version
-Tested against Python >=3.6
+Tested against Python >=3.7
 
 ## docker
 Stuck with an older version of python? Want to run pypyr in an
