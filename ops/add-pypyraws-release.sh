@@ -1,0 +1,1 @@
+pypyr ops/add-release-from-github repo=pypyr-aws out=./content/updates/releases/pypyr-aws

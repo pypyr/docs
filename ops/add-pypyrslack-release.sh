@@ -1,0 +1,1 @@
+pypyr ops/add-release-from-github repo=pypyr-slack out=./content/updates/releases/pypyr-slack
