@@ -23,7 +23,8 @@ $ pypyr echo "Ceci n'est pas une pipe"
 ```
 
 `echo` is the name of a built-in pypyr pipeline. The pipeline simply echoes
-the input string back to console output using the built-in [echo step]({{< ref "/docs/steps/echo">}}). 
+the input string back to console output using the built-in
+[echo step]({{< ref "/docs/steps/echo">}}). 
 
 The actual pipeline looks like this:
 
@@ -32,17 +33,14 @@ The actual pipeline looks like this:
 # pypyr echo text goes here
 context_parser: pypyr.parser.string
 steps:
-  - name: pypyr.steps.contextcopy
-    comment: assign input arg to echoMe so echo step can echo it
+  - name: pypyr.steps.echo
     in:
-      contextCopy:
-        echoMe: argString
-  - pypyr.steps.echo
+      echoMe: '{argString}'
 ```
 
-You can achieve the same thing by running a pipeline where you set the context 
-in the pipeline yaml rather than passing in as the 2nd positional
-argument:
+You can achieve the same thing by running a pipeline where you set the context
+in the pipeline yaml rather than passing it in from the cli as the 2nd
+positional argument:
 
 ```bash
 $ pypyr magritte
