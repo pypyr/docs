@@ -4,7 +4,7 @@ description: How to run your first pypyr pipeline
 date: 2020-08-12
 publishdate: 2020-08-13
 lastmod: 2020-08-16
-categories: [install]
+# categories: [install]
 menu:
   docs:
     title: run your first pipeline
@@ -72,6 +72,7 @@ steps:
     comment: output echoMe
     in:
       echoMe: this is step 1
+
   - name: pypyr.steps.cmd
     comment: actually invokes any program on your system.
              the program must be available in current path.
@@ -93,8 +94,18 @@ this is step 2
 $
 {{< /app-window >}}
 
+The second step here is the [cmd step]({{< ref "/docs/steps/cmd">}}) - this
+built-in step allows you to execute any command available on your system. For
+the sake of hello-world simplicity, we're just using good old `echo`, but you
+can substitute this with something more useful.
+
+pypyr has a whole bunch of ready-made [built-in steps]({{< ref "/docs/steps"
+>}}) that you can use for various tasks such as working with files, variables,
+merging configuring, paths & custom inline code. You can also make your own
+[custom step]({{< ref "/docs/api/step" >}}) without fuss.
+
 ## passing arguments to your pipeline
-You can pass arguments from the command line to your pipeline easy peasy.
+You can pass arguments from the cli to your pipeline easy peasy.
 
 All you need to do is add a [context_parser]({{< ref "/docs/context-parsers" >}})
 
@@ -116,6 +127,7 @@ steps:
   - name: pypyr.steps.echo
     in:
       echoMe: this is akey's value {akey}. It came from the cli args.
+
   - name: pypyr.steps.cmd
     in:
       cmd: echo we can inject {anotherkey} into your cmd
@@ -132,3 +144,98 @@ we can inject another value into your cmd
 
 $
 {{< /app-window >}}
+
+## looping over commands
+You can add extra functionality to *any* step in pypyr by decorating the step
+with a [decorator]({{< ref "/docs/decorators" >}}). pypyr gives you built-in
+decorators to loop, retry a failure condition automatically and selectively
+run a step only if a certain condition is true - all of this without you having
+to code it yourself.
+
+### static loop
+Let's add a simple loop to a command using the
+[foreach decorator]({{< ref "/docs/decorators/foreach" >}}):
+```yaml
+# ./fruit-loop.yaml
+steps:
+  - name: pypyr.steps.echo
+    in:
+      echoMe: begin
+
+  - name: pypyr.steps.cmd
+    foreach: [apple, pear, banana]
+    in:
+      cmd: echo arb-command --arg {i}
+
+  - name: pypyr.steps.echo
+    in:
+      echoMe: end
+```
+
+Notice that for the `cmd` step we're just using `echo` for the sake of example,
+you can instead use whatever command available on your system.
+
+`{i}` is a context variable that contains the current item of the iterator.
+
+Running this pipeline looks like this:
+{{< app-window title="term" lang="text" >}}
+$ pypyr fruit-loop
+begin
+arb-command --arg apple
+arb-command --arg pear
+arb-command --arg banana
+end
+
+$
+{{< /app-window >}}
+
+### dynamic loop cli input args
+Of course, you don't have to hard-code the list the you want to iterate. Let's
+inject the values from the cli. As always, use a context parser to access
+cli arguments: in this case,
+[pypyr.parser.list]({{< ref "/docs/context-parsers/list" >}}) will parse all
+the input arguments into a list named `{argList}` for you.
+
+```yaml
+# ./fruit-loop
+context_parser: pypyr.parser.list
+steps:
+  - name: pypyr.steps.echo
+    in:
+      echoMe: begin
+
+  - name: pypyr.steps.cmd
+    foreach: '{argList}'
+    in:
+      cmd: echo arb-command --arg {i}
+
+  - name: pypyr.steps.echo
+    in:
+      echoMe: end
+```
+
+Now you can control dynamically how many to times to run your command from the
+cli like this:
+
+{{< app-window title="term" lang="text" >}}
+$ pypyr fruit-loop
+begin
+end
+
+$ pypyr fruit-loop apple pear
+begin
+arb-command --arg apple
+arb-command --arg pear
+end
+
+{{< /app-window >}}
+
+The first run, without any arguments, just prints `begin` and `end`: since the
+input list is empty there is nothing over which to loop.
+
+## what next?
+You probably should check out:
+- understanding [basic pipeline structure]({{< ref "basic-concepts" >}})
+- How to [declare & use variables]({{< ref "variables" >}})
+- How to use [loops]({{< ref "loops" >}})
+- Deal with [errors]({{< ref "error-handling">}})
