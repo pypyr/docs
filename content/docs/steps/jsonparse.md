@@ -111,7 +111,7 @@ response json string into context using `jsonparse`.
       arbitrary slide item: {myParsedJson[slideshow][slides][1][items][0]}
 ```
 
-Here is a worked [example of jsonparse](https://github.com/pypyr/pypyr-example/blob/master/pipelines/jsonparse.yaml).
+Here is a worked [example of jsonparse](https://github.com/pypyr/pypyr-example/blob/main/pipelines/jsonparse.yaml).
 
 ## json structure
 pypyr will merge the json parsed from the input string into the pypyr context. 

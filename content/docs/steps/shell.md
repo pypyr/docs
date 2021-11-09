@@ -117,7 +117,7 @@ steps:
       cmd: !sic echo ${PWD};
 ```
 
-See a worked [example for shell pipeline power](https://github.com/pypyr/pypyr-example/tree/master/pipelines/shell.yaml).
+See a worked [example for shell pipeline power](https://github.com/pypyr/pypyr-example/tree/main/pipelines/shell.yaml).
 
 ## multiple inline shell statements
 Friendly reminder of the difference between separating your shell statements

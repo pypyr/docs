@@ -111,4 +111,4 @@ this is iteration three
 ```
 
 ## worked example
-See a worked [example for call](https://github.com/pypyr/pypyr-example/blob/master/pipelines/call.yaml).
+See a worked [example for call](https://github.com/pypyr/pypyr-example/blob/main/pipelines/call.yaml).

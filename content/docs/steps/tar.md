@@ -65,7 +65,7 @@ members that have absolute filenames starting with `/` or filenames with two
 dots `..`
 {{% /note %}}
 
-See a worked [example for tar](https://github.com/pypyr/pypyr-example/tree/master/pipelines/tar.yaml).
+See a worked [example for tar](https://github.com/pypyr/pypyr-example/tree/main/pipelines/tar.yaml).
 
 ## tar extract
 `tar['extract']` must exist. It's a list of dictionaries.

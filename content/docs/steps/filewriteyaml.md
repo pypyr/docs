@@ -83,4 +83,4 @@ will: be written to
 thepath: with substitutions like this arbvalue.
 ```
 
-See a worked [filewriteyaml example](https://github.com/pypyr/pypyr-example/tree/master/pipelines/filewriteyaml.yaml).
+See a worked [filewriteyaml example](https://github.com/pypyr/pypyr-example/tree/main/pipelines/filewriteyaml.yaml).

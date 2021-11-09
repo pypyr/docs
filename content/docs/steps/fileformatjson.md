@@ -122,4 +122,4 @@ The file in and out paths support
 [substitutions]({{< ref "docs/substitutions">}}), which allows you to specify
 paths dynamically.
 
-See a worked [example of fileformatjson](https://github.com/pypyr/pypyr-example/blob/master/pipelines/fileformatjson.yaml).
+See a worked [example of fileformatjson](https://github.com/pypyr/pypyr-example/blob/main/pipelines/fileformatjson.yaml).

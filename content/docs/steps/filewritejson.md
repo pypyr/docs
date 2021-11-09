@@ -88,4 +88,4 @@ the `{arbkey}` expression in the last line will substitute like this:
 }
 ```
 
-See a worked [filewritejson example](https://github.com/pypyr/pypyr-example/tree/master/pipelines/filewritejson.yaml).
+See a worked [filewritejson example](https://github.com/pypyr/pypyr-example/tree/main/pipelines/filewritejson.yaml).

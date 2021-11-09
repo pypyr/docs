@@ -106,4 +106,4 @@ breakfastOfChampions:
 
 ## example
 See a worked example for [pypyr aws s3fetch
-here](https://github.com/pypyr/pypyr-example/blob/master/pipelines/aws-s3fetch.yaml).
+here](https://github.com/pypyr/pypyr-example/blob/main/pipelines/aws-s3fetch.yaml).

@@ -85,4 +85,4 @@ this is arb group
 
 `jump` only runs success or failure groups if you actually specify these.
 
-See a worked [example for jump](https://github.com/pypyr/pypyr-example/blob/master/pipelines/jump.yaml).
+See a worked [example for jump](https://github.com/pypyr/pypyr-example/blob/main/pipelines/jump.yaml).

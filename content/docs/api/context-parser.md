@@ -35,7 +35,7 @@ the pipeline run.
 
 {{% note tip %}}
 For real-life inspiration, see the actual code for pypyr's built-in 
-[context parsers](https://github.com/pypyr/pypyr/tree/master/pypyr/parser).
+[context parsers](https://github.com/pypyr/pypyr/tree/main/pypyr/parser).
 {{% /note %}}
 
 ## parser function signature & example

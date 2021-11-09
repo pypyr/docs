@@ -58,4 +58,4 @@ arbgroup:
 ```
 
 See a worked [example to stop a step-group
-here](https://github.com/pypyr/pypyr-example/blob/master/pipelines/stop-stepgroup.yaml).
+here](https://github.com/pypyr/pypyr-example/blob/main/pipelines/stop-stepgroup.yaml).

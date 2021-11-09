@@ -76,4 +76,4 @@ curly `{` braces. Check example below for escape sequences if you do so.
 You can pick single or double quotes, so just go with whichever is less
 annoying for your particular string.
 
-See a worked [example for substitutions with sic strings](https://github.com/pypyr/pypyr-example/tree/master/pipelines/substitutions.yaml).
+See a worked [example for substitutions with sic strings](https://github.com/pypyr/pypyr-example/tree/main/pipelines/substitutions.yaml).

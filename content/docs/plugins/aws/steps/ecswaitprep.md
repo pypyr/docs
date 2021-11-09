@@ -75,4 +75,4 @@ Required context:
         .arn
 
 See a worked example for [pypyr aws ecs
-here](https://github.com/pypyr/pypyr-example/blob/master/pipelines/aws-ecs.yaml).
+here](https://github.com/pypyr/pypyr-example/blob/main/pipelines/aws-ecs.yaml).

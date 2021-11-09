@@ -227,4 +227,4 @@ assert:
 ```
 
 ### worked example
-See a worked [example for assert](https://github.com/pypyr/pypyr-example/tree/master/pipelines/assert.yaml).
+See a worked [example for assert](https://github.com/pypyr/pypyr-example/tree/main/pipelines/assert.yaml).

@@ -66,4 +66,4 @@ Debug supports the following optional inputs:
                     # Applies formatting expressions to output.
 ```
 
-See some worked examples to [use debug to pretty print context](https://github.com/pypyr/pypyr-example/blob/master/pipelines/debug.yaml).
+See some worked examples to [use debug to pretty print context](https://github.com/pypyr/pypyr-example/blob/main/pipelines/debug.yaml).

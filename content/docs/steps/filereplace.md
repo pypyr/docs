@@ -46,7 +46,7 @@ fileReplace:
     alaststring: alastreplacement
 ```
 
-See a worked [example of filereplace](https://github.com/pypyr/pypyr-example/tree/master/pipelines/filereplace.yaml).
+See a worked [example of filereplace](https://github.com/pypyr/pypyr-example/tree/main/pipelines/filereplace.yaml).
 
 ## multiple files & globs
 `fileReplace` expects the following context keys:

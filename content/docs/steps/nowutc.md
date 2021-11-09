@@ -49,7 +49,7 @@ a full list of available formatting codes, check [python date & time formatting]
 
 All inputs support [substitutions]({{< ref "/docs/substitutions">}}).
 
-See a worked [example for pipeline with now utc timestamp](https://github.com/pypyr/pypyr-example/tree/master/pipelines/now.yaml).
+See a worked [example for pipeline with now utc timestamp](https://github.com/pypyr/pypyr-example/tree/main/pipelines/now.yaml).
 
 ## multiple timestamps in same pipeline
 If you have a pipeline where you want to refresh the timestamp multiple times, 

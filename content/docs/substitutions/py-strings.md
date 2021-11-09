@@ -177,4 +177,4 @@ don't.
 ```
 
 ## examples
-See a worked [example for py strings](https://github.com/pypyr/pypyr-example/tree/master/pipelines/pystrings.yaml).
+See a worked [example for py strings](https://github.com/pypyr/pypyr-example/tree/main/pipelines/pystrings.yaml).

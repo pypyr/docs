@@ -49,7 +49,7 @@ format:
 All inputs support [substitutions]({{< ref "docs/substitutions">}}).
 
 
-See some worked [examples of fetchjson](https://github.com/pypyr/pypyr-example/blob/master/pipelines/fetchjson.yaml).
+See some worked [examples of fetchjson](https://github.com/pypyr/pypyr-example/blob/main/pipelines/fetchjson.yaml).
 
 ## json structure
 pypyr will merge the Json parsed from the file into the pypyr context. This

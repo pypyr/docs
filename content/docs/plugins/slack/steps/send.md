@@ -100,4 +100,4 @@ following:
 $ pypyr hoping-for-a-hotdog
 ```
 
-See a worked example for sending messages via [pypyr slack](https://github.com/pypyr/pypyr-example/tree/master/pipelines/slack.yaml).
+See a worked example for sending messages via [pypyr slack](https://github.com/pypyr/pypyr-example/tree/main/pipelines/slack.yaml).

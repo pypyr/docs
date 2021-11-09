@@ -184,7 +184,7 @@ $ pypyr step-groups-example --groups sg2 sg1 sg3
 
 This command will run, in order, `sg2` -> `sg1` -> `sg3`
 
-Here's a ready cooked example of [custom step-groups in action](https://github.com/pypyr/pypyr-example/blob/master/pipelines/step-groups.yaml).
+Here's a ready cooked example of [custom step-groups in action](https://github.com/pypyr/pypyr-example/blob/main/pipelines/step-groups.yaml).
 
 If you don't specify `--groups` pypyr will just look for the standard
 `steps` group as per usual. You can still [call]({{< ref "/docs/steps/call.md" >}}) 

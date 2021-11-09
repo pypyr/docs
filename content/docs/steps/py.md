@@ -415,6 +415,6 @@ to you to persist the change with `context['mykey'] = 'added/updated value'`.
 
 ## example
 See a worked [example of inline python using py
-style](https://github.com/pypyr/pypyr-example/tree/master/pipelines/py.yaml) and
+style](https://github.com/pypyr/pypyr-example/tree/main/pipelines/py.yaml) and
 [example of inline python using py-code
-style](https://github.com/pypyr/pypyr-example/tree/master/pipelines/py-code.yaml).
+style](https://github.com/pypyr/pypyr-example/tree/main/pipelines/py-code.yaml).

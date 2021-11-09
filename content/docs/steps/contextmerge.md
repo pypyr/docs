@@ -59,7 +59,7 @@ key3:
 key4: bbb_aaa_value1_zzz_yyy
 ```
 
-See a worked [example for contextmerge](https://github.com/pypyr/pypyr-example/blob/master/pipelines/contextmerge.yaml).
+See a worked [example for contextmerge](https://github.com/pypyr/pypyr-example/blob/main/pipelines/contextmerge.yaml).
 
 ## merging collections like lists, dicts, sets & tuples
 List, Set and Tuple merging is purely additive, with no checks for

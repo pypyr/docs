@@ -74,4 +74,4 @@ All inputs support [substitutions]({{< ref "docs/substitutions">}}). This means
 you can specify another context item to be an individual path, or part of a
 path, or the entire path list.
 
-See a worked [example for glob](https://github.com/pypyr/pypyr-example/tree/master/pipelines/glob.yaml).
+See a worked [example for glob](https://github.com/pypyr/pypyr-example/tree/main/pipelines/glob.yaml).

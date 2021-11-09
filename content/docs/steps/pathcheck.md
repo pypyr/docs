@@ -91,4 +91,4 @@ these directly in string formatting expressions without any extra fuss.
     echoMe: you'll only see me if ./**/*.arb found something on filesystem.
 ```
 
-See a worked [example for pathcheck](https://github.com/pypyr/pypyr-example/tree/master/pipelines/pathcheck.yaml).
+See a worked [example for pathcheck](https://github.com/pypyr/pypyr-example/tree/main/pipelines/pathcheck.yaml).

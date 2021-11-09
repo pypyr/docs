@@ -32,7 +32,7 @@ The `envget` context key must exist.
 All inputs support [substitutions]({{< ref "docs/substitutions">}}).
 
 See a worked [example for getting environment variables with defaults
-here](https://github.com/pypyr/pypyr-example/tree/master/pipelines/envget.yaml).
+here](https://github.com/pypyr/pypyr-example/tree/main/pipelines/envget.yaml).
 
 ## get an environment variable with a default fallback
 ```yaml

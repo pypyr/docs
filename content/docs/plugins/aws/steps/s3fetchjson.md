@@ -89,4 +89,4 @@ root level, but rather an Object `{}`.
 
 ## example
 See a worked example for 
-[pypyr aws s3fetch](https://github.com/pypyr/pypyr-example/blob/master/pipelines/aws-s3fetch.yaml).
+[pypyr aws s3fetch](https://github.com/pypyr/pypyr-example/blob/main/pipelines/aws-s3fetch.yaml).

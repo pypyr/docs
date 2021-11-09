@@ -145,7 +145,7 @@ $ pypyr go-go-s3 "bucket=myuniquebucketname"
 ```
 
 See a worked example for 
-[pypyr aws s3](https://github.com/pypyr/pypyr-example/blob/master/pipelines/aws-s3.yaml).
+[pypyr aws s3](https://github.com/pypyr/pypyr-example/blob/main/pipelines/aws-s3.yaml).
 
 ## full list of supported aws services
 `client` can run any method on any of the following aws low-level client 

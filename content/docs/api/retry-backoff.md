@@ -25,7 +25,7 @@ can implement your own by deriving a callable from `BackoffBase`, which lives in
 
 For real life inspiration, you can see all of [pypyr's builtin retry backoff
 implementations on
-github](https://github.com/pypyr/pypyr/blob/master/pypyr/retries.py).
+github](https://github.com/pypyr/pypyr/blob/main/pypyr/retries.py).
 
 ## custom retry signature
 You can find `BackoffBase` in `pypyr.retries`.

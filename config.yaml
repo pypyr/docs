@@ -117,7 +117,7 @@ params:
   # date_format_git: "2006-01-02 15:04"
   feedback_show: True
   feedback_bug: https://github.com/pypyr/pypyr/issues/new?title=Re:%%20%s&labels=bug
-  feedback_edit: https://github.com/pypyr/docs/edit/master/content/%s
+  feedback_edit: https://github.com/pypyr/docs/edit/main/content/%s
   feedback_typo: https://github.com/pypyr/docs/issues/new?title=docs%%20issue:%s&body=File:%%20[%s](%s)
   # font_href: https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Roboto+Mono:400,400i&display=swap
   logo: images/pypyr-logotype.svg # in ./assets

@@ -47,4 +47,4 @@ when you want to handle an error condition and not raise an error to the caller.
     echoMe: you WON'T see me...
 ```
 
-See a worked [example to stop current pipeline](https://github.com/pypyr/pypyr-example/blob/master/pipelines/stop-pipeline.yaml).
+See a worked [example to stop current pipeline](https://github.com/pypyr/pypyr-example/blob/main/pipelines/stop-pipeline.yaml).

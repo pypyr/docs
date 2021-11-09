@@ -81,4 +81,4 @@ context. This is a boolean value with values:
 ## example
 See a worked example for an [elastic beanstalk custom waiter for
 environmment creation
-here](https://github.com/pypyr/pypyr-example/blob/master/pipelines/aws-beanstalk-waitfor.yaml).
+here](https://github.com/pypyr/pypyr-example/blob/main/pipelines/aws-beanstalk-waitfor.yaml).

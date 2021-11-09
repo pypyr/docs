@@ -108,4 +108,4 @@ steps:
       cmd: ls -a
 ```
 
-See a worked [example for cmd](https://github.com/pypyr/pypyr-example/tree/master/pipelines/shell.yaml).
+See a worked [example for cmd](https://github.com/pypyr/pypyr-example/tree/main/pipelines/shell.yaml).

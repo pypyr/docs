@@ -40,7 +40,7 @@ The parent pipeline is the current, executing pipeline. The child pipeline is
 the pipeline you are calling from this step.
 
 See a worked [example of
-pype](https://github.com/pypyr/pypyr-example/tree/master/pipelines/pype.yaml).
+pype](https://github.com/pypyr/pypyr-example/tree/main/pipelines/pype.yaml).
 
 ## child pipeline execution arguments
 You only need to specify the pipeline name you want to call by way of minimal
@@ -144,7 +144,7 @@ If you explicitly set `useParentContext` to `True` AND you specify `args`,
 pypyr will merge args into the parent context in addition to applying all 
 {formatting expressions} before running the child pipeline.
 
-Here is an [example with pipe args](https://github.com/pypyr/pypyr-example/blob/master/pipelines/pype-args.yaml).
+Here is an [example with pipe args](https://github.com/pypyr/pypyr-example/blob/main/pipelines/pype-args.yaml).
 
 ### out
 If the child pipeline ran with a fresh new Context, because you set `args` or 
@@ -355,7 +355,7 @@ This pipeline will run, in order:
 3. dynamic-pype-child-3
 
 You can find the example for 
-[dynamic pipeline execution in the pypyr example repo](https://github.com/pypyr/pypyr-example/blob/master/pipelines/dynamic-pype.yaml).
+[dynamic pipeline execution in the pypyr example repo](https://github.com/pypyr/pypyr-example/blob/main/pipelines/dynamic-pype.yaml).
 
 ## recursion
 Yes, you can call another pipeline recursively - i.e a child pipeline can call 
@@ -366,4 +366,4 @@ infinite recursion other than the default python recursion limit.
 So don't come crying if you blew your stack. Or a seal.
 
 Here is a worked [example of pipeline
-recursion](https://github.com/pypyr/pypyr-example/tree/master/pipelines/pype-recursion.yaml).
+recursion](https://github.com/pypyr/pypyr-example/tree/main/pipelines/pype-recursion.yaml).

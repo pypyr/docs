@@ -137,7 +137,7 @@ answer: 42
 key4: 'What do you get when you multiply six by nine? 42'
 ```
 
-See a worked [example for set variables](https://github.com/pypyr/pypyr-example/blob/master/pipelines/set-variables.yaml).
+See a worked [example for set variables](https://github.com/pypyr/pypyr-example/blob/main/pipelines/set-variables.yaml).
 
 ## conditional assignment & ternary expressions
 You can use `set` in conjunction with [py strings]({{< ref "docs/substitutions/py-strings">}})

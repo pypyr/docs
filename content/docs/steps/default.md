@@ -77,4 +77,4 @@ key2:
 key3: None
 ```
 
-See a worked [example for setting default values](https://github.com/pypyr/pypyr-example/blob/master/pipelines/default.yaml).
+See a worked [example for setting default values](https://github.com/pypyr/pypyr-example/blob/main/pipelines/default.yaml).

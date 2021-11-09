@@ -62,7 +62,7 @@ specify. Regardless of combination, execution order is:
         - ARB_SET_ME2
 ```
 
-See a worked [example for environment variables](https://github.com/pypyr/pypyr-example/tree/master/pipelines/env_variables.yaml).
+See a worked [example for environment variables](https://github.com/pypyr/pypyr-example/tree/main/pipelines/env_variables.yaml).
 
 ## get
 Get $ENVs into the pypyr context.

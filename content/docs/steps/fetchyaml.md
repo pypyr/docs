@@ -49,7 +49,7 @@ format:
 All inputs support [substitutions]({{< ref "docs/substitutions">}}).
 
 
-See some worked [examples of fetchyaml](https://github.com/pypyr/pypyr-example/blob/master/pipelines/fetchyaml.yaml).
+See some worked [examples of fetchyaml](https://github.com/pypyr/pypyr-example/blob/main/pipelines/fetchyaml.yaml).
 
 ## merging logic
 pypyr will parse the yaml from the file and merge it into the pypyr context. 

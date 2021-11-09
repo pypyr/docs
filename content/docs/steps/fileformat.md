@@ -58,7 +58,7 @@ In a book that all may read
 
 The file `in` and `out` paths support [substitutions]({{< ref "docs/substitutions">}}).
 
-See a worked [example of fileformat](https://github.com/pypyr/pypyr-example/blob/master/pipelines/fileformat.yaml).
+See a worked [example of fileformat](https://github.com/pypyr/pypyr-example/blob/main/pipelines/fileformat.yaml).
 
 ## escape characters
 If your file contains {curly braces} that pypyr should NOT try to substitute, 

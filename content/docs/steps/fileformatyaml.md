@@ -122,4 +122,4 @@ The file in and out paths support
 [substitutions]({{< ref "docs/substitutions">}}), which allows you to specify
 paths dynamically.
 
-See a worked [example of fileformatyaml](https://github.com/pypyr/pypyr-example/blob/master/pipelines/fileformatyaml.yaml).
+See a worked [example of fileformatyaml](https://github.com/pypyr/pypyr-example/blob/main/pipelines/fileformatyaml.yaml).

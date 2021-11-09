@@ -40,7 +40,7 @@ steps:
     skip: '{nopush}'
     in:
       cmd:
-        run: git push origin master
+        run: git push origin main
         cwd: public
   - name: pypyr.steps.cmd
     comment: commit submodule ref change to parent repo.
@@ -56,7 +56,7 @@ steps:
     description: --> push submodule ref changes to parent repo origin
     skip: '{nopush}'
     in:
-      cmd: git push origin master
+      cmd: git push origin main
 
 create_pub_subdir:
   - name: pypyr.steps.cmd

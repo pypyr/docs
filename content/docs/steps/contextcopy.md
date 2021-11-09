@@ -69,4 +69,4 @@ key3: value3
 key4: value3
 ```
 
-See a worked [example for contextcopy](https://github.com/pypyr/pypyr-example/tree/master/pipelines/contextcopy.yaml).
+See a worked [example for contextcopy](https://github.com/pypyr/pypyr-example/tree/main/pipelines/contextcopy.yaml).
