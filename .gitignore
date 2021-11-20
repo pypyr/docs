@@ -3,3 +3,4 @@ node_modules
 .vscode/
 tmp
 /hugo
+.hugo_build.lock

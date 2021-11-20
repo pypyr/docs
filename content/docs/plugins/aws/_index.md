@@ -40,8 +40,9 @@ a casual script, whereas with pypyr you can work with context, variable
 substitution and, critically, pretty much copy & paste from the AWS help 
 documentation to get your inputs right.
 
-[![build status](https://github.com/pypyr/pypyr-aws/workflows/lint-test-build/badge.svg)](https://github.com/pypyr/pypyr-aws/actions)
-[![coverage status](https://codecov.io/gh/pypyr/pypyr-aws/branch/master/graph/badge.svg)](https://codecov.io/gh/pypyr/pypyr-aws)[![pypi version](https://badge.fury.io/py/pypyraws.svg)](https://pypi.python.org/pypi/pypyraws/)
+[![build status](https://github.com/pypyr/pypyr-aws/workflows/lint-test-build/badge.svg?branch=main)](https://github.com/pypyr/pypyr-aws/actions)
+[![coverage status](https://codecov.io/gh/pypyr/pypyr-aws/branch/main/graph/badge.svg)](https://codecov.io/gh/pypyr/pypyr-aws)
+[![pypi version](https://badge.fury.io/py/pypyraws.svg)](https://pypi.python.org/pypi/pypyraws/)
 [![apache 2.0 license](https://img.shields.io/github/license/pypyr/pypyr-aws)](https://opensource.org/licenses/Apache-2.0)
 
 ## installation

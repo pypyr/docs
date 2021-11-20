@@ -39,16 +39,22 @@ For real-life inspiration, see the actual code for pypyr's built-in
 {{% /note %}}
 
 ## parser function signature & example
+A custom parser is any Python module containing a function with this signature:
 ```python
-import logging
+get_parsed_context(args: list[str] | None) -> Mapping | None
+```
 
+Here is a more fleshed out example that you can copy & paste to get started:
+```python
+from collections.abc import Mapping
+import logging
 
 # getLogger will grab the parent logger context, so your loglevel and
 # formatting will inherit correctly automatically from the pypyr core.
 logger = logging.getLogger(__name__)
 
 
-def get_parsed_context(args):
+def get_parsed_context(args: list[str] | None) -> Mapping | None:
     """This is the signature for a context parser.
 
     Args:
@@ -59,7 +65,7 @@ def get_parsed_context(args):
     Returns:
       dict. This dict will initialize the context for the pipeline run.
     """
-    assert args, ("pipeline must be invoked with context arg set.")
+    assert args, ("you must invoke pipeline with context arg set.")
     logger.debug("starting")
 
     # your clever code here. Chances are pretty good you'll be doing things
@@ -70,17 +76,22 @@ def get_parsed_context(args):
 ```
 
 ## use custom parser in a pipeline
-The usual python import module resolution rules apply. pypyr will resolve 
-modules from the 
-[working directory]({{< ref "/docs/pipelines/lookup-order#the-working-directory" >}}) 
-first, which you can change by using the `--dir` flag.
+The usual [custom module import resolution rules]({{< ref
+"/docs/api/custom-module-search-path" >}}) apply.
 
-Assuming you saved your python with the `def get_parsed_context(args)` in a 
-file like this `./dir/myparser.py`, you can use use it in your pipeline like 
-this:
+```text
+|- myproj
+  |- mypipeline.yaml
+  |- mydir/
+    |- myparser.py
+```
+Assuming you saved your python with the `def get_parsed_context(args)` in a file
+like this 
+`{pipeline dir}/mydir/myparser.py`, you can use use it in your pipeline
+like this:
 
 ```yaml
-context_parser: dir.myparser
+context_parser: mydir.myparser
 steps:
     - step1
     - step2

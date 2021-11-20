@@ -39,16 +39,23 @@ new step that would make your life better, feel very free to
 with a feature request.
 
 ## step function signature
+A custom step is any Python module that contains a function with this signature:
+```python
+run_step(context: pypyr.context.Context) -> None
+```
+
+Here is a fuller example that you can copy & paste to get started:
 ```python
 import logging
 
+from pypyr.context import Context
 
 # getLogger will grab the parent logger context, so your loglevel and
 # formatting automatically will inherit correctly from the pypyr core.
 logger = logging.getLogger(__name__)
 
 
-def run_step(context):
+def run_step(context: Context) -> None:
     """Put your code in here. This shows you how to code a custom pipeline step.
 
     Args:
@@ -89,32 +96,49 @@ def run_step(context):
     logger.debug("done")
 ```
 
-## use custom step in a pipeline
+## use custom step in pipeline
 ### module path resolution
-The usual python import module resolution rules apply. pypyr will resolve 
-modules from the 
-[working directory]({{< ref "/docs/pipelines/lookup-order#the-working-directory" >}}) 
-first, which you can change by using the `--dir` flag.
+The usual [custom module import resolution rules]({{< ref
+"/docs/api/custom-module-search-path" >}}) apply.
 
 Assuming you saved your python with the `def run_step(context)` function in a 
-file like this `./dir/mystep.py`, you can use use it in your pipeline like 
-this:
+file like this `{pipeline dir}/mydir/mystep.py`:
+
+```text
+|- mypipelinedir/
+  |- mypipe.yaml
+  |- mydir/
+    |- mystep.py
+  |- step1.py
+```
+
+You can use use it in your `mypipe` pipeline like this:
+
+```yaml
+# {pipeline dir}/mypipe.yaml
+steps:
+    - step1 # run {pipeline dir}/step1.py
+    - mydir.mystep # run {pipeline dir}/mydir/mystep.py
+```
+
+Because you reference the custom modules relative to the pipeline directory,
+you can run this pipeline from anywhere and it'll work:
+
+```bash
+$ pypyr mypipelinedir/mypipe
+```
+
+If you package your code and you install the package into the active python
+environment (i.e `$ pip install mypackage`), you can of course use the usual
+python absolute package name instead:
 
 ```yaml
 steps:
-    - step1 # runs ./step1.py
-    - dir.mystep # runs ./dir/mystep.py
+    - step1 # run {pipeline dir}/step1.py
+    - mypackage.mystep # run mypackage.mystep
 ```
 
-If you package your parser and you install the package into the active python 
-environment, you can of course use the usual python absolute package name 
-instead:
-
-```yaml
-steps:
-    - step1
-    - mypackage.mystep
-```
+You can mix both packaged code and ad hoc modules in the same pipeline.
 
 ### passing context & decorators
 All of the usual step decorators are available to your custom step. This makes 
@@ -125,7 +149,7 @@ without having to write any additional code.
 steps:
   - step1
   - name: mystep
-    comment: run ./mystep.py
+    comment: run {pipeline dir}/mystep.py
              pass input context values to the step.
              run step 3 times in total for "first", "second", "third"
              retry twice if the step fails.

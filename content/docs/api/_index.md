@@ -22,7 +22,7 @@ you can invoke pipelines programmatically from the API.
 
 At simplest, you can run a pipeline with one line of code.
 
-Don't be put off & think of this as advanced functionality: it is very much 
-the idea of how to use pypyr effectively. Specifically making your own custom
-step is likely to be a regular activity - and happily, you can do so with a 
-single simple function signature.
+Don't be put off & think of this as advanced functionality: it is very much the
+idea of how to use pypyr effectively. Specifically making your own [custom
+step]({{< ref "/docs/api/step" >}}) is likely to be a regular activity - and
+happily, you can do so with a single simple function signature.

@@ -51,7 +51,7 @@ input arguments:
   comment: only pype name is required.
   in:
     pype:
-      name: child-pipeline # this will run ./child-pipeline.yaml
+      name: child-pipeline # run {parent pipeline dir}/child-pipeline.yaml
 ```
 
 There are many further optional properties you can set for more fine-grained
@@ -76,7 +76,9 @@ control of the child pipeline execution:
       raiseError: True # optional. bool. Defaults True.
       skipParse: True # optional. bool. Defaults True.
       useParentContext: True  # optional. bool. Defaults True.
-      loader: None # optional. string. Defaults to standard file loader.
+      loader: None # optional. string. Defaults to the parent's loader.
+      resolveFromParent: True # optional. bool. Defaults True.
+      pyDir: None # optional. Path-like. Resolve custom modules from this dir.
 ```
 
 The default values apply when you do not specify an option at all.
@@ -87,22 +89,54 @@ means you can
 and also set at run-time what parameters to use for the child pipeline.
 
 ### name
-Name of child pipeline to execute. The pipeline name resolves to a pipeline in
-exactly the same way as the pipeline name you call from the cli, following the 
-[pipeline lookup order]({{< ref "/docs/pipelines/lookup-order">}}).
+Name of child pipeline to execute. You can use relative or absolute paths. In
+all cases, don't add the .yaml at the end, pypyr will do that for you.
 
-```bash
-# call ./path/to/my-pipeline.yaml
-$ pypyr path/to/my-pipeline
+For relative paths, the pipeline name first tries to resolve relative to the
+current parent pipeline's containing directory, and if not found, then follows
+the usual [pipeline lookup order]({{< ref "/docs/pipelines/lookup-order">}}).
+
+```text
+|- arbdir/
+  |- parent-pipe.yaml
+  |- child-pipe.yaml
 ```
 
-pypyr will try to resolve `{name}.yaml` you set here from the working directory 
-from which you invoked pypyr originally.
+You can call the parent pipeline like this:
+```bash
+# call ./arbdir/parent-pipe.yaml
+$ pypyr arbdir/parent-pipe
+```
+
+And then in `parent-pipe` use `pype` to call `child-pipe` relative to the
+parent:
+```yaml
+# ./arbdir/parent-pipe.yaml
+steps:
+  - name: pypyr.steps.pype
+    in:
+      pype:
+        name: child-pipe # {parent pipeline dir}/child-pipe.yaml
+```
+
+Child pipelines can be in sub-directories relative to the parent:
 
 ```yaml
-pype:
-  # this will run ./path/to/my-pipeline.yaml
-  name: path/to/my-pipeline
+# ./arbdir/parent-pipe.yaml
+steps:
+  - name: pypyr.steps.pype
+    in:
+      pype:
+        name: mydir/child-pipe # {parent pipeline dir}/mydir/child-pipe.yaml
+```
+
+Using an absolute path looks like this:
+```yaml
+steps:
+  - name: pypyr.steps.pype
+    in:
+      pype:
+        name: /mydir/mysub/child-pipe # /mydir/mysub/child-pipe.yaml
 ```
 
 If you want to load pipelines from elsewhere, use a [custom loader](#loader).
@@ -260,7 +294,8 @@ parameters to the child pipeline via `pipeArg`.
 
 `pipeArg` is relatively brittle, in that the child pipeline's context parser
 will have to parse the `pipeArg` string to initialize the child context, making
-for extra inefficient processing, if nothing else.
+for extra inefficient processing. But if you have a good reason to prefer the
+`context_parser` running, by all means do so.
 {{% /note %}}
 
 If you combine `args` and `pipeArg`, pypyr will merge values resulting from 
@@ -311,12 +346,53 @@ however, the parent and child shares these.
 {{% /note %}}
 
 ### loader
-Load the child pipeline with this loader. The default is the standard pypyr 
-`pypyr.pypeloaders.fileloader`, which looks for pipelines on the file system.
+Load the child pipeline with this loader. This is useful if you are loading your
+pipelines using a [custom loader]({{< ref "/docs/api/pipeline-loader" >}}) to
+fetch your pipelines from your own external systems or locations.
 
-This is useful if you are loading your pipelines using a 
-[custom loader]({{< ref "/docs/api/pipeline-loader" >}}) to fetch your 
-pipelines from your own external systems or locations.
+This defaults to the parent loader, so you do NOT need to set this explicitly if
+you want to load the child with the same loader that did the parent.
+
+The default pipeline loader is the built-in `pypyr.loaders.file`, which looks
+for pipelines on the file system. pypyr will interpret explicitly setting
+`loader` to `pypyr.loaders.file`, `null` or empty all to mean using the standard
+`pypyr.loaders.file` loader.
+
+If you do not want to inherit which loader to use from the parent, you can
+either explicitly set `loader`, or if your parent used a custom loader, code
+the
+[loader not to cascade]({{< ref "/docs/api/pipeline-loader#non-cascading-loader" >}}).
+
+### pyDir
+Load ad hoc custom python modules from this directory. You only need to set this
+if your custom modules do not resolve from the child pipeline's parent directory
+AND the modules are not installed to the current python environment.
+
+By default, the current directory ($PWD), the parent pipeline's directory and
+the child pipeline's directory are in the module resolution path by already, so
+if your custom modules are relative to these locations you do NOT need to set
+`pyDir`.
+
+You do NOT need to set this if another pipeline in the same session has already
+referenced the same directory.
+
+See
+[custom module import resolution rules]({{< ref "/docs/api/custom-module-search-path" >}})
+for details.
+
+### resolveFromParent
+Boolean to indicate whether to resolve pipeline `name` relative to the parent.
+This is `True` by default, which for the standard file loader means that pypyr
+will first look for the child relative to the parent's directory, and if it
+isn't there go on to search the usual [pipeline lookup order]({{< ref
+"/docs/pipelines/lookup-order">}}).
+
+`resolveFromParent` overrides the `is_parent_cascading` property on the
+`PipelineInfo` object returned by the parent's loader.
+
+If you are using the standard file loader and you set `resolveFromParent` to
+`False`, pypyr will immediately fall back to the usual pipeline look-up order
+and look in the current directory ($PWD) first.
 
 ## dynamically choose which pipeline to run
 You can use [substitution expressions]({{< ref "/docs/substitutions">}}) to set 

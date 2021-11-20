@@ -21,7 +21,7 @@ steps:
     description: --> running ops/build pipeline
     in:
       pype:
-        name: ops/build
+        name: build
   - pypyr.steps.nowutc
   - name: pypyr.steps.cmd
     description: --> add ./public changes to git staging

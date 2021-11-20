@@ -17,6 +17,7 @@ topics: [ custom code ]
 You can run a pypyr automation pipeline programmatically from your own code 
 using the python api.
 
+Here's a silly pipeline:
 ```yaml
 # ./pipeline-dir/my-pipe.yaml
 context_parser: pypyr.parser.keyvaluepairs
@@ -46,7 +47,7 @@ piper pipe that song again
 $
 {{< /app-window >}}
 
-You can run this same pipeline programmatically like this:
+You can run this same pipeline programmatically with the same inputs like this:
 ```python
 # Optional. If you want to see pypyr stdout output, log level should be <= 25
 # import logging
@@ -54,52 +55,197 @@ You can run this same pipeline programmatically like this:
 
 from pypyr import pipelinerunner
 
-# You can run via API like this:
-pipelinerunner.main(pipeline_name='pipeline-dir/my-pipe',
-                    pipeline_context_input=['arbkey=pipe', 'anotherkey=song'])
+# You can run a pipeline via the API like this:
+context = pipelinerunner.run(pipeline_name='pipeline-dir/my-pipe',
+                             args_in=['arbkey=pipe', 'anotherkey=song'])
 
 # Or like this:
-context_out = pipelinerunner.main_with_context(
-    pipeline_name='pipeline-dir/my-pipe',
-    dict_in={'arbkey': 'pipe',
-             'anotherkey': 'song'})
+context = pipelinerunner.run(pipeline_name='pipeline-dir/my-pipe',
+                             dict_in={'arbkey': 'pipe',
+                                      'anotherkey': 'song'})
 
-# context_out behaves like a dict
-print(context_out['myoutput'])  # I was set in the pipeline!
-print(context_out['input_values'][0])  # pipe
-print(context_out['some_nesting']['down_level']['arb_number'])  # 123
+# context behaves like a dict
+print(context['myoutput'])  # I was set in the pipeline!
+print(context['input_values'][0])  # pipe
+print(context['some_nesting']['down_level']['arb_number'])  # 123
 ```
 
-Use the `pypyr.pipelinerunner` module. There are two sensible entry-points for 
-most developers:
-- [main()](#main-entry-point)
+Use the `run()` function in the `pypyr.pipelinerunner` module to run a pipeline.
+
+This example shows two different ways of initializing the pipeline's context:
+both are equivalent and results in the same values being passed to the pipeline -
+the pipeline step sequences run identically. For this example pipeline, the
+output `context` for both `run()` calls is identical. See [initialize
+context](#passing-values-to-the-pipeline) for details on `args_in` vs `dict_in`.
+
+`run()` returns the pypyr `Context` object to you as it is after the pipeline
+completes, giving you access to any mutations the pipeline made to it.
+
+## run() entry-point
+This is the full `pypyr.pipelinerunner.run()` function signature:
+
+```python
+run(
+  pipeline_name: str,
+  args_in: list[str] | None = None,
+  parse_args: bool | None = None,
+  dict_in: dict | None = None,
+  groups: list[str] | None = None,
+  success_group: str | None = None,
+  failure_group: str | None = None,
+  loader: str | None = None,
+  py_dir: str | bytes | PathLike | None = None
+) -> pypyr.context.Context:
+```
+
+### input args
+```python
+import pypyr.pipelinerunner
+
+out = pypyr.pipelinerunner.run(pipeline_name='arb-pipe',
+                               args_in=['arb', 'context input'],
+                               parse_args=True,
+                               dict_in={'key': 'value', 'arbkey': 'arb value'},
+                               groups=['group1', 'group2'],
+                               success_group='success_group',
+                               failure_group='failure_group',
+                               loader='mypackage.myloader'
+                               py_dir='arb/dir')
+```
+
+- `pipeline_name`: string. Required.
+  - Name of pipeline, sans .yaml at end.
+  - `{pipeline_name}.yaml` is relative to the current working directory.
+  - You can also specify an absolute path here (again, just leave out the 
+    .yaml at the end).
+- `args_in`: list of string. Optional.
+  - Initialize the pypyr context with this list of strings.
+  - Use the python shlex split function on a string to get a parsed list.
+  - If not specified pypyr will create an empty `Context` object for you, 
+    depending on how the pipeline's `context_parser` handles `None` input.
+- `parse_args`: Boolean. Optional.
+  - Explicitly set whether to run the `context_parser` on the pipeline.
+  - If you set `args_in`, `parse_args` defaults to `True`.
+  - If you set `dict_in` and NOT `args_in`, pypyr assumes you don't want to run
+    the pipeline's context parser to initiate context and defaults `parse_args`
+    to `False`.
+- `dict_in`: dict. Optional.
+  - Initialize the pypyr `Context` object with this dict.
+  - If not specified pypyr will create an empty `Context` for you.
+  - If you set both `dict_in` AND `args_in`, pypyr will initialize Context with
+    `dict_in` and then merge the results of `args_in` processed by the
+    pipeline's `context_parser` into that before running the pipeline with the
+    resulting combined context. This is probably what you want by default, since
+    the point of using `dict_in` is to bypass the inefficient string parsing of
+    the context_parser.
+- `groups`: list of string. Optional. 
+  - Step-group names to run in pipeline. 
+  - Defaults to `['steps']` if not specified.
+- `success_group`: string. Optional. 
+  - Step-group name to run on success completion. 
+  - Defaults to `on_success` if not specified.
+- `failure_group`: string. Optional. 
+  - Step-group name to run on pipeline failure. 
+  - Defaults to `on_failure` if not specified.
+- `loader`: string. Optional.
+  - Absolute name of pipeline loader module.
+  - If not specified will use `pypyr.loaders.file` - the standard builtin pypyr
+    pipeline loader.
+- `py_dir`: Path-like. Optional.
+  - Look for custom modules in this directory.
+  - Under the hood, pypyr adds this directory to `sys.path`.
+  - This is useful if your pipeline uses _ad hoc_ .py files that are NOT
+    installed in the current Python environment.
+  - Be aware that if you use the standard default file loader, pypyr will add
+    the pipeline's parent directory automatically for you after it finds the
+    pipeline. You therefore do NOT need to set `py_dir` to the pipeline
+    directory when using the default loader.
+  - If you are using a custom loader that is not installed in the current Python
+    environment, you have to set `py_dir` to allow pypyr to find it.
+  - If you have installed (typically with `$ pip install`) all the custom
+    modules your pipeline uses into the current Python environment you do NOT
+    need to set `py_dir`.
+  - If your `sys.path` already contains the necessary paths to discover the
+    custom modules that your pipeline uses, you do NOT need to set this.
+  - If your pipeline does NOT use any custom Python modules, you do NOT need to
+    set `py_dir`.
+
+### returns
+The pypyr context as it is after the pipeline completes. This is of type
+`pypyr.context.Context()`. Each pipeline invocation uses its own fresh context -
+a context is unique to a single root pipeline run.
+
+The `Context` object behaves pretty much like a standard `dict`.
+
+
+## passing values to the pipeline
+If you want to inject values into the pipeline you are running, you do so by
+initializing the context for the pipeline run with the data you need.
+
+### args_in vs dict_in
+```python
+# Initialize context with args_in:
+context_out_1 = pipelinerunner.run(pipeline_name='pipeline-dir/my-pipe',
+                                   args_in=['arbkey=pipe', 'anotherkey=song'])
+
+# Or with dict_in:
+context_out_2 = pipelinerunner.run(pipeline_name='pipeline-dir/my-pipe',
+                                   dict_in={'arbkey': 'pipe',
+                                            'anotherkey': 'song'})
+
+# Both results in the pipeline running the same, with the same output
+assert context_out_1 == context_out_2
+```
+
+You can initialize context in 2 different ways:
+- `args_in`
     - Use this if you want to pass context arguments to the pipeline's
-      `context_parser` in exactly the same way as the cli does.
-- [main_with_context()](#main-with-context-entry-point)
+      `context_parser` in exactly the same way as the cli does - as a list of
+      strings.
+    - This makes it the pipeline's `context_parser`'s responsibility to
+      interpret & parse those strings.
+- `dict_in`
     - Use this if you have your own dict-like structure you want to pass to 
       your pipeline.
     - This will bypass the pipeline's `context_parser` and use
-      your input dict directly.
-    - This function also returns the pypyr `Context` object to you after the
-      pipeline completes.
+      your input dict directly to initialize the pypyr Context.
+    - This way you can directly control the context structure and the types of 
+      the values you put in it.
 
-Call whichever you prefer once per pypyr pipeline invocation. Both entry-points
-are identical for actual pipeline control-of-flow execution - the only
-difference is how you initialize the context that the pipeline will use.
+You can also set both `dict_in` and `args_in` - in which case pypyr will
+initialize context with `dict_in`, run the `context_parser` with `args_in` and
+then merge the results of both into a single context before running the
+pipeline with the combined context.
 
-## main entry-point
-Use `main()` if you want to run a pipeline exactly like the cli does, by using 
-the pipeline's `context_parser` to initialize context with a list of string
-arguments.
+You can use whichever you prefer when you invoke your pipelines
+programmatically. Either way is identical for actual pipeline control-of-flow
+execution - the only difference is how you initialize the context that the
+pipeline will use.
 
-`pipeline_context_input` takes a list of strings. This is a POSIX style argument
-split on the input arguments following the pipeline name as passed from the cli.
+{{% note tip %}}
+Now, having said that, parsing input strings and inferring types with the
+`context_parser` (like you have to when the cli is passing the values) is
+inherently inefficient. Since you are in structured Python code already when
+using the API, you might as well prefer `dict_in` to `args_in`.
 
-```fish
+What works well is to set a `context_parser` in your pipeline yaml, which allows
+you to use it from the cli with custom arguments, and then you can just bypass
+the `context_parser` when you use the API by using `dict_in` explicitly to 
+initialize the Context exactly how you want it. This allows you to call the same
+pipeline from both the cli and the api - and if you only pass `dict_in` to the
+api rather than `args_in`, pypyr will automatically bypass the `context_parser`
+for you unless you explicitly set `parse_args` to `True`.
+{{% /note %}}
+
+### args_in list
+`args_in` takes a list of strings. This is a POSIX style argument split on the
+input arguments following the pipeline name as passed from the cli.
+
+```text
 $ pypyr mypipeline arg1 "arg 2" arg3=4
 ```
 
-Equates to a `pipeline_context_input` of:
+Equates to `args_in` of:
 ```python
 ['arg1', 'arg 2', 'arg3=4']
 ```
@@ -117,114 +263,15 @@ from pypyr import pipelinerunner
 # $ pypyr pipeline-dir/my-pipe arbkey=pipe anotherkey="song with a space"
 
 in_args = shlex.split('arbkey=pipe anotherkey="song with a space "')
-# in_args == ['arbkey=pipe', 'anotherkey=song with a space ']
+# shlex result: ['arbkey=pipe', 'anotherkey=song with a space ']
 
-pipelinerunner.main(pipeline_name='pipeline-dir/my-pipe',
-                    pipeline_context_input=in_args)
+pipelinerunner.run(pipeline_name='pipeline-dir/my-pipe',
+                   args_in=in_args)
 ```
 
-### input args
-```python
-import pypyr.pipelinerunner
-
-pypyr.pipelinerunner.main(pipeline_name='arb-pipe',
-                          pipeline_context_input=['arb', 'context input'],
-                          working_dir='arb/dir',
-                          groups=['group1', 'group2'],
-                          success_group='success_group',
-                          failure_group='failure_group',
-                          loader='mypackage.myloader')
-```
-
-- `pipeline_name`: string. Required.
-    - Name of pipeline, sans .yaml at end.
-    - `{pipeline_name}.yaml` is relative to the `working_dir`.
-- `pipeline_context_input`: list of string. Optional.
-    - Initialize the pypyr context with this list of strings.
-    - Use the python shlex split function on a string to get a parsed list.
-    - If not specified pypyr will create an empty `Context` object for you, 
-      depending on how the pipeline's `context_parser` handles `None` input.
-- `working_dir`: Path-like. Optional.
-    - Look for pipelines and modules in this directory.
-    - Default to the current directory if not specified.
-- `groups`: list of string. Optional. 
-    - Step-group names to run in pipeline. 
-    - Default to `steps` if not specified.
-- `success_group`: string. Optional. 
-    - Step-group name to run on success completion. 
-    - Default to `on_success` if not specified.
-- `failure_group`: string. Optional. 
-    - Step-group name to run on pipeline failure. 
-    - Default to `on_failure` if not specified.
-- `loader`: string. Optional.
-    - Absolute name of pipeline loader module.
-    - If not specified will use `pypyr.pypeloaders.fileloader` - the standard
-      pypyr pipeline loader.
-
-### returns
-None. If you want to interact with the `Context` object after the pipeline 
-run completes, call `main_with_context` instead.
-
-## main with context entry-point
-Use `main_with_context` instead of `main` if you have a a dict-like object you
-want to use to initialize the context, rather than using the context parser with
-a string input that pypyr needs to parse first.
-
-`main_with_context` also returns the context after the pipeline completes,
-giving you access to the values the pipeline stored to context during its run.
-
-If you do want to run the pipeline's `context_parser`, use `main()` instead.
-
-### input args
-```python
-import pypyr.pipelinerunner
-
-context_out = pypyr.pipelinerunner.main_with_context(
-    pipeline_name='mypath/arb-pipe',
-    dict_in={'key': 'value', 'arbkey': 'arb value'},
-    working_dir='arb/dir',
-    groups=['group1', 'group2'],
-    success_group='success_group',
-    failure_group='failure_group',
-    loader='mypackage.myloader')
-```
-
-The input arguments are the same as for `main()`, with the only difference being 
-that instead of passing a list of string in `pipeline_context_in` you pass a 
-dict-like object in `dict_in`.
-
-- `pipeline_name`: string. Required.
-    - Name of pipeline, sans .yaml at end.
-    - `{pipeline_name}.yaml` is relative to the `working_dir`.
-- `dict_in`: dict. Optional.
-    - Initialize the pypyr `Context` object with this dict.
-    - If not specified pypyr will create an empty `Context` for you.
-    - The function returns the created `Context` object with any mutations
-      made by the pipeline.
-- `working_dir`: Path-like. Optional.
-    - Look for pipelines and modules in this directory.
-    - Default to the current directory if not specified.
-- `groups`: list of string. Optional. 
-    - Step-group names to run in pipeline. 
-    - Default to `steps` if not specified.
-- `success_group`: string. Optional. 
-    - Step-group name to run on success completion. 
-    - Default to `on_success` if not specified.
-- `failure_group`: string. Optional. 
-    - Step-group name to run on pipeline failure. 
-    - Default to `on_failure` if not specified.
-- `loader`: string. Optional.
-    - Absolute name of pipeline loader module.
-    - If not specified will use `pypyr.pypeloaders.fileloader` - the standard
-      pypyr pipeline loader.
-
-### returns
-The pypyr context as it is after the pipeline completes. This is of type
-`pypyr.context.Context()`. The `Context` object behaves pretty much like a
-standard `dict`.
-
-## invoke pipeline from api with no input context
-Setting an input context is optional.
+### invoke pipeline from api with no input context
+Setting an input context is optional. It's only relevant when you have to pass
+values into your pipeline.
 
 ```yaml
 # ./no-input-context.yaml
@@ -246,10 +293,7 @@ You can run this pipeline like this:
 
 from pypyr import pipelinerunner
 
-pipelinerunner.main(pipeline_name='no-input-context')
-
-# or if you want to work with return context from pipeline
-out = pipelinerunner.main_with_context(pipeline_name='no-input-context')
+out = pipelinerunner.run('no-input-context')
 print(out['arbkey']) # I was set in the pipeline!
 ```
 
@@ -265,7 +309,7 @@ If you're invoking pypyr via the API from your own application, it's your
 responsibility to set up and configure logging. If you just want the same log
 handlers & formatters that the pypyr cli uses, you can call
 [pypyr.log.logger.set_root_logger()](#set_root_logger-input-args) before
-invoking `pipelinerunner.main()` or `pipelinerunner.main_with_context()`.
+invoking `pipelinerunner.run()`.
 
 ```python
 import pypyr.log.logger
@@ -277,14 +321,14 @@ pypyr.log.logger.set_root_logger()
 # For a pipeline that you'd run from the cli like this:
 # $ pypyr pipeline-dir/my-pipe arbkey=pipe anotherkey=song
 
-context_out = pipelinerunner.main_with_context(
-    pipeline_name='pipeline-dir/my-pipe',
-    dict_in={'arbkey': 'pipe',
-             'anotherkey': 'song'})
+context_out = pipelinerunner.run('pipeline-dir/my-pipe',
+                                 dict_in={'arbkey': 'pipe',
+                                          'anotherkey': 'song'})
 ```
 
-Be aware that pypyr adds a `NOTIFY` - `25` custom log-level and a `notify()` 
-function to `logging`.
+Be aware that pypyr adds a `NOTIFY` - `25` custom log-level and a `notify()`
+function to `logging` in all cases, even when you don't call
+`set_root_logger()`.
 
 ### log levels
 Log level enumeration:
@@ -302,6 +346,9 @@ Use `set_root_logger` when you want to use the same logging format as the cli.
 This is optional. Your application is free to define its own log level and 
 handlers - in which case, don't bother with `set_root_logger()`.
 
+If you do call `set_root_logger` do so once and only once at program
+initialization.
+
 ```python
 import pypyr.log.logger
 
@@ -313,5 +360,6 @@ pypyr.log.logger.set_root_logger(log_level=25,
     - Defaults to `25` if not specified.
 - `log_path`: Path-like. Optional.
     - If specified, append pypyr output to this file.
-    - Defaults to `None` if not specified.
+    - Defaults to `None` if not specified - which means output only goes to the
+      console.
 

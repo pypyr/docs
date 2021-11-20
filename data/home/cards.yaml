@@ -33,7 +33,8 @@
 
 - title: pass your own custom cli args
   description: You can use pypyr as a framework to write your own console 
-    applications without having to write code to capture, parse & validate [input cli args](/docs/cli/custom-args/). 
+    applications without having to write code to capture, parse & validate
+    [custom input cli args](/docs/context-parsers/). 
     
     So you can avoid all that repetitive plumbing when you're trying to automate
     something useful in a script.

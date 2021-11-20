@@ -112,18 +112,17 @@ name followed by the class name.
 To load a custom callable, the name should be in format
 `package.module.ClassName` or `module.ClassName`.
 
-The usual python import module resolution rules apply. pypyr will resolve 
-modules from the 
-[working directory]({{< ref "/docs/pipelines/lookup-order#the-working-directory" >}}) 
-first, which you can change by using the `--dir` flag.
+The usual [custom module import resolution rules]({{< ref
+"/docs/api/custom-module-search-path" >}}) apply.
 
-Assuming your callable class `MyBackoff` exists in a file like this
-`./dir/mybackoffs.py`, you can use use it in your pipeline like this:
+Assuming your callable class `MyBackoff` exists in a file like this 
+`{pipelinedir}/mydir/mybackoffs.py`, you can use use it in your pipeline like
+this:
 
 ```yaml
 - name: pypyr.steps.cmd
   retry:
-    backoff: dir.mybackoffs.MyBackoff
+    backoff: mydir.mybackoffs.MyBackoff
     max: 123
     sleep: 456
     backoffArgs:

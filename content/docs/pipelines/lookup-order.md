@@ -1,10 +1,9 @@
 ---
 title: pipeline look-up order
 linktitle: lookup order
-description: pypyr looks for pipeline files & custom code modules on disk in these directories.
+description: pypyr looks for pipeline files & custom code modules on the filesystem in these directories.
 date: 2020-08-12
 publishdate: 2020-08-13
-lastmod: 2020-08-16
 categories: [pipelines]
 menu:
   docs:
@@ -12,34 +11,43 @@ menu:
     name: lookup order
 weight: -20
 seo_article_headline: Directory lookup order for task-runner pipelines on the filesystem.
-seo_description: Search for a matching pipeline first in the working directory & alternate location lookup sequence.
+seo_description: Use absolute or relative paths to find a matching pipeline in the file location lookup sequence.
 # topics: [control-of-flow]
 ---
 # pipeline look-up order
-## the working directory
-pypyr first looks for pipelines, any custom steps & other code in the 
-current working directory. This is the directory from which you invoke pypyr.
+## absolute vs relative paths
+You can pass absolute or relative paths to pypyr.
+
+{{< app-window title="term" lang="fish" >}}
+$ pypyr pipeline-name # relative path: ./pipeline-name.yaml
+
+$ pypyr dir/pipeline-name # relative path: ./dir/pipeline-name.yaml
+
+$ pypyr /dir/pipeline-name # absolute path: /dir/pipeline-name.yaml
+
+$ pypyr ~/dir/pipeline-name # absolute path: /Users/username/dir/pipeline-name.yaml
+_
+{{< /app-window >}}
+
+For relative paths, pypyr first looks for pipelines, any custom steps & other
+code in the current working directory. This is the directory from which you
+invoke pypyr.
 
 Simply put, by default, this is the directory you're currently in when you 
 invoke pypyr from the cli.
 
-You can change the default working directory by passing the `--dir` flag to 
-pypyr CLI. pypyr will use whatever path you specify in `--dir` as the working 
-directory base path. If you're using the API, use the `working_dir` argument 
-for the same effect.
-
-Changing the working directory not only means that pypyr looks for pipelines in 
-that location first, but will also resolve any custom code modules like your own 
-steps or context-parsers from there.
-
 ## directory locations lookup order
-By default pypyr uses a file loader to find & load pipelines from the 
-filesystem. pypyr searches a specific sequence of locations for pipelines 
-matching the pipeline name:
+By default pypyr uses a file loader to find & load pipelines from the
+filesystem. 
 
-1. `{working dir}/`
-2. `{working dir}/pipelines`
-3. `{pypyr install dir}/pipelines`
+For absolute paths, pypyr just looks for the pipeline at that specific location.
+
+For relative paths, pypyr searches a specific sequence of locations
+for pipelines matching the pipeline name:
+
+1. `{current dir}/`
+2. `{current dir}/pipelines/`
+3. `{pypyr install dir}/pipelines/`
 
 `{pypyr install dir}` is where-ever you installed the currently running 
 instance of pypyr. Very likely, this is either in your default python path, or 
@@ -61,7 +69,7 @@ editor, do use the .yaml extension for your pipeline files.
 
 Still to make your life easier, don't add the .yaml when you invoke pypyr with
 your pipeline-name. pypyr always appends .yaml to your input pipeline name for 
-you under the hood.
+you under the hood, for both absolute and relative paths.
 
 When you run:
 {{< app-window title="term" lang="fish" >}}
@@ -92,7 +100,7 @@ structure you please.
 
 You can run these pipelines like this:
 
-{{< app-window title="term" lang="fish" >}}
+{{< app-window title="term" lang="text" >}}
 $ pypyr pipe-0
 
 $ pypyr dir/subdir1/pipe-1
@@ -104,26 +112,8 @@ $ pypyr dir/subdir2/pipe-3
 $ pypyr dir/pipe-4
 {{< /app-window >}}
 
-
-You can achieve the same effect for everything in the `dir` sub-directory by 
-using the `--dir` flag. The difference is that if you use the `--dir` flag 
-pypyr will also load any custom python modules from this directory.
-
-{{< app-window title="term" lang="fish" >}}
-$ pypyr --dir dir subdir1/pipe-1
-
-$ pypyr --dir dir subdir1/pipe-2
-
-$ pypyr --dir dir subdir2/pipe-3
-
-$ pypyr --dir dir pipe-4
-{{< /app-window >}}
-
-## shared pipeline directories
-The `--dir` switch can refer to any accessible directory on your file-system,
-it doesn't have to be a sub-directory of from wherever you execute pypyr.
-
-So if you had a shared pipeline library on your file-system, for example at
+## shared pipeline libraries
+If you had a shared pipeline library on your file-system, for example at
 `/Users/captainhook/shared-pipelines/`, you can run your pipelines from
 anywhere else like this:
 
@@ -131,10 +121,40 @@ anywhere else like this:
 $ echo $PWD
 /git/myproject
 
-$ pypyr --dir ~/shared-pipelines subdir1/my-shared-pipe
+$ pypyr ~/shared-pipelines/subdir/my-shared-pipe
 
 {{< /app-window >}}
 
-The above example will run `~/shared-pipelines/subdir1/my-shared-pipe.yaml`, and
-resolve all pipeline names and custom code from the directory specified by the
-`--dir` input.
+The above example will run `~/shared-pipelines/subdir/my-shared-pipe.yaml`. Any
+child pipelines or custom code modules called by `my-shared-pipe` will resolve
+relative to `my-shared-pipe`'s location.
+
+```text
+/Users
+    |- captainhook/
+        |- shared-pipelines/
+            |- subdir/
+                |- my-shared-pipe.yaml
+                |- mystep.py
+                |- sub-pipe.yaml
+```
+
+This means you can code your pipeline to be portable by calling child pipelines
+or custom python modules relative to the parent pipeline's location on the
+file-system. Here is `my-shared-pipe`, using a child pipeline and a custom step
+relative to itself:
+
+```yaml
+# ~/shared-pipelines/subdir/my-shared-pipe.yaml
+steps:
+    - name: pypyr.steps.pype
+      comment: call child pipeline sub-pipe.yaml
+               resolves relative to current pipeline dir.
+      in:
+        pype:
+            name: sub-pipe # sub-pipe in same dir as current pipeline
+    - mystep # looks for mystep.py relative to current pipeline
+```
+
+You can run `my-shared-pipe` from any location and it will work - all its
+references resolves relative to itself.
