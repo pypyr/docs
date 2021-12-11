@@ -97,10 +97,21 @@ You can also use replacement expressions in the json object's keys.
       - Mandatory path(s) to source file on disk.
       - This can be a string path to a single file, or a glob, or a list of 
         paths and/or globs. 
-      - Each path can be a glob, a relative or absolute path.
+      - Each path can be a glob, a relative or an absolute path.
     - `out` (optional)
-      - Write output file to here. Will create directories in path if these do 
-        not exist already.
+      - Write output file to here. Will create directories in path
+        if these do not exist already.
+      - `out` is optional. If not specified, will edit the `in`
+        files in-place.
+      - If in-path refers to >1 file (e.g it's a glob or list),
+        out path can only be a directory - it doesn't make sense to
+        write >1 file to the same single file output (this is not
+        an appender.)
+      - To ensure out path means a directory and not a file,
+        be sure to have the os' path separator at the end (`/` on a sensible
+        filesystem).
+      - If you specify an `out` directory without a file-name, out files will
+        have the same name they had in `in`.
 
 See [file format settings]({{< ref "fileformat#file-format-settings" >}}) for 
 more examples on in/out path handling - the same processing rules apply.
@@ -109,7 +120,7 @@ Example with a glob input:
 
 ```yaml
 fileFormatJson:
-  in: ./testfiles/sub3/**/*.txt
+  in: ./testfiles/sub3/**/*.json
   # note the dir separator at the end.
   # since >1 in files, out can only be a dir.
   out: ./out/replace/
@@ -123,3 +134,24 @@ The file in and out paths support
 paths dynamically.
 
 See a worked [example of fileformatjson](https://github.com/pypyr/pypyr-example/blob/main/pipelines/fileformatjson.yaml).
+
+## substitutions on paths
+The file in and out paths support 
+[substitutions]({{< ref "docs/substitutions">}}), which allows you to specify
+paths dynamically.
+
+```yaml
+- name: pypyr.steps.set
+  comment: set some arb values in context
+  in:
+    set:
+      myfilename: input-file
+      myoutputfile: out/output.json
+
+- name: pypyr.steps.fileformatjson
+  comment: you can set in & out entirely or partially with formatting expressions
+  in:
+    fileFormatJson:
+        in: testfiles/{myfilename}.json
+        out: '{myoutputfile}'
+```

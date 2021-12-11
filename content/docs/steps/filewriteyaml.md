@@ -40,7 +40,7 @@ files dynamically on the fly.
       key4: false # output bool
 ```
 
-This will generate the following json to `/path/to/output.yaml`:
+This will generate the following yaml to `/path/to/output.yaml`:
 
 ```yaml
 key1: value1
@@ -81,6 +81,36 @@ line will substitute like this:
 this: yaml content
 will: be written to
 thepath: with substitutions like this arbvalue.
+```
+
+As always in pypyr, you can construct a value by embedding & combining
+substitution expressions in other strings:
+
+```yaml
+- name: pypyr.steps.set
+  comment: set some arb values in context
+  in:
+    set:
+      arbkey: 123
+      arbstr: in the middle
+      filename: my-file
+
+- name: pypyr.steps.filewriteyaml
+  comment: write toml file from substitution expressions
+  in:
+    fileWriteYaml:
+      path: out/{filename}.yaml
+      payload:
+        my_table:
+          my_number: '{arbkey}'
+          my_string: begin {arbstr} end
+```
+
+This will to output file `./out/my-file.yaml`:
+```yaml
+my_table:
+  my_number: 123
+  my_string: begin in the middle end
 ```
 
 See a worked [filewriteyaml example](https://github.com/pypyr/pypyr-example/tree/main/pipelines/filewriteyaml.yaml).

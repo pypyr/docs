@@ -35,7 +35,7 @@ from the pypyr context and writes the result to an output file.
         out: ./out/arb.txt # optional
 ```
 
-So if you had a text file like this:
+So if you had a text file `in/arb.txt` like this:
 
 ```text
 {k1} sit thee down and write
@@ -49,7 +49,7 @@ k1: pypyr
 k2: read
 ```
 
-You would end up with an output file like this:
+You would end up with an output file `out/arb.txt` like this:
 
 ```text
 pypyr sit thee down and write
@@ -61,16 +61,26 @@ The file `in` and `out` paths support [substitutions]({{< ref "docs/substitution
 See a worked [example of fileformat](https://github.com/pypyr/pypyr-example/blob/main/pipelines/fileformat.yaml).
 
 ## escape characters
-If your file contains {curly braces} that pypyr should NOT try to substitute, 
-you probably should use [filereplace]({{< ref "filereplace" >}}) instead. For 
-json and yaml, use [fileformatjson]({{< ref "fileformatjson" >}}) and 
-[fileformatyaml]({{< ref "fileformatyaml" >}}) respectively.
+If your file contains {curly braces} that pypyr should NOT try to substitute,
+you can escape these by {{doubling}}. A doubled curly brace will output as a
+single brace in the output file.
+
+If doubling the braces gets annoying, you could use [filereplace]({{< ref
+"filereplace" >}}) instead and pick your own replacement token indicators that
+work better for your file.
+
+For json, yaml and toml, where {curly braces} have structural meaning, you can
+use [fileformatjson]({{< ref "fileformatjson" >}}), [fileformatyaml]({{< ref
+"fileformatyaml" >}}) and [fileformattoml]({{< ref "fileformattoml" >}}).
 
 ## file format settings
 `in` and `out` behave in the same way for all the format style steps. Therefore
 this section's description of `in` and `out` settings applies not only to 
 `fileformat`, but also 
-[fileformatjson]({{< ref "fileformatjson" >}}), [fileformatyaml]({{< ref "fileformatyaml" >}}) and [filereplace]({{< ref "filereplace" >}}).
+[fileformatjson]({{< ref "fileformatjson" >}}),
+[fileformatyaml]({{< ref "fileformatyaml" >}}),
+[fileformattoml]({{< ref "fileformattoml" >}}) and 
+[filereplace]({{< ref "filereplace" >}}).
 
 ### set input & output files
 `fileformat` expects the following context keys:
@@ -91,8 +101,8 @@ this section's description of `in` and `out` settings applies not only to
           write >1 file to the same single file output (this is not
           an appender.)
         - To ensure out path means a directory and not a file,
-          be sure to have the os' path separator (`/` on a sane
-          filesystem) at the end.
+          be sure to have the os' path separator at the end (`/` on a sensible
+          filesystem)
         - If you specify an `out` directory without a file-name, out files will
           have the same name they had in `in`.
 
@@ -130,4 +140,25 @@ fileFormat:
   # in-place edit/overwrite all the files in. this can also be a glob, or
   # a mixed list of paths and/or globs.
   in: ./infile.txt
+```
+
+### substitutions on paths
+The file in and out paths support 
+[substitutions]({{< ref "docs/substitutions">}}), which allows you to specify
+paths dynamically.
+
+```yaml
+- name: pypyr.steps.set
+  comment: set some arb values in context
+  in:
+    set:
+      myfilename: input-file
+      myoutputfile: out/output.txt
+
+- name: pypyr.steps.fileformat
+  comment: you can set in & out entirely or partially with formatting expressions
+  in:
+    fileFormat:
+        in: testfiles/{myfilename}.ext
+        out: '{myoutputfile}'
 ```

@@ -58,8 +58,19 @@ See a worked [example of filereplace](https://github.com/pypyr/pypyr-example/tre
         paths and/or globs. 
       - Each path can be a glob, a relative or absolute path.
     - `out` (optional)
-      - Write output file to here. Will create directories in path if these do 
-        not exist already.
+      - Write output file to here. Will create directories in path
+        if these do not exist already.
+      - `out` is optional. If not specified, will edit the `in`
+        files in-place.
+      - If in-path refers to >1 file (e.g it's a glob or list),
+        out path can only be a directory - it doesn't make sense to
+        write >1 file to the same single file output (this is not
+        an appender.)
+      - To ensure out path means a directory and not a file,
+        be sure to have the os' path separator at the end (`/` on a sensible
+        filesystem).
+      - If you specify an `out` directory without a file-name, out files will
+        have the same name they had in `in`.
     - `replacePairs`
         - dictionary where format is:
             - `'find string': 'replace string'`
@@ -147,7 +158,7 @@ So I sang the same again,
    While he wept with joy to hear.
 ```
 
-## replacement order
+### replacement order
 Be careful of order. The last string replacement expression could well
 replace a replacement that an earlier replacement made in the sequence.
 
@@ -187,6 +198,29 @@ If you are creating your `in` parameters in
 the pipeline yaml, don't worry about it, it will be an ordered
 dictionary already, so life is good.
 {{% /note %}}
+
+### substitutions on paths
+The file in and out paths support 
+[substitutions]({{< ref "docs/substitutions">}}), which allows you to specify
+paths dynamically.
+
+```yaml
+- name: pypyr.steps.set
+  comment: set some arb values in context
+  in:
+    set:
+      myfilename: input-file
+      myoutputfile: out/output.txt
+
+- name: pypyr.steps.filereplace
+  comment: you can set in & out entirely or partially with formatting expressions
+  in:
+    fileReplace:
+        in: testfiles/{myfilename}.ext
+        out: '{myoutputfile}'
+        replacePairs:
+          arb: value
+```
 
 ## special characters
 If your search or replacement string has {curly braces}, pypyr will treat what

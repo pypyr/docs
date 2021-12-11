@@ -60,8 +60,7 @@ like passwords or private keys!
 
 ## format json with token replacements
 All inputs support [substitutions]({{< ref "docs/substitutions">}}). This means 
-that you can specify another context item to be the path and/or the payload, for
-example:
+that you can construct the path or payload from other context variables:
 
 ```yaml
 arbkey: arbvalue
@@ -85,6 +84,39 @@ the `{arbkey}` expression in the last line will substitute like this:
     "this": "json content",
     "will": "be written to",
     "thepath": "with substitutions like this arbvalue."
+}
+```
+
+As always in pypyr, you can construct a value by embedding & combining
+substitution expressions in other strings:
+
+```yaml
+- name: pypyr.steps.set
+  comment: set some arb values in context
+  in:
+    set:
+      arbkey: 123
+      arbstr: in the middle
+      filename: my-file
+
+- name: pypyr.steps.filewritejson
+  comment: write toml file from substitution expressions
+  in:
+    fileWriteJson:
+      path: out/{filename}.json
+      payload:
+        my_table:
+          my_number: '{arbkey}'
+          my_string: begin {arbstr} end
+```
+
+This will to output file `./out/my-file.json`:
+```json
+{
+  "my_table": {
+    "my_number": 123,
+    "my_string": "begin in the middle end"
+  }
 }
 ```
 
