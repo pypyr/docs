@@ -3,7 +3,8 @@
     [shell](/docs/steps/shell/), external executable, any callable, external
     script & [inline code](/topics/inline-code/) in the same pipeline, alongside
     composable [built-in steps](/docs/steps/) that do useful things like read & 
-    write files, format json & yaml and [manipulate data structures](/topics/context/). 
+    write files, format [json](/topics/json/), [toml](/topics/toml/) &
+    [yaml](/topics/yaml/) and [manipulate data structures](/topics/context/). 
   # img:
   #   url: images/placeholder400x400.svg
   #   alt: img1 alt
@@ -56,7 +57,7 @@
 
 - title: configuration file tokenization
   description: Load, merge, format & interpolate values to-and-from [text-based 
-    configuration files](/topics/filesystem/) such as yaml and json. pypyr is
+    configuration files](/topics/filesystem/) such as json, toml & yaml. pypyr is
     very useful to prepare configuration files & templates you need to bootstrap
     bigger systems like Terraform, Cloudformation & Heat, where you might need
     to inject your own variable values into the configuration file on the fly
