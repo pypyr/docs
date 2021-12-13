@@ -28,5 +28,7 @@ great thanks & gratitude to:
 | [Python](https://www.python.org) | [PSF](https://docs.python.org/3/license.html) | Python, beloved programming language. |
 | [python-dateutil](https://dateutil.readthedocs.io/) | Apache + BSD | Datetime extensions |
 | [ruamel.yaml](https://yaml.readthedocs.io/) | MIT | YAML handling. |
+| [tomli](https://github.com/hukkin/tomli) | MIT | TOML reading. |
+| [tomli-w](https://github.com/hukkin/tomli-w) | MIT | TOML writing. |
 | [tox](https://tox.readthedocs.io/) | MIT | Virtual environments during CI/CD |
 | [twine](https://twine.readthedocs.io/) | Apache | PyPI publishing |
