@@ -34,6 +34,7 @@ Format & write a payload to a file.
       payload: file content here # payload to write to path
       append: False # (optional) Default False to overwrite existing
       binary: False # (optional) Default False for text mode. True for bytes/binary.
+      encoding: utf-8 # Optional. Default None (platform default).
 ```
 
 If `path` is relative, it resolves relative to the current working directory.
@@ -45,8 +46,7 @@ yet.
 
 If you set `binary` to `True` the payload will write to the file as bytes in
 binary mode. The default of `False` works in text mode, writing strings in your
-platform's default encoding (as given by `locale.getpreferredencoding(False)` in
-Python).
+platform's default [encoding](#encoding).
 
 All inputs support [substitutions]({{< ref "docs/substitutions">}}).
 
@@ -204,3 +204,28 @@ To get a base64 string in Python, do this:
 import base64
 base64.encodebytes(b'my string here')
 ```
+
+## encoding
+By default in text mode the file will write in the platform's default encoding. 
+This is `utf-8` for most systems, but be aware on Windows it's still `cp1252`.
+
+You can use the `encoding` input explicitly to set the encoding:
+
+```yaml
+- name: pypyr.steps.filewrite
+  in:
+    fileWrite:
+      path: out/utf8-example.txt
+      payload: "€ ∮ E⋅da = Q,  n → ∞, ∑ f(i) = ∏ g(i), ∀x∈ℝ: ⌈x⌉ = −⌊−x⌋, α ∧ ¬β = ¬(¬α ∨ β)"
+      encoding: utf-8
+```
+
+To check your platform's default encoding, do:
+```python
+import locale
+locale.getpreferredencoding(False)
+```
+
+You cannot set encoding in binary mode.
+
+See here for a [list of available encodings](https://docs.python.org/3/library/codecs.html#standard-encodings).

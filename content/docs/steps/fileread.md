@@ -33,14 +33,14 @@ Load a file into the the pypyr context.
         path: path/to/file.ext # path to file
         key: arb # save file contents to this context key
         binary: False # Optional. Default False. Set True to read file as bytes.
+        encoding: utf-8 # Optional. Default None (platform default).
 ```
 
 If `path` is relative, it resolves relative to the current working directory.
 
 If you set `binary` to `True`, the file contents will read as `bytes` without
 any decoding. When `binary` is `False` (the default), the file contents will
-decode use the platform-dependant encoding (as given by
-`locale.getpreferredencoding(False)` in Python).
+decode use the platform-dependant default [encoding](#encoding).
 
 {{% note tip %}}
 `fileread` does not do any parsing of the file's contents at the time
@@ -109,3 +109,29 @@ decoding:
   in:
     echoMe: '{mykey}'
 ```
+
+## encoding
+By default in text mode the file will read in the platform's default encoding. 
+This is `utf-8` for most systems, but be aware on Windows it's still `cp1252`.
+
+You can use the `encoding` input explicitly to set the encoding:
+
+```yaml
+- name: pypyr.steps.fileread
+  comment: set encoding
+  in:
+    fileRead:
+      path: testfiles/utf8-example.txt
+      key: mykey
+      encoding: utf-8
+```
+
+To check your platform's default encoding, do:
+```python
+import locale
+locale.getpreferredencoding(False)
+```
+
+You cannot set encoding in binary mode.
+
+See here for a [list of available encodings](https://docs.python.org/3/library/codecs.html#standard-encodings).
