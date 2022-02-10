@@ -14,6 +14,9 @@ show_support: pypyr is free & open-source.
   
   
   You can show your support by ⭐ [starring the pypyr repo on github](https://github.com/pypyr/pypyr) ⭐!
+
+
+  pypyr runs on Linux, MacOS & Windows - anywhere with a Python runtime.
 subtitle: For when your shell scripts get out of hand. Less tricky than makefile.
     
     

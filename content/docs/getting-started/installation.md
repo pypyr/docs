@@ -27,6 +27,33 @@ Use the standard pip upgrade switch:
 $ pip install --upgrade pypyr
 ```
 
+## supported o/s
+pypyr runs on Linux, MacOS & Windows.
+
+The [automated CI process](https://github.com/pypyr/pypyr/actions) with [100%
+test coverage](https://app.codecov.io/gh/pypyr/pypyr) checks for cross-platform
+compatibility.
+
+pypyr also runs on CI servers & containers - pretty much anywhere with a Python
+run-time will work.
+
+{{% note tip %}}
+Windows users, please don't feel left out!
+
+pypyr does run on Windows and the full automated test suite with 100% test
+coverage ensures Windows compatibility on every code change going into the main
+branch, same as for POSIX systems.
+
+The documentation examples tend to show POSIX style paths & commands more so
+than Windows, but this is not a limitation in the pypyr tool itself, it's down
+to time-constraints in producing exhaustive documentation.
+
+If you have the time, feel free to help out open source software and [contribute
+by improving the docs]({{< ref
+"/docs/contributing/contribute-to-pypyr#documentation" >}})!
+
+{{%/ note %}}
+
 ## python version
 Tested against Python >=3.7
 

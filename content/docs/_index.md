@@ -39,4 +39,6 @@ integration, continuous deployment and devops operations.
 Read, merge and write configuration files to and from yaml, json or just plain 
 old text.
 
+pypyr runs on Linux, MacOS & Windows - anywhere with a Python runtime, really.
+
 ## documentation sections
