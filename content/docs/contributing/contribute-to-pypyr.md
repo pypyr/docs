@@ -29,9 +29,9 @@ expanding documentation is a very important part of the process!
 All content lives in markdown (.md) files, so you don't have to be particularly
 code orientated to interact with the copy editing.
 
-The pypyr documentation website your reading right now is generated from the
-[pypyr/docs repo](https://github.com/pypyr/docs) using
-[hugo]({{< ref "/docs/thank-you/built-with-hugo" >}}).
+[hugo]({{< ref "/docs/thank-you/built-with-hugo" >}}) generates the pypyr
+documentation website you're reading right now from the [pypyr/docs
+repo](https://github.com/pypyr/docs).
 
 An easy way to find the source for content you want to edit is to browse the
 website at `pypyr.io` and clicking the `edit me` link under `feedback` on the
