@@ -253,6 +253,10 @@ code your own [custom retry back-off algorithm]({{< ref
 | [exponential](#exponential) | `(base**n)*sleep` |
 | [exponentialjitter](#exponential-jitter) | `random_between(jrc*exponential(n), exponential(n))` |
 
+If you don't explicitly specify a `backoff` strategy, pypyr will default to
+`fixed`. You can also change the [default backoff strategy in config]({{< ref
+"/docs/getting-started/config#default_backoff" >}}).
+
 For all jitter strategies, the resulting sleep value is a random number between
 the calculated interval, and the product of the calculated interval and the
 `jrc` (jitter range coefficient). If you do not set `jrc`, by default it is 0.

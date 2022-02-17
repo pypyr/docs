@@ -71,6 +71,8 @@ print(context['some_nesting']['down_level']['arb_number'])  # 123
 ```
 
 Use the `run()` function in the `pypyr.pipelinerunner` module to run a pipeline.
+For the exact same behavior as the CLI, you also have to [initialize
+config](#initialize-config) and [logging](#logging).
 
 This example shows two different ways of initializing the pipeline's context:
 both are equivalent and results in the same values being passed to the pipeline -
@@ -297,12 +299,42 @@ out = pipelinerunner.run('no-input-context')
 print(out['arbkey']) # I was set in the pipeline!
 ```
 
+## initialize config
+By default, when you call `run()` pypyr will use default configuration values
+and "just work" without you having to do anything special.
+
+If you want to follow the [configuration look-up sequences]({{< ref
+"/docs/getting-started/config" >}}) where pypyr looks for yaml/toml config
+sources on disk, you explicitly need to tell pypyr to do so using
+`config.init()`.
+
+Because this is a relatively expensive operation you probably only want to run
+this once per Python session, regardless of how many pipelines you execute with
+`pipelinerunner.run()`. That said, if you really wanted to you could run it
+multiple times to reconfigure pypyr on the fly.
+
+```python
+from pypyr import pipelinerunner
+from pypyr.config import config
+
+# initialize config once
+config.init()
+
+# run multiple pipelines
+out1 = pipelinerunner.run('my-pipeline-1')
+out2 = pipelinerunner.run('my-pipeline-2')
+```
+
+If your code invokes `config.init()`, you can still bypass the heavy
+initialization sequence on-the-fly by using the [PYPYR_SKIP_INIT]({{< ref
+"docs/getting-started/config#pypyr_skip_init" >}}) environment variable.
+
 ## logging
 By default python runs with a log level of 30 (WARNING). This means you won't 
 see pypyr NOTIFY output like [pypyr.steps.echo]({{< ref "docs/steps/echo" >}}) 
 or [description output]({{< ref "docs/decorators/description">}}) when you 
 invoke the pypyr api from your own code without setting the log-level. This is 
-because as an API pypyr shouldn't clutter your stdout unless you explicitly 
+because, as an API, pypyr shouldn't clutter your stdout unless you explicitly 
 tell it to do so.
 
 If you're invoking pypyr via the API from your own application, it's your
@@ -312,9 +344,14 @@ handlers & formatters that the pypyr cli uses, you can call
 invoking `pipelinerunner.run()`.
 
 ```python
-import pypyr.log.logger
 from pypyr import pipelinerunner
+from pypyr.config import config
+import pypyr.log.logger
 
+# optional - one-time loading of config from files
+config.init()
+
+# initialize logging once
 # use the same log format & level defaults as the cli
 pypyr.log.logger.set_root_logger()
 
@@ -325,6 +362,12 @@ context_out = pipelinerunner.run('pipeline-dir/my-pipe',
                                  dict_in={'arbkey': 'pipe',
                                           'anotherkey': 'song'})
 ```
+
+If you are calling both `config.init()` and `set_root_logger()`, be sure to call
+`config.init()` FIRST, because this will allow the logger to get its
+configuration from [config]({{< ref "/docs/getting-started/config" >}}). You can
+customize the logging output format with the config properties prefixed with
+`log_`.
 
 Be aware that pypyr adds a `NOTIFY` - `25` custom log-level and a `notify()`
 function to `logging` in all cases, even when you don't call
@@ -348,6 +391,11 @@ handlers - in which case, don't bother with `set_root_logger()`.
 
 If you do call `set_root_logger` do so once and only once at program
 initialization.
+
+Call `set_root_logger` only _after_ `config.init()` if you want to override
+logging defaults from yaml/toml configuration files. This is optional though,
+since if you do not call `config.init()` at all `set_root_logger` will just use
+the standard out-of-box defaults.
 
 ```python
 import pypyr.log.logger

@@ -21,11 +21,11 @@ You can pass absolute or relative paths to pypyr.
 {{< app-window title="term" lang="fish" >}}
 $ pypyr pipeline-name # relative path: ./pipeline-name.yaml
 
-$ pypyr dir/pipeline-name # relative path: ./dir/pipeline-name.yaml
+$ pypyr subdir/pipeline-name # relative path: ./subdir/pipeline-name.yaml
 
-$ pypyr /dir/pipeline-name # absolute path: /dir/pipeline-name.yaml
+$ pypyr /subdir/pipeline-name # absolute path: /subdir/pipeline-name.yaml
 
-$ pypyr ~/dir/pipeline-name # absolute path: /Users/username/dir/pipeline-name.yaml
+$ pypyr ~/subdir/pipeline-name # absolute path: /Users/username/subdir/pipeline-name.yaml
 _
 {{< /app-window >}}
 
@@ -48,6 +48,10 @@ for pipelines matching the pipeline name:
 1. `{current dir}/`
 2. `{current dir}/pipelines/`
 3. `{pypyr install dir}/pipelines/`
+
+Instead of `{current dir}/pipelines/` you can set the name of the sub-directory
+in {current dir} using [pipelines_subdir in config]({{< ref
+"/docs/getting-started/config#pipelines_subdir" >}}).
 
 `{pypyr install dir}` is where-ever you installed the currently running 
 instance of pypyr. Very likely, this is either in your default python path, or 
@@ -89,7 +93,7 @@ structure you please.
 ```text
 ./
     |-- pipe-0.yaml
-    |-- dir
+    |-- mydir
          |-- subdir1
              |-- pipe-1.yaml
              |-- pipe-2.yaml
@@ -103,13 +107,13 @@ You can run these pipelines like this:
 {{< app-window title="term" lang="text" >}}
 $ pypyr pipe-0
 
-$ pypyr dir/subdir1/pipe-1
+$ pypyr mydir/subdir1/pipe-1
 
-$ pypyr dir/subdir1/pipe-2
+$ pypyr mydir/subdir1/pipe-2
 
-$ pypyr dir/subdir2/pipe-3
+$ pypyr mydir/subdir2/pipe-3
 
-$ pypyr dir/pipe-4
+$ pypyr mydir/pipe-4
 {{< /app-window >}}
 
 ## shared pipeline libraries

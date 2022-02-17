@@ -22,6 +22,7 @@ seo_description: Create a custom pipeline loader to get pipelines from s3, consu
 A pype loader is responsible for loading a pipeline.
 
 The default pype loader is [pypyr.loaders.file](https://github.com/pypyr/pypyr/blob/main/pypyr/loaders/file.py).
+You can change this default in [config for default_loader]({{< ref "/docs/getting-started/config#default_loader" >}}).
 
 This default loader loads pipelines from the local file-system, following the
 usual [pypyr pipeline look-up sequence]({{< ref "/docs/pipelines/lookup-order">}}).
@@ -156,6 +157,12 @@ pypyr.pipelinerunner.run(
             py_dir=CWD
         )
 ```
+
+If you set your [default_loader]({{< ref
+"/docs/getting-started/config#default_loader" >}}) in config, then you do not
+explicitly need to pass your custom value to the API or to `pype`, but you will
+still need to tell pypyr from which directory location to resolve it with
+`py_dir` if you've not installed it as a package into your environment.
 
 If you package your loader and you install the package into the active python
 environment (i.e you did a `$ pip install mypackage`), you can of course use the

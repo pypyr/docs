@@ -27,6 +27,11 @@ could be a dictionary mapping, which in turn contains lists/arrays, and those
 lists in turn contain other dicts or lists.
 
 ## global variables
+After you set a global variable it is available to all the subsequent steps in
+the pipeline.
+
+You can instantiate & set your variables in different ways:
+
 ### inject arguments from the cli
 You can inject cli arguments into a pipeline by using a [context parser]({{< ref
 "/docs/context-parsers" >}}) in the pipeline.
@@ -96,25 +101,36 @@ steps:
     echoMe: the master criminal {theHiddenPaw}
 ```
 
-
-
 ### load variables from a file
-You can load & initialize variables from a json or yaml file.
+You can load & initialize variables from a bespoke json, yaml or toml file.
 
-If you want to set your config file path as a cli argument, you can use the
+If you want to set your custom file path as a cli argument, you can use the
 following context parsers:
-- [initialize variables from a json file]({{< ref "/docs/context-parsers/jsonfile" >}}) 
+- [initialize variables from a json file]({{< ref "/docs/context-parsers/jsonfile" >}})
+- [initialize variables from a toml file]({{< ref "/docs/context-parsers/tomlfile" >}}) 
 - [initialize variables from a yaml file]({{< ref "/docs/context-parsers/yamlfile" >}}) 
 
+With these context parsers, you invoke your pipeline and pass the path of your
+custom input file as an argument:
 ```fish
 $ pypyr mypipeline ./myvars.json
+$ pypyr mypipeline ./myvars.toml
 $ pypyr mypipeline ./myvars.yaml
 ```
 
-You can also use a step explicitly to load your variables from a file at a
-specific point in the pipeline's execution:
+You can also use a step explicitly to load your variables from your own custom
+file at a specific point in the pipeline's execution:
 - [load variables from json]({{< ref "/docs/steps/fetchjson" >}})
+- [load variables from toml]({{< ref "/docs/steps/fetchtoml" >}})
 - [load variables from yaml]({{< ref "/docs/steps/fetchyaml" >}})
+
+### set variables from config
+You can initialize your global variables using [vars]({{< ref
+"/docs/getting-started/config#vars" >}}) in `pyproject.toml` or in the pypyr
+yaml config file.
+
+Use [pypyr.steps.configvars]({{< ref "/docs/steps/configvars" >}}) to inject
+your config values into the pipeline.
 
 ## local variables
 You can set a variable that is only in scope for the current step using the [in
