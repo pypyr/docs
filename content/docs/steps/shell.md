@@ -102,6 +102,35 @@ You can use cmdOut in subsequent steps like this:
             the command output was: {cmdOut[stdout]}"
 ```
 
+## spaces in paths & args
+Depending on your O/S, shell and file-system, it's up to you to deal with 
+special characters in the path of the command or program you want to run. 
+
+Generally you can put either just the path-segment with a space into quotes,
+or you can escape the entire path by putting quotes around the whole thing.
+
+If a single argument contains a space, surround if with double-quotes.
+
+To illustrate some of the options:
+```yaml
+- name: pypyr.steps.shell
+  in:
+    cmd: '"dir with space/file with space" arg1 "arg2 with space"'
+
+- name: pypyr.steps.shell
+  in:
+    cmd: '"dir with space"/"file with space"'
+
+- name: pypyr.steps.shell
+  in:
+    cmd: ./"dir with space"/"file with space"
+```
+
+Note the "extra" pair of single-quotes (') is there when the string begins and
+ends with double-quotes so that the YAML parser reads the double quotes (")
+literally instead of interpreting these double quotes as structural YAML markers
+meaning string.
+
 ## examples
 Example pipeline yaml using a pipe:
 
@@ -148,3 +177,32 @@ commands.
   in:
     cmd: !sic echo ${PWD}
 ```
+
+## invoking python
+```yaml
+steps:
+  name: pypyr.steps.shell
+  in:
+    cmd: python -m stuff.do
+```
+
+Note that this is a bit of a silly example - since we're not using any
+shell functions we might as well have used [pypyr.steps.cmd]({{< ref "cmd" >}})
+instead.
+
+If you want to invoke Python as a sub-process from pypyr, you might want to
+specify the full path to the Python interpreter to avoid problems with
+accidentally ending up running an unexpected interpreter on your system. This
+is especially relevant if you're using virtual environments.
+
+See [pypyr.steps.python]({{< ref "python" >}}) for details.
+
+Remember you can also invoke your Python code directly by using
+[pypyr.steps.py]({{< ref "py" >}}), which will automatically be in the
+current Python environment.
+
+Alternatively, if you do have an external Python file you want to run, you can
+just add a `def run_step(context)` function to your file and run it natively as
+a pypyr step. This is described in [how to make a custom step]({{< ref
+"/docs/api/step" >}}). This will also automatically execute in the current
+Python environment.
