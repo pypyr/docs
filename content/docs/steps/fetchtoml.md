@@ -163,3 +163,7 @@ And in context the following already exists:
 ```
 
 After `fetchtoml` the value of key 'eggs' will be 'boiled'.
+
+## encoding
+A TOML file must always be in `utf-8`, per the [TOML
+Spec](https://toml.io/en/latest#spec).

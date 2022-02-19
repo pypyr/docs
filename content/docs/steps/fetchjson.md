@@ -63,3 +63,24 @@ will be 'boiled'.
 If you do not specify `key`, the json must not be an Array `[]` at the
 root level, but rather an Object `{}`.
 {{% /note %}}
+
+## encoding
+By default the json file will read in the platform's default encoding. This is
+`utf-8` for most systems, but be aware on Windows it's still `cp1252`.
+
+You can use the `encoding` input explicitly to set the encoding:
+
+```yaml
+- name: pypyr.steps.fetchjson
+  comment: set encoding
+  in:
+    fetchJson:
+      path: testfiles/myfile.json
+      key: mykey
+      encoding: utf-8
+```
+
+See here for more details on handling [text encoding in pypyr]({{< ref
+"/topics/filesystem#encoding" >}}) and changing the defaults.
+
+See here for a [list of available encodings](https://docs.python.org/3/library/codecs.html#standard-encodings).

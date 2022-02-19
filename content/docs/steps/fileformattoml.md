@@ -165,3 +165,7 @@ paths dynamically.
         in: testfiles/{myfilename}.toml
         out: '{myoutputfile}'
 ```
+
+## encoding
+A TOML file must always be in `utf-8`, per the [TOML
+Spec](https://toml.io/en/latest#spec).

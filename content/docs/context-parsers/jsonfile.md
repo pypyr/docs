@@ -121,8 +121,15 @@ special characters in the file-name.
 Taking MacOS as an example, all of the following will work:
 
 ```bash
-$ pypyr jsonfilein ./testfiles/sample.json
-$ pypyr jsonfilein ./test files/sample with space.json
-$ pypyr jsonfilein "./test files/sample with space.json"
-$ pypyr jsonfilein ./"test files"/"sample with space.json"
+$ pypyr mypipeline ./testfiles/sample.json
+$ pypyr mypipeline ./test files/sample with space.json
+$ pypyr mypipeline "./test files/sample with space.json"
+$ pypyr mypipeline ./"test files"/"sample with space.json"
 ```
+
+## encoding
+By default the json file will read in the platform's default encoding. This is
+`utf-8` for most systems, but be aware on Windows it's still `cp1252`.
+
+See here for more details on handling [text encoding in pypyr]({{< ref
+"/topics/filesystem#encoding" >}}) and changing the defaults.

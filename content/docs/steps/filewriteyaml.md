@@ -114,3 +114,24 @@ my_table:
 ```
 
 See a worked [filewriteyaml example](https://github.com/pypyr/pypyr-example/tree/main/pipelines/filewriteyaml.yaml).
+
+## encoding
+By default the file will write in the platform's default encoding. This is
+`utf-8` for most systems, but be aware on Windows it's still `cp1252`.
+
+You can use the `encoding` input explicitly to set the encoding:
+
+```yaml
+- name: pypyr.steps.filewriteyaml
+  in:
+    fileWriteYaml:
+      path: out/utf8-example.yaml
+      payload:
+        mykey: "€ ∮ E⋅da = Q,  n → ∞, ∑ f(i) = ∏ g(i), ∀x∈ℝ: ⌈x⌉ = −⌊−x⌋, α ∧ ¬β = ¬(¬α ∨ β)"
+      encoding: utf-8
+```
+
+See here for more details on handling [text encoding in pypyr]({{< ref
+"/topics/filesystem#encoding" >}}) and changing the defaults.
+
+See here for a [list of available encodings](https://docs.python.org/3/library/codecs.html#standard-encodings).

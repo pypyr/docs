@@ -88,3 +88,24 @@ breakfastOfChampions:
   - eggs
   - ham
 ```
+
+## encoding
+By default the yaml file will read in the platform's default encoding. This is
+`utf-8` for most systems, but be aware on Windows it's still `cp1252`.
+
+You can use the `encoding` input explicitly to set the encoding:
+
+```yaml
+- name: pypyr.steps.fetchyaml
+  comment: set encoding
+  in:
+    fetchYaml:
+      path: testfiles/myfile.yaml
+      key: mykey
+      encoding: utf-8
+```
+
+See here for more details on handling [text encoding in pypyr]({{< ref
+"/topics/filesystem#encoding" >}}) and changing the defaults.
+
+See here for a [list of available encodings](https://docs.python.org/3/library/codecs.html#standard-encodings).

@@ -155,3 +155,42 @@ paths dynamically.
         in: testfiles/{myfilename}.yaml
         out: '{myoutputfile}'
 ```
+
+## encoding
+By default `in` will read and `out` will write in the platform's default
+encoding. This is `utf-8` for most systems, but be aware on Windows it's still
+`cp1252`.
+
+You can use the `encoding` input explicitly to set the encoding:
+
+```yaml
+- name: pypyr.steps.fileformatyaml
+  comment: set encoding
+  in:
+    fileFormatYaml:
+      in: testfiles/infile.yaml
+      out: testfiles/outfile.yaml
+      encoding: utf-8
+```
+
+You can also individually set the encoding for `in` and `out`. This allows you
+to convert a file from one encoding to another:
+
+```yaml
+- name: pypyr.steps.fileformatyaml
+  comment: set encoding
+  in:
+    fileFormatYaml:
+      in: testfiles/infile.yaml
+      out: testfiles/outfile.yaml
+      encodingIn: ascii
+      encodingOut: utf-16
+```
+
+All of these are optional - if you do not explicitly over-ride the encoding for
+either `in` or `out`, pypyr will just use the system default.
+
+See here for more details on handling [text encoding in pypyr]({{< ref
+"/topics/filesystem#encoding" >}}) and changing the defaults.
+
+See here for a [list of available encoding codecs](https://docs.python.org/3/library/codecs.html#standard-encodings).

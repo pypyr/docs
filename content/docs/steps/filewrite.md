@@ -220,11 +220,8 @@ You can use the `encoding` input explicitly to set the encoding:
       encoding: utf-8
 ```
 
-To check your platform's default encoding, do:
-```python
-import locale
-locale.getpreferredencoding(False)
-```
+See here for more details on handling [text encoding in pypyr]({{< ref
+"/topics/filesystem#encoding" >}}) and changing the defaults.
 
 You cannot set encoding in binary mode.
 

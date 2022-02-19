@@ -113,3 +113,7 @@ $ pypyr mypipeline ./test files/sample with space.toml
 $ pypyr mypipeline "./test files/sample with space.toml"
 $ pypyr mypipeline ./"test files"/"sample with space.toml"
 {{< /app-window >}}
+
+## encoding
+A TOML file must always be in `utf-8`, per the [TOML
+Spec](https://toml.io/en/latest#spec).

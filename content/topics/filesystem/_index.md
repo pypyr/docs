@@ -12,8 +12,8 @@ filesystem.
 
 You can convert between text, json, yaml & toml formats without you having to
 write code. This is especially handy when you're generating configuration or
-template files on-the-fly that you want to inject use with other tools that
-you are automating with pypyr.
+template files on-the-fly that you want to inject into other tools that you are
+automating with pypyr.
 
 ## encoding
 pypyr will use the platform's default encoding to deal with text-based files.
@@ -68,7 +68,8 @@ A [toml file]({{< ref "/docs/context-parsers/tomlfile" >}}) must always be in
 `utf-8`, per the [TOML Spec](https://toml.io/en/latest#spec).
 
 ### default encoding
-To check your platform's default encoding, do:
+The platform default is `utf-8` for most systems, but be aware on Windows it's
+still `cp1252`. To check your platform's default encoding, do:
 ```python
 import locale
 locale.getpreferredencoding(False)
@@ -77,8 +78,14 @@ locale.getpreferredencoding(False)
 If you're getting annoyed with having to change the encoding on each step, you
 can change the default if you either:
 
-1. Set pypyr's [default encoding in config]({{< ref "/docs/getting-started/config#default_encoding" >}}).
-2. Set Python to run in `utf-8` mode. See [PEP 0540](https://www.python.org/dev/peps/pep-0540/).
+- Set pypyr's [default encoding in config]({{< ref "/docs/getting-started/config#default_encoding" >}}).
+    - This changes the encoding just for pypyr.
+- Set Python to run in `utf-8` mode.
+    - See [PEP 0540](https://www.python.org/dev/peps/pep-0540/).
+    - This sets the default encoding to `utf-8` for your entire Python environment.
+- Set Python encoding to something other than `utf-8`.
+    - Maybe don't do this.
+    - Check the Python docs if you want to go this route.
 
 If you explicitly set `encoding` on any [filesystem step]({{< ref
 "#filesystem-operations" >}}) it will override the default for that particular
