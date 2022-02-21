@@ -35,8 +35,8 @@ absolute name:
 ```yaml
 steps:
   - mystep # {pipeline dir}/mystep.py
-  - dir.mystep # {pipeline dir}/dir/mystep.py
-  - dir.sub.mystep # {pipeline dir}/dir/sub/mystep.py
+  - mydir.mystep # {pipeline dir}/mydir/mystep.py
+  - mydir.sub.mystep # {pipeline dir}/mydir/sub/mystep.py
 ```
 
 `{pipeline dir}` is the directory on the filesystem that the pipeline is in.
@@ -114,8 +114,9 @@ The pypyr module resolution order is:
    
 Note that 2 - 5 might well refer to the same directory location if the pipeline
 and any child pipelines it calls are all directly in the current directory, or
-some of these might be equal if different pipelines are in the same directory.
-In this case the import system only searches that directory once.
+some of these might be equal if different pipelines in the call-chain are in the
+same directory. In this case the import system only searches that directory
+once.
 
 ### name hiding
 A side effect of this (and indeed any) search order is that if you have .py
@@ -187,7 +188,7 @@ You do NOT need to specify `py_dir` if you only want to resolve modules
 relative to the pipeline itself, because the default file-loader will add the
 pipeline's parent directory to `sys.path` for you when it finds the pipeline.
 
-### adding a custom module directory
+### changing the custom module directory
 If your pipeline's custom ad hoc modules are in a different directory, you can
 use the `--dir` switch from the CLI:
 

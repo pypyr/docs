@@ -70,10 +70,14 @@ indicators work best for you. For example, `|-` will strip newlines at the end.
 {{% note tip %}}
 Do remember that if your inline code block gets unwieldy, you can very easily 
 run your own Python .py file from pypyr by using it as a 
-[custom step]({{< ref "/docs/api/step">}}) in itself.
+[custom step]({{< ref "/docs/api/step">}}).
 
-You don't even have to package your python code - pypyr will resolve the path 
-relative to the working directory for you.
+All you have to do is add a `def run_step(context)` function to your `.py`
+file.
+
+You don't even have to package your python code - pypyr will automatically
+resolve modules relative to the pipeline directory without you having to do
+anything extra.
 {{% /note %}}
 
 ## working with context
@@ -250,15 +254,18 @@ import like you usually do in Python.
       print(len(host))
 ```
 
-## import your own modules
+## import custom modules
 You can also import your own custom modules and objects, as long as they resolve
-in the current Python environment. To help with this, pypyr also looks in the
-current working directory for your own custom modules, so you can import &
-re-use modules in your current path without having to package & publish the code
-to the current environment first.
+in the current Python environment.
 
-Assume you have a python file in your working directory, saved in a `mydir`
-subdirectory like this:
+To help with this, pypyr also looks in the current pipeline's directory for your
+`.py` files. This means you can use ad hoc modules saved next to your pipeline
+without having to package & publish the code to the current environment first.
+
+See here for a full details of [pypyr custom module import resolution rules]({{<
+ref "/docs/api/custom-module-search-path" >}}).
+
+Assume you have a python file saved in a `mydir` sub-directory like this:
 ```python
 # ./mydir/mymodule.py
 
@@ -266,14 +273,15 @@ def arb_function(arb_arg):
     return f'arb_function says: {arb_arg}'
 ```
 
-Because pypyr will also look in your working directory for modules,
-`mydir.mymodule` will resolve on `import` without you have to do anything
-special. 
+Because pypyr will also look in the current pipeline's directory for modules,
+`mydir.mymodule` will resolve on `import` without you having to do anything
+special and without you having to package & install the code first. 
 
-So you can use this from your pipeline like this:
+So you can just use this file `./mydir/mymodule.py` from your pipeline like
+this:
 ```yaml
 - name: pypyr.steps.py
-  comment: import custom modules relative to your working dir
+  comment: import custom modules relative to pipeline dir
   in:
     py: |
       from mydir.mymodule import arb_function
