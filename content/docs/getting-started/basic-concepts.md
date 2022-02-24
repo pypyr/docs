@@ -63,7 +63,7 @@ You can specify a step in the pipeline yaml in two ways:
 
 ### simple step
 A simple step is just the name of the python module. pypyr will look in your 
-working directory for these modules or packages.
+pipeline's directory for these modules or packages.
 
 For a package, be sure to specify the full namespace (i.e not just `mymodule`, 
 but `mypackage.mymodule`.
