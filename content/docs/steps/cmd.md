@@ -51,8 +51,8 @@ Input context can take one of two forms:
 ```
 
 You can specify the full absolute path to the command, or use a relative path.
-If you are using a relative path, the cmd will resolve relative the current
-working directory before searching `$PATH`.
+If you are using a relative path, the cmd will try to resolve relative the
+current working directory before searching `$PATH`.
 
 Supports string [substitutions]({{< ref "docs/substitutions">}}) for all inputs.
 
