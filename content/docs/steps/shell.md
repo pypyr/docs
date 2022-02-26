@@ -28,28 +28,55 @@ Do all the things you can't do with [cmd]({{< ref "cmd" >}}). `cmd` runs a
 program or executable, `shell` invokes the actual system shell. This means
 all your shell expressions are available, such as your favorite bashisms.
 
-If you are just looking to run a command with arguments, you do not need to use
-`shell`, you can use `cmd` instead, which will incur less processing overhead. 
+If you are just looking to run a command or executable with arguments, you
+do not need to use `shell`, you can use `cmd` instead, which will incur less
+processing overhead, because it won't have to instantiate the shell first. 
 
 ## set shell commands
 Input context can take one of two forms:
 
+{{< tabs id="shell-inputs" >}}
+{{< tab name="posix" >}}
 ```yaml
+steps:
 - name: pypyr.steps.shell
   description: passing cmd as a string doesn't save the output to context.
                prints stdout in real-time.
   in:
-    cmd: 'echo ${PWD}'
+    cmd: echo $PWD
+
 - name: pypyr.steps.shell
   description: passing cmd as a dict allows you to specify if you want to
-               save the output to context.
+               save the output to context if save=True.
                prints command output only AFTER it has finished running.
   in:
     cmd:
-      run: 'echo ${PWD}'
+      run: echo $PWD
       save: True
-      cwd: './set/current/working/dir/here'
+      cwd: ./set/current/working/dir/here
 ```
+{{< /tab >}}
+{{< tab name="windows" >}}
+```yaml
+steps:
+- name: pypyr.steps.shell
+  description: passing cmd as a string doesn't save the output to context.
+               prints stdout in real-time.
+  in:
+    cmd: echo %cd%
+
+- name: pypyr.steps.shell
+  description: passing cmd as a dict allows you to specify if you want to
+               save the output to context if save=True.
+               prints command output only AFTER it has finished running.
+  in:
+    cmd:
+      run: echo %cd%
+      save: True
+      cwd: ./set/current/working/dir/here
+```
+{{< /tab >}}
+{{< /tabs >}}
 
 All inputs support [substitutions]({{< ref "/docs/substitutions">}}).
 
@@ -63,6 +90,34 @@ to the `cwd`. `cwd` itself is relative to the over-all pypyr working directory.
 
 If you do not specify `cwd`, it defaults to the current working directory, 
 which is from wherever you are running `pypyr`.
+
+{{< tabs id="shell-cwd" >}}
+{{< tab name="posix" >}}
+```yaml
+steps:
+- name: pypyr.steps.shell
+  in:
+    cmd:
+      run: pwd
+      cwd: ..
+```
+{{< /tab >}}
+{{< tab name="windows" >}}
+```yaml
+steps:
+- name: pypyr.steps.shell
+  comment: bare cd with no args prints current dir
+  in:
+    cmd:
+      run: cd
+      cwd: ..
+```
+{{< /tab >}}
+{{< /tabs >}}
+
+In the example we're using the `..` directive to go up one level to the parent
+directory, but you can of course use an absolute path or relative path as you
+require instead.
 
 ### capture shell output
 Be aware that if `save` is `True`, all of the command output ends up in
@@ -96,10 +151,10 @@ You can use cmdOut in subsequent steps like this:
 
 ```yaml
 - name: pypyr.steps.echo
-  run: !py "cmdOut['returncode'] == 0"
+  comment: you'll only see me if cmd ran successfully with return code 0
+  run: !py cmdOut['returncode'] == 0
   in:
-    echoMe: "you'll only see me if cmd ran successfully with return code 0.
-            the command output was: {cmdOut[stdout]}"
+    echoMe: "the command output was: {cmdOut[stdout]}"
 ```
 
 ## spaces in paths & args
@@ -131,6 +186,24 @@ ends with double-quotes so that the YAML parser reads the double quotes (")
 literally instead of interpreting these double quotes as structural YAML markers
 meaning string.
 
+## curly braces
+If you want to pass {curly braces} through to the shell, and NOT have pypyr
+interpret these as [{formatting expressions}]({{< ref "/docs/substitutions">}}),
+you can escape the braces by {{doubling}}, or by using a
+[sic string]({{< ref "/docs/substitutions/sic-strings" >}}) literal:
+
+```yaml
+- name: pypyr.steps.shell
+  comment: if you want to pass curlies to the shell, use sic strings
+  in:
+    cmd: !sic echo ${PWD};
+
+- name: pypyr.steps.shell
+  comment: alternatively, escape by doubling
+  in:
+    cmd: echo ${{PWD}};
+```
+
 ## examples
 Example pipeline yaml using a pipe:
 
@@ -140,15 +213,12 @@ steps:
     comment: if you have something pipey in working dir it should show up
     in:
       cmd: ls | grep pipe
-  - name: pypyr.steps.shell
-    comment: if you want to pass curlies to the shell, use sic strings
-    in:
-      cmd: !sic echo ${PWD};
 ```
 
 See a worked [example for shell pipeline power](https://github.com/pypyr/pypyr-example/tree/main/pipelines/shell.yaml).
 
 ## multiple inline shell statements
+### posix
 Friendly reminder of the difference between separating your shell statements
 with `;` or `&&`:
 
@@ -157,26 +227,55 @@ with `;` or `&&`:
     statement.
 -   `&&` stops and exits reporting error on first error.
 
-You can change directory multiple times during this shell step using
+### windows
+Friendly reminder of the difference between separating your shell statements
+with `&` or `&&`:
+
+-   `&` will continue to the next statement even if the previous command
+    errored. It won't exit with an error code if it wasn't the last
+    statement.
+-   `&&` stops and exits reporting error on first error.
+
+### changing directory
+You can change directory multiple times during a shell step using
 `cd`, but dir changes are only in scope for subsequent commands in this
-step, not for subsequent steps. Instead prefer using the `cwd` input as
-described above for an easy life, which sets the working directory for
-the entire step without you having to code it in with chained shell
+step, not for subsequent steps.
+
+Instead prefer using the [cwd](#changing-working-directory) input as
+described above for an easy life, which sets the working directory
+for the entire step without you having to code it in with chained shell
 commands.
 
+{{< tabs id="multiple-inline" >}}
+{{< tab name="posix" >}}
 ```yaml
+steps:
+- name: pypyr.steps.shell
+  comment: hop one up from current working dir
+  in:
+    cmd: echo $PWD; cd ../; echo $PWD
+
+- name: pypyr.steps.shell
+  comment: back in your current working dir
+  in:
+    cmd: echo $PWD
+```
+{{< /tab >}}
+{{< tab name="windows" >}}
+```yaml
+steps:
 - name: pypyr.steps.shell
   comment: hop one up from current working dir.
-           sic means won't attempt to 
-           substitute {PWD} from context, so
-           shell will interpret it as the $ENV.
   in:
-    cmd: !sic echo ${PWD}; cd ../; echo ${PWD}
+    cmd: cd & cd .. & cd
+
 - name: pypyr.steps.shell
-  comment: back to your current working dir
+  comment: back in your current working dir
   in:
-    cmd: !sic echo ${PWD}
+    cmd: cd
 ```
+{{< /tab >}}
+{{< /tabs >}}
 
 ## invoking python
 ```yaml
