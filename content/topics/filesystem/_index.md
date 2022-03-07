@@ -15,6 +15,14 @@ write code. This is especially handy when you're generating configuration or
 template files on-the-fly that you want to inject into other tools that you are
 automating with pypyr.
 
+## cross-platform paths
+Windows users, you can specify paths with / or \ as directory
+separator. pypyr will resolve either correctly for you. Pretty much all
+platforms except MS Windows use /.
+
+When you're working with files and you want to have a cross-platform compatible
+pipeline and you're using relative paths, front-slash / is the way to go.
+
 ## encoding
 pypyr will use the platform's default encoding to deal with text-based files.
 This is `utf-8` for most sensible systems, but be aware on Windows it's still

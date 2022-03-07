@@ -18,6 +18,8 @@ seo_description: Use absolute or relative paths to find a matching pipeline in t
 ## absolute vs relative paths
 You can pass absolute or relative paths to pypyr.
 
+{{< tabs id="abs-v-rel" >}}
+{{< tab name="posix" >}}
 {{< app-window title="term" lang="fish" >}}
 $ pypyr pipeline-name # relative path: ./pipeline-name.yaml
 
@@ -28,6 +30,20 @@ $ pypyr /subdir/pipeline-name # absolute path: /subdir/pipeline-name.yaml
 $ pypyr ~/subdir/pipeline-name # absolute path: /Users/username/subdir/pipeline-name.yaml
 _
 {{< /app-window >}}
+{{< /tab >}}
+{{< tab name="windows" >}}
+{{< app-window title="term" lang="fish" >}}
+$ pypyr pipeline-name # relative path: .\pipeline-name.yaml
+
+$ pypyr subdir/pipeline-name # relative path: .\subdir\pipeline-name.yaml
+
+$ pypyr c:/subdir/pipeline-name # absolute path: c:\subdir\pipeline-name.yaml
+
+$ pypyr $home/subdir/pipeline-name # absolute path: C:\Users\username\subdir\pipeline-name.yaml
+_
+{{< /app-window >}}
+{{< /tab >}}
+{{< /tabs >}}
 
 For relative paths, pypyr first looks for pipelines, any custom steps & other
 code in the current working directory. This is the directory from which you
@@ -35,6 +51,15 @@ invoke pypyr.
 
 Simply put, by default, this is the directory you're currently in when you 
 invoke pypyr from the cli.
+
+{{< note tip >}}
+Windows users, you can specify paths with / or \ as directory
+separator. pypyr will resolve either correctly for you.
+
+When you're working with files and you want to have a
+cross-platform compatible pipeline and you're using relative paths,
+front-slash / is the way to go.
+{{< /note >}}
 
 ## directory locations lookup order
 By default pypyr uses a file loader to find & load pipelines from the
@@ -121,13 +146,31 @@ If you had a shared pipeline library on your file-system, for example at
 `/Users/captainhook/shared-pipelines/`, you can run your pipelines from
 anywhere else like this:
 
+{{< tabs id="shared-pipe-libs" >}}
+{{< tab name="posix" >}}
 {{< app-window title="term" lang="fish" >}}
+# print current dir
 $ echo $PWD
 /git/myproject
 
+# run pipeline in another dir
 $ pypyr ~/shared-pipelines/subdir/my-shared-pipe
-
 {{< /app-window >}}
+{{< /tab >}}
+{{< tab name="windows" >}}
+{{< app-window title="term" lang="text" >}}
+# assuming powershell
+# print current dir
+$ echo $pwd
+Path
+----
+C:\git\myproject
+
+# run pipeline in another dir
+$ pypyr $home/shared-pipelines/subdir/my-shared-pipe
+{{< /app-window >}}
+{{< /tab >}}
+{{< /tabs >}}
 
 The above example will run `~/shared-pipelines/subdir/my-shared-pipe.yaml`. Any
 child pipelines or custom code modules called by `my-shared-pipe` will resolve
