@@ -197,3 +197,17 @@ d: from ./pypyr-config.yaml
 Note that values from earlier in the look-up sequence will overwrite later
 values. Mappings/Dicts & Lists/Arrays with the same name will overwrite, not
 additively merge their content.
+
+## set vars for a specific pipeline
+The values you set in `vars` are available to all pipelines. Any given pipeline
+can pull in these values with the `pypyr.steps.configvars` step, assuming the
+configuration file with the `vars` is global or user, or in scope of the current
+working directory.
+
+If instead what you want to do is selectively inject specific variables only
+applicable to a specific pipeline, you could create a [shortcut]({{< ref
+"/docs/pipelines/shortcuts" >}}) or have your pipeline pull your variables in
+via a fetch step such as [fetchyaml]({{< ref "fetchyaml" >}}), [fetchjson]({{<
+ref "fetchjson" >}}) or [fetchtoml]({{< ref "fetchtoml" >}}).
+
+All of these approaches will work - pick whichever works best for you.

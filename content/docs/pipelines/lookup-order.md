@@ -62,7 +62,13 @@ front-slash / is the way to go.
 {{< /note >}}
 
 ## directory locations lookup order
-By default pypyr uses a file loader to find & load pipelines from the
+pypyr first checks for a matching [shortcut]({{< ref "/docs/pipelines/shortcuts"
+>}}) name.
+
+If no matching shortcut exists, pypyr moves on to look for the pipeline with
+the default loader.
+
+By default pypyr uses the built-in file loader to find & load pipelines from the
 filesystem. 
 
 For absolute paths, pypyr just looks for the pipeline at that specific location.
@@ -107,9 +113,10 @@ $ pypyr pipeline-name
 
 pypyr will look in these locations in this order:
 
-1. `./pipeline-name.yaml`
-2. `./pipelines/pipeline-name.yaml`
-3. `{pypyr-install-dir}/pipelines/pipeline-name.yaml`
+1. [shortcut name]({{< ref "/docs/pipelines/shortcuts#shortcut-name" >}}) == `pipeline-name`
+2. `./pipeline-name.yaml`
+3. `./pipelines/pipeline-name.yaml`
+4. `{pypyr-install-dir}/pipelines/pipeline-name.yaml`
 
 ## pipelines in sub-directories
 To organize your pipelines, you can save your pipelines in whatever directory 

@@ -109,7 +109,7 @@ The `parent` argument only has a value when loading a child pipeline via a
 `pypyr.steps.pype` step.
 {{% /note %}}
 
-## example
+## code example
 Here is a minimalist custom loader that just loads a pipeline from the current
 working directory without doing anything special.
 
@@ -136,13 +136,49 @@ pypyr will automatically cache the return value of the
 have to do anything special.
 {{% /note %}}
 
-## use custom loader from the API
+## set which loader to use
 The usual [custom module import resolution rules]({{< ref
 "/docs/api/custom-module-search-path" >}}) apply. If your loader path is not in
 `sys.path` already, pypyr can only look for ad hoc loader modules relative to
 the `py_dir` directory or in packages installed in the current Python
 environment.
 
+### set default loader in config
+You can set the [default_loader]({{< ref
+"/docs/getting-started/config#default_loader" >}}) in config to specify your
+custom loader as the default per project directory, per user or globally for
+all pipelines on your system.
+
+If you do this then you don't need to set your custom loader explicitly whenever
+you run a pipeline.
+
+Remember that if you specify `default_loader` in the user or global config
+files you probably should install your custom loader as package into your
+active Python environment. This is because you could run pypyr from anywhere
+in your system, so it might not always run from the same directory.
+
+If you set `default_loader` in a project config file (`./pypyr-config.yaml` or
+`./pyproject.toml`), then you can set `mydir.myloader` relative to the
+project directory without having to install it as a package.
+
+{{< tabs id="loader-config" >}}
+{{< tab name="config.yaml" >}}
+```yaml
+default_loader: mypackage.myloader
+```
+{{< /tab >}}
+{{< tab name="pyproject.toml" >}}
+```toml
+[tool.pypyr]
+default_loader = "mypackage.myloader"
+```
+{{< /tab >}}
+{{< /tabs >}}
+
+You can still override whatever the `default_loader` is by explicitly passing
+a value to `loader` wherever you run a pipeline.
+
+### use custom loader from the API
 ```python
 from pathlib import Path
 import pypyr.pipelinerunner
@@ -185,7 +221,7 @@ to pass `py_dir` to `run()`.
 See here for full details on
 [how to run a pipeline from code]({{<ref "run-pipeline">}}).
 
-## use custom loader with pype
+### use custom loader with pype
 When you call a child pipeline from a parent pipeline with 
 [pypyr.steps.pype]({{< ref "/docs/steps/pype" >}}) you can explicitly set the
 loader when you invoke the child:
@@ -209,6 +245,36 @@ If you do NOT want the child to inherit the parent's loader setting by default
 for your custom loader, see the next section for how to set 
 `is_loader_cascading` on the `PipelineInfo` object.
 {{% /note %}}
+
+### custom loader with shortcut
+You can configure a [shortcut]({{< ref "/docs/pipelines/shortcuts" >}}) to use
+your custom loader.
+
+{{< tabs id="shortcuts" >}}
+{{< tab name="config.yaml" >}}
+```yaml
+shortcuts:
+  my-shortcut:
+    pipeline_name: my-pipeline-uri
+    loader: mydir.myloader
+```
+{{< /tab >}}
+{{< tab name="pyproject.toml" >}}
+```toml
+[tool.pypyr.shortcuts]
+[tool.pypyr.shortcuts.my-shortcut]
+    pipeline_name = "my-pipeline-uri"
+    loader = "mydir.myloader"
+```
+{{< /tab >}}
+{{< /tabs >}}
+
+Now when you run `my-shortcut` pypyr will load the specified `pipeline_name`
+using your custom loader:
+
+{{< app-window title="term" lang="fish" >}}
+$ pypyr my-shortcut
+{{< /app-window >}}
 
 ## custom pipeline metadata
 Your custom `get_pipeline_definition` function can return either just the bare
@@ -497,8 +563,9 @@ is only addressable by one and only one combination of `parent` and
 `pipeline_name` for your loader, because the pypyr core already caches the
 reference returned from `get_pipeline_definition` for you. If CPU & memory are
 not particularly of concern for you, then you also don't need to worry about
-this. The yaml loading & parsing is the most resource intensive operation in
-pypyr, so this extra cache is only really helpful if you're seeking to
-optimize this by preventing >1 parsing of the same underlying pipeline in the
-edge case where a different parent+name combination refers to an already loaded
-pipeline.
+this.
+
+The yaml loading & parsing is the most resource intensive operation in pypyr, so
+this extra cache is only really helpful if you're seeking to optimize this by
+preventing >1 parsing of the same underlying pipeline in the edge case where a
+different parent+name combination refers to an already loaded pipeline.

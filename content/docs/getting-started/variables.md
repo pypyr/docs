@@ -132,6 +132,13 @@ yaml config file.
 Use [pypyr.steps.configvars]({{< ref "/docs/steps/configvars" >}}) to inject
 your config values into the pipeline.
 
+### inject variables from shortcut
+You can initialize your global variables by setting `args` on a [shortcut]({{<
+ref "/docs/pipelines/shortcuts" >}}).
+
+A shortcut allows you to save longer command sequences so you can use a friendly
+short alias to run a pipeline with complex input arguments.
+
 ## local variables
 You can set a variable that is only in scope for the current step using the [in
 decorator]({{< ref "/docs/decorators/in" >}}).

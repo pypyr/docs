@@ -329,6 +329,82 @@ If your code invokes `config.init()`, you can still bypass the heavy
 initialization sequence on-the-fly by using the [PYPYR_SKIP_INIT]({{< ref
 "docs/getting-started/config#pypyr_skip_init" >}}) environment variable.
 
+## shortcuts
+If you [initialize config](#initialize-config), pypyr will automatically check
+if the `pipeline_name` you pass to `run()` is a recognized [shortcut name]({{<
+ref "/docs/pipelines/shortcuts#shortcut-name" >}}).
+
+If it is a shortcut, pypyr will run the pipeline using the inputs configured by
+the shortcut rather than the arguments you pass to `run()` function. If
+`pipeline_name` does not match a shortcut, pypyr will continue on to the default
+pipeline discovery process.
+
+So given shortcut configuration like this:
+{{< tabs id="shortcuts" >}}
+{{< tab name="config.yaml" >}}
+```yaml
+shortcuts:
+  my-shortcut:
+    pipeline_name: /mydir/my-pipeline
+    args:
+      akey: a value
+      anotherkey: 123
+```
+{{< /tab >}}
+{{< tab name="pyproject.toml" >}}
+```toml
+[tool.pypyr.shortcuts]
+[tool.pypyr.shortcuts.my-shortcut]
+    pipeline_name = "/mydir/my-pipeline"
+    args = {akey = "a value", anotherkey = 123 }
+```
+{{< /tab >}}
+{{< /tabs >}}
+
+You can run like this:
+```python
+from pypyr import pipelinerunner
+from pypyr.config import config
+
+# initialize config once
+config.init()
+
+# since config is initialized, pypyr can check for shortcuts too
+out = pipelinerunner.run('my-shortcut')
+```
+
+If pypyr finds a matching shortcut:
+- `args_in`, if any, appends to the end of the shortcut's `parser_args`
+- `dict_in`, if any, merges into the shortcut's `args`
+- `parse_args` is ignored entirely. The value is calculated only from shortcut
+  configuration.
+  - The calculation is: `parse_args` will be `False` if (`shortcut.args` +
+    `dict_in`) exists and (`args_in` + `shortcut.parser_args`) does NOT exist.
+  - In all other cases, `parse_args` will be `True`.
+- For any of the other arguments, pypyr will fall back to the values you
+  provide to the `run()` function if the shortcut does not specify any.
+
+```python
+from pypyr import pipelinerunner
+from pypyr.config import config
+
+config.init()
+
+# inputs to run() treated as fallback defaults
+out = pipelinerunner.run('my-shortcut',
+                         args_in=['one', 'two'],
+                         dict_in={'a': 'b'},
+                         loader='myloader')
+```
+
+In this example,
+- `args_in` will append to the end of the shortcut `parser_args`.
+  - uses `args_in` if no shortcut `parser_args` exist.
+- `dict_in` will merge into the shortcut's `args`.
+  - uses `dict_in` if no shortcut `args` exist.
+- if the shortcut does not specify a value for `loader`, pypyr will fallback
+  to use `myloader`.
+
 ## logging
 By default python runs with a log level of 30 (WARNING). This means you won't 
 see pypyr NOTIFY output like [pypyr.steps.echo]({{< ref "docs/steps/echo" >}}) 

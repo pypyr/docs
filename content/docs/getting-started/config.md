@@ -133,7 +133,7 @@ See Windows help for the proper method to change the default locations for
 I'd love to give you a link, but it's not immediately obvious what, if any, the
 One True Way is, so how you do it is up to you. Enjoy the research journey ;-).
 
-(Feel free to contribute if you find a definitive answer!
+(Feel free to get in touch if you find a definitive answer!)
 {{% /note %}}
 
 On Windows pypyr will also honor the XDG Base Dir environment variables if these
@@ -187,7 +187,12 @@ log_date_format: '%Y-%m-%d %H:%M:%S'
 log_detail_format: '%(asctime)s %(levelname)s:%(name)s:%(funcName)s: %(message)s'
 log_notify_format: '%(message)s'
 pipelines_subdir: pipelines
-shortcuts: {}
+shortcuts:
+  my-shortcut:
+    pipeline_name: /mydir/my-pipeline
+    args:
+      akey: a value
+      anotherkey: 123
 vars:
   myvar: myvalue
   mylist:
@@ -228,7 +233,6 @@ log_date_format = "%Y-%m-%d %H:%M:%S"
 log_detail_format = "%(asctime)s %(levelname)s:%(name)s:%(funcName)s: %(message)s"
 log_notify_format = "%(message)s"
 pipelines_subdir = "pipelines"
-shortcuts = {}
 
 [tool.pypyr.log_config]
 version = 1
@@ -256,6 +260,11 @@ format = "%(asctime)s %(levelname)-8s %(name)-15s %(message)s"
 [tool.pypyr.log_config.loggers.root]
 handlers = ["console", "file"]
 level = "DEBUG"
+
+[tool.pypyr.shortcuts]
+[tool.pypyr.shortcuts.my-shortcut]
+    pipeline_name = "/mydir/my-pipeline"
+    args = {akey = "a value", anotherkey = 123 }
 
 [tool.pypyr.vars]
 mydict = {key1 = "value1", key2 = "value2"}
@@ -323,6 +332,7 @@ You can over-ride this default with any of the following:
 - [cli arg]({{< ref "/docs/cli/run-a-pipeline#pypyr-command-line-switches" >}}) `--failure`
 - explicitly set `failure` on [pype]({{< ref "/docs/steps/pype#failure" >}})
 - pass `failure` to the [api]({{<ref "/docs/api/run-pipeline#input-args" >}}).
+- set [failure on shortcut]({{< ref "/docs/pipelines/shortcuts#failure" >}}).
 
 Default value is `on_failure`.
 
@@ -333,6 +343,7 @@ You can override this default with any of the following:
 - [cli arg]({{< ref "/docs/cli/run-a-pipeline#pypyr-command-line-switches" >}}) `--groups`
 - explicitly set `groups` on [pype]({{< ref "/docs/steps/pype#groups" >}})
 - pass `groups` to the [api]({{< ref "/docs/api/run-pipeline#input-args" >}}).
+- set [groups on shortcut]({{< ref "/docs/pipelines/shortcuts#groups" >}}).
 
 Default value is `steps`.
 
@@ -347,6 +358,7 @@ directory.
 You can override this default with any of the following:
 - explicitly set `loader` on [pype]({{< ref "/docs/steps/pype#loader" >}})
 - pass `loader` to the [api]({{< ref "/docs/api/run-pipeline#input-args" >}}).
+- set [loader on shortcut]({{< ref "/docs/pipelines/shortcuts#loader" >}}).
 
 Default value is `pypyr.loaders.file`.
 
@@ -357,6 +369,7 @@ You can over-ride this default with any of the following:
 - [cli arg]({{< ref "/docs/cli/run-a-pipeline#pypyr-command-line-switches" >}}) `--success`
 - explicitly set `success` on [pype]({{< ref "/docs/steps/pype#success" >}})
 - pass `success` to the [api]({{<ref "/docs/api/run-pipeline#input-args" >}}).
+- set [success on shortcut]({{< ref "/docs/pipelines/shortcuts#success" >}}).
 
 Default value is `on_success`.
 
@@ -399,9 +412,10 @@ What logging output looks like when you explicitly set the log-level by passing
 value to [cli arg]({{< ref
 "/docs/cli/run-a-pipeline#pypyr-command-line-switches" >}}) `--log`
 
-```text
+{{< app-window title="term" lang="fish" >}}
 $ pypyr mypipeline --log 20
-```
+{{< /app-window >}}
+
 When you do NOT pass the `--log` arg, pypyr will use the
 [log_notify_format](#log_notify_format).
 
@@ -416,9 +430,9 @@ passing value to [cli arg]({{< ref
 
 This is what you see when you run pypyr without doing anything special:
 
-```text
+{{< app-window title="term" lang="fish" >}}
 $ pypyr mypipeline
-```
+{{< /app-window >}}
 
 When you also pass `--log`, pypyr will use the [log_detail_format](#log_detail_format).
 
@@ -435,13 +449,27 @@ looks for pipelines.
 Default value is `pipelines`. This means to look in `{cwd}/pipelines/`.
 
 ### shortcuts
-Coming soon!
+Create shortcuts to longer pypyr command sequences, saving you valuable typing
+time and preventing keyboard wear-and-tear.
+
+A shortcut allows you to save longer command sequences and input args so you can
+use a friendly short alias to run a pipeline instead.
+
+You can run your shortcut directly from the cli like this:
+
+{{< app-window title="term" lang="fish" >}}
+$ pypyr my-shortcut
+{{< /app-window >}}
+
+If pypyr finds a matching shortcut name, it will load & initialize the pipeline
+based upon the inputs you set in the shortcut.
+
+See [shortcuts]({{< ref "/docs/pipelines/shortcuts" >}}) for details & examples.
 
 Default value is empty.
 
 ### vars
-Inject these key-value pairs into your pipeline using
-[pypyr.steps.configvars]({{< ref "/docs/steps/configvars" >}}).
+Inject these key-value pairs into your pipeline using [pypyr.steps.configvars]({{< ref "/docs/steps/configvars" >}}).
 
 Default value is empty.
 
