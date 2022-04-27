@@ -172,6 +172,8 @@ params:
     - url: images/16x9/pypyr-taskrunner-yaml-pipeline-automation-1920x1080.png
       height: 1080
       width: 1920
+  seo_article_author_url: https://pypyr.io/
+  seo_article_thumbnail: images/pypyr-taskrunner-logo-square.svg
   # seo_article_keywords: abc, def, ghi
   seo_article_enable_for_this_page: true
   seo_article_type: TechArticle # or Article
