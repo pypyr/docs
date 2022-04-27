@@ -491,7 +491,7 @@ See [default_encoding](#default_encoding) for details.
 
 ### PYPYR_SKIP_INIT
 Set to 1 to skip the [config file look-up sequence](#config-file-locations)
-entirely. If 0, will just use the default values for everything - which is
+entirely. If 1, will just use the default values for everything - which is
 everything pypyr needs for a no-frills vanilla run.
 
 Skipping the config initialization will (somewhat) improve performance, but this
@@ -500,7 +500,8 @@ is unlikely to be something you'd notice if you're just running pypyr as a cli.
 API users, note that even if you call `config.init()` explicitly, setting
 `PYPYR_SKIP_INIT` to `1` will still bypass the file look-up sequence.
 
-Defaults to 0.
+Defaults to 0. When `PYPYR_SKIP_INIT` does not exist or is 0, pypyr will do the
+config file look-up sequence on each run from the CLI.
 
 ### PYPYR_CONFIG_GLOBAL
 If set, do NOT look in the usual platform specific locations for user & global
