@@ -22,7 +22,7 @@ topics: [execute external program]
 # pypyr.steps.shell
 ## run shell statements
 Runs the context value `cmd` in the default shell. On a sensible O/S, this is 
-`/bin/sh`, or more recently `zsh`.
+`/bin/sh`.
 
 Where the [cmd step]({{< ref "cmd" >}}) runs a program or executable, `shell`
 passes the command through to the system shell. This means all your usual shell
@@ -35,6 +35,10 @@ instantiate the shell first.
 
 You do NOT need shell to run a console-based executable or a script file (like
 .sh, .bat, .ps1), you can just use [cmd]({{< ref "cmd" >}}) instead.
+
+This step runs shell statements serially one after the other. Use
+[shells for asynchronous parallel execution]({{< ref "shells" >}}) instead if
+you want concurrent execution.
 
 {{% note tip %}}
 Windows users, the COMSPEC environment variable specifies the default system
@@ -300,27 +304,34 @@ Set `save: True` to capture the shell statement's output.
       save: True
 ```
 
-If `save` is `True`, pypyr will save the output to context as follows:
+If `save` is `True`, pypyr will save the output to context `cmdOut` as follows:
 
 ```yaml
-cmdOut:
-    returncode: 0
-    stdout: 'stdout str here. None if empty.'
-    stderr: 'stderr str here. None if empty.'
+cmdOut.returncode: 0
+cmdOut.stdout: 'stdout str here. None if empty.'
+cmdOut.stderr: 'stderr str here. None if empty.'
+cmdOut.cmd: './my-executable --arg1 value'
 ```
 
 `cmdOut.returncode` is the exit status of the called process. Typically
 0 means OK. A negative value -N indicates that the child was terminated
 by signal N (POSIX only).
 
-You can use cmdOut in subsequent steps like this:
+You can use `cmdOut` in subsequent steps like this:
 
 ```yaml
-- name: pypyr.steps.echo
-  comment: you'll only see me if cmd ran successfully with return code 0
-  run: !py cmdOut['returncode'] == 0
+- name: pypyr.steps.shell
   in:
-    echoMe: "the command output was: {cmdOut[stdout]}"
+    cmd:
+      run: echo 1
+      save: True
+
+- name: pypyr.steps.echo
+  run: !py cmdOut.returncode == 0
+  in:
+    echoMe: "you'll only see me if cmd ran successfully with return code 0.
+            the command output was: {cmdOut.stdout}.
+            the error output was: {cmdOut.stderr}."
 ```
 
 Be aware that if `save` is `True`, all of the command output ends up in
@@ -336,6 +347,16 @@ not what you want, you can suppress errors with the [swallow decorator]({{< ref
 "/docs/getting-started/error-handling#use-runtime-error-details-inside-pipeline"
 >}}) list on subsequent steps.
 
+The `cmdOut` key contains a `SubprocessResult` instance. The full schema for
+this object is:
+```python
+SubProcessResult():
+  cmd: str # the original shell input
+  returncode: int
+  stdout: str | bytes | None
+  stderr: str | bytes | None
+```
+
 ### save output for multiple shell statements
 When the shell step runs more than one instruction where `save: True`, the
 `cmdOut` output context will be a list. Each list item is a dict/mapping in the
@@ -349,14 +370,6 @@ cmdOut:
   - returncode: 0
     stdout: 'stdout str here. None if empty.'
     stderr: 'stderr str here. None if empty.'
-```
-
-In Python syntax, the `cmdOut` list looks like this:
-```python
-[
-  {'returncode': 0, 'stdout': '1', 'stderr': ''},
-  {'returncode': 0, 'stdout': '2', 'stderr': ''}
-]
 ```
 
 The list is in the order the shell statements were executed. The list will
@@ -386,17 +399,18 @@ You can use the `cmdOut` list in subsequent steps like this:
 
 ```yaml
 - name: pypyr.steps.echo
-  run: !py "cmdOut[0]['returncode'] == 0"
+  run: !py cmdOut[0].returncode == 0
   in:
-    echoMe: "you'll only see me if cmd ran successfully with return code 0.
-    
+    echoMe: |
+            you'll only see me if cmd ran successfully with return code 0.
+
             For the first command,
-            the command output was: '{cmdOut[0][stdout]}'.
-            the error output was: '{cmdOut[0][stderr]}'.
+            the command output was: {cmdOut[0].stdout}
+            the error output was: {cmdOut[0].stderr}
             
             And for the second command,
-            the command output was: '{cmdOut[1][stdout]}'.
-            the error output was: '{cmdOut[1][stderr]}'"
+            the command output was: {cmdOut[1].stdout}
+            the error output was: {cmdOut[1].stderr}
 ```
 
 Notice that you reference each cmd's output on a zero-based index - i.e the
@@ -407,11 +421,11 @@ command vs when multiple commands had `save` set to True:
 
 ```python
 # single cmd output
-'{cmdOut[stdout]}'
+'{cmdOut.stdout}'
 
 # list of command outputs
 # the 1st output is at index 0
-'{cmdOut[0][stdout]}'
+'{cmdOut[0].stdout}'
 ```
 
 ### debugging output
@@ -446,9 +460,9 @@ The default system encoding is very likely to be `utf-8`, unless you're on
 Windows. See here for a [list of available encoding
 codecs](https://docs.python.org/3/library/codecs.html#standard-encodings).
 
-Note that the
-[default_encoding setting in config]({{< ref "/docs/getting-started/config#default_encoding" >}})
-does not apply to this value.
+You can change the
+[default_cmd_encoding setting in config]({{< ref "/docs/getting-started/config#default_cmd_encoding" >}})
+to use a different default here.
 
 ### binary output
 By default pypyr deals with the shell's output as text in the system's

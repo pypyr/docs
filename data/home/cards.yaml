@@ -32,6 +32,12 @@
   #   url: images/placeholder400x400.svg
   #   alt: img3 alt
 
+- title: parallel execution
+  description: Spawn asynchronous concurrent subprocesses without writing
+    any code! Run [programs in parallel](/docs/steps/cmds/) and
+    [parallel shells](/docs/steps/shells/) concurrently. You can also define
+    serial sequences inside parallel workloads.
+
 - title: pass your own custom cli args
   description: You can use pypyr as a framework to write your own console 
     applications without having to write code to capture, parse & validate

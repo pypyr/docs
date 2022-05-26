@@ -150,6 +150,7 @@ specify properties you actually want to change.
 
 ```yaml
 default_backoff: fixed
+default_cmd_encoding: utf-8
 default_encoding: utf-8
 default_failure_group: on_failure
 default_group: steps
@@ -222,6 +223,7 @@ want to change.
 ```toml
 [tool.pypyr]
 default_backoff = "fixed"
+default_cmd_encoding = "utf-8"
 default_encoding = "utf-8"
 default_failure_group = "on_failure"
 default_group = "steps"
@@ -284,6 +286,24 @@ The default [retry backoff strategy]({{< ref
 "/docs/decorators/retry#backoff-algorithms" >}}) to use on error retries.
 
 Default value is `fixed`.
+
+### default_cmd_encoding
+Set the default encoding for the cmd and shell steps.
+
+This applies to both the serial and parallel versions of these steps.
+
+The value for `default_cmd_encoding` initializes from the `PYPYR_CMD_ENCODING`
+environment variable. If the value is not set, pypyr will use
+`locale.getpreferredencoding(False)`.
+
+You can override the environment variable locally or globally by setting the
+value for `default_cmd_encoding` in any of the applicable config files.
+
+Individual steps can always override this value by setting `encoding` directly
+on the step input.
+
+See [default_encoding](#default_encoding) for details on possible input values
+and how to set the Python runtime to use UTF-8 globally.
 
 ### default_encoding
 Sets the default encoding to use for all text file operations.
@@ -477,6 +497,11 @@ Default value is empty.
 ## environment variables
 In order to bootstrap the configuration process, you can use the following
 environment variables:
+
+### PYPYR_CMD_ENCODING
+Initialize the `default_cmd_encoding` config setting with this value.
+
+See [default_cmd_encoding](#default_cmd_encoding) for details.
 
 ### PYPYR_ENCODING
 Initialize the `default_encoding` config setting with this value. This is
