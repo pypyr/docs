@@ -34,3 +34,5 @@ github.com/pypyr/pypyr-docs v0.0.0-20220427144434-4b0154803edc h1:3V3NFx2G8oJC4j
 github.com/pypyr/pypyr-docs v0.0.0-20220427144434-4b0154803edc/go.mod h1:Pm9ogDwdGC/bo+D1v1sBMUbSprQHEs7CcEZ33QMILkM=
 github.com/pypyr/pypyr-docs v0.0.0-20220604163859-4e3d7f7177fb h1:LsDr1EzMxgZ1bYU5w6tlDhpaBQ47rgvBx1nCWGZxJ70=
 github.com/pypyr/pypyr-docs v0.0.0-20220604163859-4e3d7f7177fb/go.mod h1:Pm9ogDwdGC/bo+D1v1sBMUbSprQHEs7CcEZ33QMILkM=
+github.com/pypyr/pypyr-docs v0.0.0-20220605122105-b9343bb14339 h1:mOzcRB1RBxhjHh1q4wsQVVJZE4AiBDg3rPrQoFsGnxk=
+github.com/pypyr/pypyr-docs v0.0.0-20220605122105-b9343bb14339/go.mod h1:Pm9ogDwdGC/bo+D1v1sBMUbSprQHEs7CcEZ33QMILkM=
