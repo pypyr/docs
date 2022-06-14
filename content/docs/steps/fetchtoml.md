@@ -48,6 +48,11 @@ format to save yourself some typing:
 
 All inputs support [substitutions]({{< ref "docs/substitutions">}}).
 
+{{% note tip %}}
+You can
+[set variables from pyproject.toml]({{< ref "configvars#pyprojecttoml" >}})
+directly, without needing to use the `fetchtoml` step to import it manually.
+{{% /note %}}
 
 ## example
 Given a toml file like this, saved as `./sample-files/sample.toml`:
