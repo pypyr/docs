@@ -1,16 +1,18 @@
 - title: combine commands, applications & scripts into a repeatable pipeline
-  description: You can run any combination of [command](/docs/steps/cmd/),
-    [shell](/docs/steps/shell/), external executable, any callable, external
-    script & [inline code](/topics/inline-code/) in the same pipeline, alongside
-    composable [built-in steps](/docs/steps/) that do useful things like read & 
-    write files, format [json](/topics/json/), [toml](/topics/toml/) &
-    [yaml](/topics/yaml/) and [manipulate data structures](/topics/context/). 
+  description: You can run any combination of [command]({{< ref "/docs/steps/cmd" >}}),
+    [shell]({{< ref "/docs/steps/shell" >}}), external executable, any callable,
+    external script & [inline code]({{< ref "/topics/inline-code" >}}) in the
+    same pipeline, alongside composable [built-in steps]({{< ref "/docs/steps"
+    >}}) that do useful things like read & write files, format [json]({{< ref
+    "/topics/json" >}}), [toml]({{< ref "/topics/toml" >}}) & [yaml]({{< ref
+    "/topics/yaml/" >}}) and [manipulate data structures]({{< ref
+    "/topics/context" >}}). 
   # img:
   #   url: images/placeholder400x400.svg
   #   alt: img1 alt
 
 - title: human-friendly pipelines
-  description: The [pipeline yaml format](/docs/pipelines/pipeline-structure/)
+  description: The [pipeline yaml format]({{< ref "/docs/pipelines/pipeline-structure" >}})
     is human readable, human editable, human mergeable. You're meant to author
     pipelines by hand - because it's easy, and deliberately so! Definitely
     source-control your pipelines & get easy text-based diffs so you're not
@@ -23,39 +25,41 @@
 
 - title: control flow with conditional execution, branching & looping
   description: Run your own code, scripts and commands in foreach and while 
-    [loops](/docs/getting-started/loops). [Conditionally run or
-    skip](/docs/getting-started/conditional-logic/) your custom code based upon
-    switches you control. You apply pypyr's [control of
-    flow](/topics/control-of-flow/) to your commands & scripts without having to
-    do any coding. No more trying to remember how a bash IF statement works!
+    [loops]({{< ref "/docs/getting-started/loops" >}}). [Conditionally run or
+    skip]({{< ref "/docs/getting-started/conditional-logic" >}}) your custom
+    code based upon switches you control. You apply pypyr's [control of
+    flow]({{< ref "/topics/control-of-flow" >}}) to your commands & scripts
+    without having to do any coding. No more trying to remember how a bash IF
+    statement works!
   # img:
   #   url: images/placeholder400x400.svg
   #   alt: img3 alt
 
 - title: parallel execution
   description: Spawn asynchronous concurrent subprocesses without writing
-    any code! Run [programs in parallel](/docs/steps/cmds/) and
-    [parallel shells](/docs/steps/shells/) concurrently. You can also define
-    serial sequences inside parallel workloads.
+    any code! Run [programs in parallel]({{< ref "/docs/steps/cmds" >}}) and
+    [parallel shells]({{< ref "/docs/steps/shells" >}}) concurrently. You can
+    also define serial sequences inside parallel workloads.
 
 - title: pass your own custom cli args
   description: You can use pypyr as a framework to write your own console 
     applications without having to write code to capture, parse & validate
-    [custom input cli args](/docs/context-parsers/). 
+    [custom input cli args]({{< ref "/docs/context-parsers" >}}). 
     
     So you can avoid all that repetitive plumbing when you're trying to automate
     something useful in a script.
 
 - title: automatic retries, error handling & compensations
-  description: Automatically [retry](/docs/decorators/retry/) your own 
-    commands & scripts when they fail, keep on retrying until it succeeds or 
+  description: Automatically [retry]({{< ref "/docs/decorators/retry" >}}) your own 
+    commands & scripts when they fail, keep on retrying until it succeeds or
     until a retry limit you set. Selectively choose which errors should stop
-    your pipeline execution. Use [failure handlers](/docs/getting-started/error-handling/#failure-handlers)
-    with multiple steps to catch exceptions and to encapsulate more complex error
-    handling logic.
+    your pipeline execution. Use [failure handlers]({{< ref
+    "/docs/getting-started/error-handling#failure-handlers" >}}) with multiple
+    steps to catch exceptions and to encapsulate more complex error handling
+    logic.
     
 - title: variable interpolation & substitution
-  description: Use string interpolation or [variable substitution](/docs/substitutions/format-string/) 
+  description: Use string interpolation or [variable substitution]({{< ref "/docs/substitutions/format-string" >}}) 
     to replace a placeholder `{token}` with variable values. This works for
     strings, obviously, but also any complex type! You can replace a string
     `{placeholder}` with an entire data structure like a list or a map, or other
@@ -63,36 +67,38 @@
 
 - title: configuration file tokenization
   description: Load, merge, format & interpolate values to-and-from [text-based 
-    configuration files](/topics/filesystem/) such as json, toml & yaml. pypyr is
-    very useful to prepare configuration files & templates you need to bootstrap
-    bigger systems like Terraform, Cloudformation & Heat, where you might need
-    to inject your own variable values into the configuration file on the fly
-    rather than duplicate configuration per environment.
+    configuration files]({{< ref "/topics/filesystem" >}}) such as json, toml &
+    yaml. pypyr is very useful to prepare configuration files & templates you
+    need to bootstrap bigger systems like Terraform, Cloudformation & Heat,
+    where you might need to inject your own variable values into the
+    configuration file on the fly rather than duplicate configuration per
+    environment.
 
 - title: cli & api
-  description: The [pypyr CLI](/docs/cli/) favors minimal typing and sensible 
-    defaults. You can also invoke your pipelines from code using the
-    Python [pipeline API](/docs/api/run-pipeline/) from a single, simple
+  description: The [pypyr CLI]({{< ref "/docs/cli" >}}) favors minimal typing and sensible 
+    defaults. You can also invoke your pipelines from code using the Python
+    [pipeline API]({{< ref "/docs/api/run-pipeline" >}}) from a single, simple
     entry-point function. 
 
 - title: lotsa built-in steps & your own custom tasks
-  description: pypyr has >30 ready-made [built-in steps](/docs/steps/) that you 
+  description: pypyr has >30 ready-made [built-in steps]({{< ref "/docs/steps" >}}) that you 
     can use as you see fit in your own pipelines. Coding your own step is as
-    simple as bit of Python in a [single function definition](/docs/api/step/).
-    Your own custom steps co-exist with built-in steps with exactly the same
-    power and functionality for loops, retries & flow control without you having
-    to write any extra code.
+    simple as bit of Python in a [single function definition]({{< ref
+    "/docs/api/step" >}}). Your own custom steps co-exist with built-in steps
+    with exactly the same power and functionality for loops, retries & flow
+    control without you having to write any extra code.
 
 - title: compose your tasks with modular step sequences
   description: |
-    [Pipelines can call other pipelines](/docs/steps/pype). Organize your tasks
-    into repeatable sequences using [step
-    groups](/docs/getting-started/basic-concepts/#step-group) within a pipeline
-    so you modularize & isolate more complex task sequences.
+    [Pipelines can call other pipelines]({{< ref "/docs/steps/pype" >}}).
+    Organize your tasks into repeatable sequences using [step groups]({{< ref
+    "/docs/getting-started/basic-concepts#step-group" >}}) within a pipeline so
+    you modularize & isolate more complex task sequences.
 
 - title: lots of documentation
   description: Plenty clear help documentation with examples. You're reading 
-    it right now. If you're new, [let's start at the very beginning](/docs/getting-started).
+    it right now. If you're new,
+    [let's start at the very beginning]({{< ref "/docs/getting-started" >}}).
 
 - title: devops, ci & cd automation tool
   description: You can automate any task sequence you want with pypyr. It so 
@@ -103,9 +109,9 @@
 
 - title: agentless pipeline execution
   description: |
-    [Quick install](/docs/getting-started/installation) via `pip`. pypyr runs on
-    Linux, MacOS & Windows - anywhere with a Python runtime. With bigger devops
-    & workflow automation platforms providing the execution environment in
-    itself is a not a trivial task. pypyr is a lightweight Python application
-    with no further dependencies. You can even run pypyr from its ready-made
-    docker container.
+    [Quick install]({{< ref "/docs/getting-started/installation" >}}) via `pip`.
+    pypyr runs on Linux, MacOS & Windows - anywhere with a Python runtime. With
+    bigger devops & workflow automation platforms providing the execution
+    environment in itself is a not a trivial task. pypyr is a lightweight Python
+    application with no further dependencies. You can even run pypyr from its
+    ready-made docker container.
