@@ -177,7 +177,7 @@ Pipeline execution will pause and wait for interactive user input on each
       input_sans_prompt: !py input()
 ```
 
-### don't wait for stdin on server or unattended execution
+### stdin during unattended execution
 Do remember that if you plan to run your pipeline on a server or in the cloud
 somewhere, you probably don't want your pipeline to stop and wait for stdin
 input that will never come. You can selectively control when to wait for 
