@@ -557,6 +557,21 @@ but not standard output:
 
 When you redirect output to the null device it will not print to console.
 
+## split long command over multiple lines
+For ease of reading, you can split long commands with multiple arguments over
+multiple lines using the yaml folding indicator `>`. This will replace newlines
+in the pipeline yaml with spaces when parsing the command.
+
+```yaml
+- name: pypyr.steps.cmd
+  in:
+    cmd: >
+      curl -X POST "https://httpbin.org/post"
+      -H "accept: application/json"
+      -d "arg1=value1"
+      -d "arg2=value2"
+```
+
 ## spaces in paths & args
 Depending on your O/S and file-system, it's up to you to deal with special
 characters in the path of the command or program you want to run. 
