@@ -51,9 +51,12 @@ Uses these context keys:
 
 - `assert` - evaluate this as truthy when `this` or `equals` do not exist. 
   - `this` (optional)
-      - If `equals` not specified, evaluates as a boolean truthy.
+    - If `equals` not specified, evaluates as a boolean truthy.
   - `equals` (optional)
-      - If specified, compares `this` to `equals`
+    - If specified, compares `this` to `equals`
+  - `msg`(optional)
+    - If specified, use this value as a custom error message if the assert is
+      False.
 
 If `this` evaluates to `False` raises error.
 
@@ -63,6 +66,29 @@ When you do specify an `equals` condition, you must also have a `this`
 condition set to which to compare it.
 
 All inputs support string [substitutions]({{< ref "/docs/substitutions">}}).
+
+## set custom error message
+Use the `msg` input to set a custom error message if you want to output more
+information about the failure condition.
+
+```yaml
+- name: pypyr.steps.assert
+  comment: evaluate `this` as truthy, raise msg if it's false.
+  in:
+    assert:
+      this: '{evaluateMe}'
+      msg: informative error message here
+
+- name: pypyr.steps.assert
+  comment: Compare `this` to `equals`, raise msg if it's false.
+  in:
+    assert:
+      this: 'known value'
+      equals: '{arb_key}'
+      msg: informative error message here, {arb_key} value was wrong.
+```
+
+Notice you can also use {substitutions} in your custom message.
 
 ## truthy bool evaluation
 The standard 
