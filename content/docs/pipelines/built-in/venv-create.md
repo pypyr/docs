@@ -47,7 +47,7 @@ The file `~/my-dir/my-venvs.yaml` looks like this:
 ```yaml
 venv:
   - path: ~/.venvs/python-dev
-    pip: autopep8 flake8 pylint rstcheck pygments rope
+    pip: autopep8 flake8==5.0.4 pylint rstcheck pygments rope
     clear: True
 
   - path: # 2 venvs with the same settings
@@ -139,7 +139,7 @@ that would look like this:
 [tool.pypyr.vars]
 [[tool.pypyr.vars.venv]]
 path = "my-dir/env1"
-pip = "coverage black"
+pip = "coverage black>=1.2.3"
 quiet = true
 
 [[tool.pypyr.vars.venv]]
