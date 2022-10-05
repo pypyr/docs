@@ -547,8 +547,8 @@ current working directory.
 The default value is `pypyr-config.yaml`.
 
 ## troubleshooting
-You can see what config pypyr has found by running the built-in `config-show`
-pipeline:
+You can see what config pypyr has found by running the built-in
+[config-show]({{< ref "/docs/pipelines/built-in/config-show" >}}) pipeline:
 
 ```text
 $ pypyr config-show

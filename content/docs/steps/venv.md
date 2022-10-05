@@ -27,6 +27,10 @@ writing any script yourself. This is the equivalent of running
 
 This step lets you create venvs from within your automation pipeline.
 
+If you just want to create a bunch of venvs but you don't want to write your own
+pipeline to do so, check out the
+[built-in venv-create pipeline]({{< ref "/docs/pipelines/built-in/venv-create" >}}).
+
 This steps creates multiple venvs in parallel concurrently, making for faster
 processing on what is usually a pretty slow process.
 
@@ -74,7 +78,7 @@ venv:
 ```
 
 Only `path` is mandatory. The other optional values you only need to specify
-if you want to override the default value.
+if you want to override their default values.
 
 ### path
 - Mandatory.
@@ -155,7 +159,7 @@ This will install `cowsay`, `pypyr`, `arb-project` version 1.2.3 and `coverage`
 with the `toml` extensions into the `mydir/my-venv` venv.
 
 ### multiple venvs
-If you want to apply the same custom options to multiple venvs:
+If you want to apply the same custom options while creating multiple venvs:
 
 ```yaml
 - name: pypyr.steps.venv
@@ -251,3 +255,8 @@ programmatically.
         - MyProject
         - AnotherProject==1.0.4
 ```
+
+Note that while the venv creation happens in parallel, the pip install
+thereafter is sequential. This is because the pip tool does not support
+concurrent execution - it can lead to trouble if multiple packages are
+downloading the same dependencies at the same time.
