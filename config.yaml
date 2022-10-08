@@ -68,6 +68,7 @@ menu:
     - name: built-in
       identifier: builtin-pipelines
       parent: pipelines
+      weight: 100
     - name: context parsers
       identifier: context-parsers
       weight: 40

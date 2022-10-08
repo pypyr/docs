@@ -8,7 +8,7 @@ menu:
   docs:
     parent: pipelines
     name: shortcuts
-weight: -10
+weight: -5
 seo_article_headline: Save shortcuts to pipeline run commands in config.
 seo_description: Save shortcuts to complex pipeline taskrunner automation command sequences.
 # topics: [control-of-flow]
