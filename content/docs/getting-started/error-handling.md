@@ -180,8 +180,9 @@ by setting your own:
 
 #### within a pipeline
 You can specify your own failure-handler when you 
-[call]({{< ref "/docs/steps/call">}}) or [jump]({{< ref "/docs/steps/jump">}}) 
-to another step-group in your pipeline.
+[call]({{< ref "/docs/steps/call">}}), [jump]({{< ref "/docs/steps/jump">}}) or
+[switch]({{< ref "/docs/steps/switch">}}) to another step-group in your
+pipeline.
 
 ```yaml
 # ./call-with-failure-group.yaml

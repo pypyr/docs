@@ -14,6 +14,7 @@ with the following handy steps:
 
 - [pypyr.steps.call]({{< ref "/docs/steps/call">}})
 - [pypyr.steps.jump]({{< ref "/docs/steps/jump">}})
+- [pypyr.steps.switch]({{< ref "/docs/steps/switch">}})
 - [pypyr.steps.stopstepgroup]({{< ref "/docs/steps/stopstepgroup">}})
 - [pypyr.steps.stoppipeline]({{< ref "/docs/steps/stoppipeline">}})
 - [pypyr.steps.stop]({{< ref "/docs/steps/stop">}})

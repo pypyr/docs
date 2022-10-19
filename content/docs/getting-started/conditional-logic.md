@@ -8,7 +8,7 @@ menu:
     parent: getting-started
 weight: -50
 seo_article_headline: How to use conditional logic in a task-runner pipeline.
-seo_description: You can run or skip steps in a pypyr pipeline based on parameterized conditional statements.
+seo_description: You can run or skip steps in a pypyr pipeline based on parameterized conditional branching statements.
 topics: [control-of-flow]
 ---
 # conditional logic
@@ -53,6 +53,9 @@ end
 ```
 
 `skip` is the inverse of `run`.
+
+If instead you want to switch between different branches
+like an IF-THEN-ELSE check out [switch branching](#switch-branching).
 
 ## use variables to control if step runs
 You can parameterize your conditional statements with [variables]({{< ref
@@ -306,6 +309,86 @@ end - always runs
 to invoke another pipeline instead you can use a [pype step]({{<
 ref"/docs/steps/pype" >}}) and similarly set the conditional statement on that.
 {{%/note %}}
+
+## switch branching
+If you want to switch between calling different step-groups based on an input
+expression in IF-THEN-ELSE branch style, use
+[pypyr.steps.switch]({{< ref "switch">}}).
+
+This is useful if you have mutually exclusive execution paths you want to take
+selectively depending on whether a certain condition obtains.
+
+In this example,
+[pypyr.parser.string]({{< ref "/docs/context-parsers/string">}}) will put
+whatever you pass from the cli after the pipeline name into the string variable
+`argString`. The `switch` then uses the `argString` to decide which branch to
+execute:
+
+```yaml
+# ./my-pipeline.yaml
+context_parser: pypyr.parser.string
+steps:
+  - name: pypyr.steps.switch
+    comment: argString is set by pypyr.parser.string context parser
+    in:
+      switch:
+        - case: !py argString == 'a'
+          call: A
+        - case: !py argString == 'b'
+          call: B
+        - case: !py argString == 'bc'
+          call: [B, C]
+        - default: D
+
+  - name: pypyr.steps.echo
+    in:
+      echoMe: done!
+
+A:
+  - name: pypyr.steps.echo
+    in:
+      echoMe: A
+
+B:
+  - name: pypyr.steps.echo
+    in:
+      echoMe: B
+
+C:
+  - name: pypyr.steps.echo
+    in:
+      echoMe: C
+
+D:
+  - name: pypyr.steps.echo
+    in:
+      echoMe: D
+```
+
+Running this pipeline will look like this:
+
+{{< app-window title="term" lang="console" >}}
+$ pypyr my-pipeline # default case, argString is empty ''
+D
+done!
+
+$ pypyr my-pipeline a
+A
+done!
+
+$ pypyr my-pipeline b
+B
+done!
+
+$ pypyr my-pipeline bc
+B
+C
+done!
+
+$ pypyr my-pipeline xyz # no matches, default
+D
+done!
+{{< /app-window >}}
 
 ## dynamic step execution
 A compact pattern to create an extensible custom cli for your pipeline is to use

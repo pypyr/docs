@@ -29,6 +29,10 @@ processing from the point where you initiated the call.
 If you want to jump to a different step-group and ignore the rest of the
 step-group you're in, use [pypyr.steps.jump]({{< ref "jump">}}) instead.
 
+If you want to switch between calling different step-groups based on an input
+expression in IF-THEN-ELSE branch style, use
+[pypyr.steps.switch]({{< ref "switch">}}).
+
 ## input
 `call` expects a context item *call*. It can take one of two forms:
 
