@@ -15,7 +15,7 @@ steps:
           query: !sic
             'query($owner: String!, $repo: String!, $last: Int!) {
               repository (owner:$owner, name:$repo){ 
-                releases (last:$last) {
+                releases (orderBy:{direction: ASC, field:CREATED_AT},last:$last) {
                   edges {
                     node {
                           id
