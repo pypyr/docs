@@ -5,7 +5,7 @@ date: 2020-07-09T12:06:01+01:00
 description: Boolean cli switches `True` if exist.
 card_extra_summary:
   heading: example input
-  details: "`pypyr pipelinename param1 'par am2' param3`"
+  details: "`pypyr my-pipeline param1 'par am2' param3`"
 categories: [context parsers]
 # keywords: ""
 menu:

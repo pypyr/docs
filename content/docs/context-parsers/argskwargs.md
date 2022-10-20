@@ -1,60 +1,52 @@
 ---
-title: pypyr.parser.keyvaluepairs
-linktitle: keyvaluepairs
-date: 2020-07-09T12:26:36+01:00
-description: Pass key-value pairs from cli input args to the pipeline.
+title: pypyr.parser.argskwargs
+linktitle: argskwargs
+date: 2022-10-20T10:26:36+01:00
+description: Pass args and/or key=value pairs from cli input to the pipeline.
 card_extra_summary:
   heading: example input
-  details: '`pypyr my-pipeline param1=value1 param2="value 2" "param 3"=value3`'
+  details: '`pypyr my-pipeline arg1 arg2 k1=value1 k2="value 2"`'
 categories: [context parsers]
 # keywords: ""
 menu:
   docs:
     parent: context-parsers
-    name: keyvaluepairs
-seo_article_headline: Parsing key-value pairs from cli input arguments.
-seo_description: Set key-value pairs as the task-runner cli input argument to use in the pipeline at run-time.
+    name: argskwargs
+seo_article_headline: Parsing list args and key=value pairs from cli input arguments.
+seo_description: Use a list of args and/or key=value pairs from cli input argument without writing any code.
 # social_og_description: 200 chars, if blank fall back to seo_description then description
 # social_og_title: keyvaluepairs -- if blank fall back to seo_article_headline > .Title. Max 70 chars
 # social_og_image_alt: max 420 chars
 topics: [args]
 ---
-# pypyr.parser.keyvaluepairs
-## pass key-value pairs from cli to pipeline
-Takes `key=value` pairs from cli arg input and initialize context with a 
-dictionary where each pair becomes a dictionary element.
+# pypyr.parser.argskwargs
+## parse list of args & key=value pairs from cli
+Puts input cli arguments into a list `argList`. If an argument has a `=`, will
+save the key=value pair as a dictionary/mapping element.
 
 {{< app-window title="term" lang="console" >}}
-$ pypyr my-pipeline key1=value1 key2=2 key3="value 3"
-_
+$ pypyr my-pipeline arg1 arg2 k1=value1 k2=value2
+
+$ pypyr my-pipeline arg1 "arg 2" k1="value1" k2="value 2"
 {{< /app-window >}}
 
-This will parse to context like this:
+The second example will result in your pipeline context looking like this:
 ```python
 {
-  'key1': 'value1',
-  'key2': '2',
-  'key3': 'value 3'
-  }
+  'argList': ['arg1', 'arg 2'],
+  'k1': 'value1',
+  'k2': 'value 2'
+}
 ```
+
+This gives you cli input syntax very similar to makefile. Alternatively, you can
+conceptualize this as a combination of [pypyr.parser.list]({{< ref "list" >}})
+and [pypyr.parser.keyvaluepairs]({{< ref "keyvaluepairs" >}}).
 
 Escape literal spaces with single or double quotes.
 
-Any arg without an `=` will parse to `key: ''`.
-{{< app-window title="term" lang="console" >}}
-$ pypyr my-pipeline arg0 key1=value1 key2=2 key3="value 3"
-_
-{{< /app-window >}}
-
-This will parse to context like this:
-```python
-{
-  'arg0': '',
-  'key1': 'value1',
-  'key2': '2',
-  'key3': 'value 3'
-  }
-```
+If you don't pass any arguments or when you pass only key=value pairs, pypyr
+will initialize `argList` to an empty list `[]`.
 
 ## special characters
 Notice that you can have both keys and values with spaces by using either
@@ -83,17 +75,21 @@ While you might want to keep your keys as free of special characters as you can,
 the values can be whatever you want:
 
 {{< app-window title="term" lang="console" >}}
-$ pypyr my-pipeline key1='value !@£$%^&' key_2=nothing_special
+$ pypyr my-pipeline "list ^ value" key1='value !@£$%^&' key_2=nothing_special
 _
 {{< /app-window >}}
 
-Will initialize context like this:
+Will parse like this:
 ```python
 {
+  'argList': ['list ^ value'],
   'key1': 'value !@£$%^&',
   'key_2': 'nothing_special'
 }
 ```
+
+Notice that list values for `argList` can contain whatever special characters
+you want, without causing trouble for py-strings and the py step.
 
 When parsing key=value pairs, pypyr only considers the first `=` as marking the
 key, subsequent `=` in the same arg will be considered part of the value:
@@ -112,20 +108,19 @@ Will result in:
 ```
 
 ## example
-Given a pipeline like this, arbitrarily saved as `./keyvaluepairs-parser.yaml`:
+Given a pipeline like this, arbitrarily saved as `./my-pipeline.yaml`:
 
 ```yaml
-# ./keyvaluepairs-parser.yaml
-context_parser: pypyr.parser.keyvaluepairs
+# ./my-pipeline.yaml
+context_parser: pypyr.parser.argskwargs
 steps:
   - pypyr.steps.debug # prints at log level <=20
 ```
 
-You can then pass key-value pairs from the cli to the pipeline to initialize 
-context. Notice that you can have both keys and values with spaces by using 
-either single or double quotes.
+You can then pass any combination of arguments and key-value pairs from the cli
+to the pipeline to initialize context.
 
 {{< app-window title="term" lang="console" >}}
-$ pypyr keyvaluepairs-parser param1=value1 param2='value 2' "param 3"=123 --log 20
-{'param1': 'value1', 'param2': 'value 2', 'param 3': '123'}
+$ pypyr my-pipeline arg1 arg2 k1=value1 k2="value 2" --log 20
+{'argList': ['arg1', 'arg2'], 'k1': 'value1', 'k2': 'value 2'}
 {{< /app-window >}}

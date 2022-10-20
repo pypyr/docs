@@ -5,7 +5,7 @@ date: 2021-12-09T11:19:55+01:00
 description: Load toml file into context from a cli arg path input.
 card_extra_summary:
   heading: example input
-  details: '`pypyr pipelinename ./path/sample.toml`'
+  details: '`pypyr my-pipeline ./path/sample.toml`'
 categories: [context parsers]
 # keywords: ""
 menu:

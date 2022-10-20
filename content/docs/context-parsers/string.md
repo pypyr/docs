@@ -5,7 +5,7 @@ date: 2020-07-09T16:52:56+01:00
 description: Concatenate all cli input args into single string `argString`.
 card_extra_summary:
   heading: example input
-  details: "`pypyr pipelinename arbitrary string here`"
+  details: "`pypyr my-pipeline arbitrary string here`"
 categories: [context parsers]
 # keywords: ""
 menu:

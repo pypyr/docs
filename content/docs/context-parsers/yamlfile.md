@@ -5,7 +5,7 @@ date: 2020-07-09T17:42:16+01:00
 description: Put yaml file into context from a cli arg path input.
 card_extra_summary:
   heading: example input
-  details: "`pypyr pipelinename ./path/sample.yaml`"
+  details: "`pypyr my-pipeline ./path/sample.yaml`"
 categories: [context parsers]
 # keywords: ""
 menu:

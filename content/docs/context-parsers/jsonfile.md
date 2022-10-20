@@ -5,7 +5,7 @@ date: 2020-07-09T11:19:55+01:00
 description: Put json file into context from a cli arg path input.
 card_extra_summary:
   heading: example input
-  details: '`pypyr pipelinename ./path/sample.json`'
+  details: '`pypyr my-pipeline ./path/sample.json`'
 categories: [context parsers]
 # keywords: ""
 menu:

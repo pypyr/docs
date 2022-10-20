@@ -5,7 +5,7 @@ date: 2020-07-09T16:34:56+01:00
 description: Put each cli input arg into a list `argList`.
 card_extra_summary:
   heading: example input
-  details: "`pypyr pipelinename param1 param2 param3`"
+  details: "`pypyr my-pipeline param1 param2 param3`"
 categories: [context parsers]
 # keywords: ""
 menu:
