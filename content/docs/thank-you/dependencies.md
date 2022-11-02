@@ -18,10 +18,10 @@ great thanks & gratitude to:
 | dependency | license | description |
 |------------|---------|-------------|
 | [bumpversion](https://pypi.org/project/bumpversion/) | MIT | Release semantic version increments. |
-| [check-manifest](https://pypi.org/project/check-manifest/) | MIT | PyPI integrity checks. |
 | [coverage](https://coverage.readthedocs.io/) | Apache 2.0 | Code test coverage analysis. |
 | [docutils](https://docutils.sourceforge.io) | BSD | Documentation processing for setup.py |
 | [flake8](https://flake8.pycqa.org) | MIT | Code quality check & linting. |
+| [flit](https://flit.pypa.io/) | BSD 3-Clause | Build & packaging. |
 | [pyfakefs](https://github.com/jmcgeheeiv/pyfakefs) | Apache 2.0 | Fake file-system for mocking during testing. |
 | [pygments](https://pygments.org) | BSD | README + code comments processing & validation. |
 | [pytest](https://docs.pytest.org/) | MIT | Testing framework. |
