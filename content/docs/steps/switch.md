@@ -113,8 +113,8 @@ switch.
 
 All inputs support string [substitutions]({{< ref "/docs/substitutions">}}).
 
-## case input
-The input to `case` can be
+## call input
+The input to `call` can be
 - a simple string: run a single step-group
 - a list of string: run a sequence of step-groups in order
 - a dict for expanded syntax: set `success` and `failure` groups for the case.
