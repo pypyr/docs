@@ -105,7 +105,6 @@ This example will result in these context variables:
 var1: 'one'
 var2: 'one two'
 var3: 'one two three'
-}
 ```
 
 ## examples
