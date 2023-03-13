@@ -487,3 +487,107 @@ pypyr.log.logger.set_root_logger(log_level=25,
     - Defaults to `None` if not specified - which means output only goes to the
       console.
 
+## clear cache
+pypyr caches items that are slower to load and parse, such as:
+- pipeline yaml
+- steps
+- context parsers
+- pipeline loaders
+- retry backoff strategies
+
+The cache endures for as long as the calling python process is active.
+
+If you want to hot reload an item, such as a pipeline, you can either clear the
+cache, or you can [disable caching](#disable-cache) altogether for everything
+with [no_cache]({{< ref "/docs/getting-started/config#no_cache" >}}) mode.
+
+### purge all cache
+You can clear all the caches like this with `clear_all()` in
+`pypyr.cache.admin`:
+
+```python
+import pypyr.cache.admin as cache_admin
+
+# call pipeline 1st time. This will cache `my-pipe`.
+context = pipelinerunner.run(pipeline_name='my-pipe')
+
+# purge all caches
+cache_admin.clear_all()
+
+# call the same pipeline a 2nd time.
+# This invocation will save a fresh reload of `my-pipe` to cache.
+context = pipelinerunner.run(pipeline_name='my-pipe')
+
+# 3rd invocation will use cache.
+context = pipelinerunner.run(pipeline_name='my-pipe')
+```
+
+### disable cache
+You can disable caching entirely when you set
+[no_cache]({{< ref "/docs/getting-started/config#no_cache" >}}) in config. You
+can set this value in any of pypyr's config files, or you can set the
+[$PYPYR_NO_CACHE]({{< ref "/docs/getting-started/config#pypyr_no_cache" >}})
+environment variable.
+
+Remember that if you want to set `no_cache` in one of the pypyr config files
+you have to [initialize config](#initialize-config) first.
+
+Alternatively, here is an example of setting `no_cache` directly in code
+between multiple calls to the `pipelinerunner` api:
+
+```python
+from pypyr.config import config
+from pypyr import pipelinerunner
+
+# disable all caching
+config.no_cache = True
+
+# call pipeline 1st time.
+# This will also NOT save `my-pipe` to cache once its loaded.
+context = pipelinerunner.run(pipeline_name='my-pipe')
+
+# call the same pipeline a 2nd time. This second invocation 
+# will NOT use the cache and load the pipeline fresh from
+# disk instead.
+# It will also NOT save `my-pipe` to cache once its loaded.
+context = pipelinerunner.run(pipeline_name='my-pipe')
+
+# re-enable all caching
+config.no_cache = False
+
+# this time `my-pipe` will load fresh (since cache still empty),
+# but save the result to cache once its found and loaded.
+# subsequent runs will use the cached copy.
+context = pipelinerunner.run(pipeline_name='my-pipe')
+```
+
+### purge specific cache
+If you just want to clear the pipeline cache, you can do this:
+```python
+from pypyr.cache.loadercache import loader_cache
+from pypyr.cache.filecache import file_cache
+
+loader_cache.clear_pipes()
+file_cache.clear()
+```
+
+Here are all the different caches you can clear:
+```python
+from pypyr.cache.backoffcache import backoff_cache
+backoff_cache.clear()
+
+from pypyr.cache.loadercache import loader_cache
+loader_cache.clear()
+
+from pypyr.cache.filecache import file_cache
+file_cache.clear()
+
+from pypyr.cache.namespacecache import pystring_namespace_cache
+pystring_namespace_cache.clear()
+
+from pypyr.cache.parsercache import contextparser_cache
+contextparser_cache.clear()
+
+from pypyr.cache.stepcache import step_cache
+step_cache.clear()
+```

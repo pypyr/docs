@@ -187,6 +187,7 @@ log_config:
 log_date_format: '%Y-%m-%d %H:%M:%S'
 log_detail_format: '%(asctime)s %(levelname)s:%(name)s:%(funcName)s: %(message)s'
 log_notify_format: '%(message)s'
+no_cache: False
 pipelines_subdir: pipelines
 shortcuts:
   my-shortcut:
@@ -234,6 +235,7 @@ json_indent = 2
 log_date_format = "%Y-%m-%d %H:%M:%S"
 log_detail_format = "%(asctime)s %(levelname)s:%(name)s:%(funcName)s: %(message)s"
 log_notify_format = "%(message)s"
+no_cache = false
 pipelines_subdir = "pipelines"
 
 [tool.pypyr.log_config]
@@ -460,6 +462,33 @@ Note that pypyr ignores this setting if you set [log_config](#log_config).
 
 Default value is `%(message)s`.
 
+### no_cache
+Set `True` to disable caching. When `no_cache` is `True`, pypyr will not
+retrieve anything from the built-in caches, and pypyr will also not save
+anything to the caches.
+
+This flag is mostly relevant to API consumers. If you use pypyr via the CLI you
+are very unlikely to need this flag, because each new CLI invocation of pypyr
+loads everything fresh anyway, without using any cache.
+
+pypyr caches items that are slower to load and parse, such as:
+- pipeline yaml
+- steps
+- context parsers
+- pipeline loaders
+
+Enabling `no_cache` does not clear anything that is already in cache. If you
+want to purge existing cache entries, use `pypyr.cache.admin` like this:
+
+```python
+import pypyr.cache.admin as cache_admin
+
+cache_admin.clear_all()
+```
+
+See this example of how to
+[call pypyr programmatically with no cache mode]({{< ref "/docs/api/run-pipeline#disable-cache" >}}).
+
 ### pipelines_subdir
 The fallback [look-up location]({{< ref
 "/docs/pipelines/lookup-order#directory-locations-lookup-order" >}})
@@ -503,31 +532,6 @@ Initialize the `default_cmd_encoding` config setting with this value.
 
 See [default_cmd_encoding](#default_cmd_encoding) for details.
 
-### PYPYR_ENCODING
-Initialize the `default_encoding` config setting with this value. This is
-especially useful to bootstrap the encoding to use to read the yaml config files
-themselves.
-
-If you set the `PYPYR_ENCODING` environment variable pypyr will use that for
-everything by default unless you override it with the `default_encoding` setting
-in one of your config files.
-
-See [default_encoding](#default_encoding) for details.
-
-### PYPYR_SKIP_INIT
-Set to 1 to skip the [config file look-up sequence](#config-file-locations)
-entirely. If 1, will just use the default values for everything - which is
-everything pypyr needs for a no-frills vanilla run.
-
-Skipping the config initialization will (somewhat) improve performance, but this
-is unlikely to be something you'd notice if you're just running pypyr as a cli.
-
-API users, note that even if you call `config.init()` explicitly, setting
-`PYPYR_SKIP_INIT` to `1` will still bypass the file look-up sequence.
-
-Defaults to 0. When `PYPYR_SKIP_INIT` does not exist or is 0, pypyr will do the
-config file look-up sequence on each run from the CLI.
-
 ### PYPYR_CONFIG_GLOBAL
 If set, do NOT look in the usual platform specific locations for user & global
 config, but use this yaml file instead.
@@ -545,6 +549,34 @@ The name of the project specific yaml configuration file to look for in the
 current working directory.
 
 The default value is `pypyr-config.yaml`.
+
+### PYPYR_ENCODING
+Initialize the `default_encoding` config setting with this value. This is
+especially useful to bootstrap the encoding to use to read the yaml config files
+themselves.
+
+If you set the `PYPYR_ENCODING` environment variable pypyr will use that for
+everything by default unless you override it with the `default_encoding` setting
+in one of your config files.
+
+See [default_encoding](#default_encoding) for details.
+
+### PYPYR_NO_CACHE
+Set to 1 to bypass all caching. See [no cache](#no_cache) for details.
+
+### PYPYR_SKIP_INIT
+Set to 1 to skip the [config file look-up sequence](#config-file-locations)
+entirely. If 1, will just use the default values for everything - which is
+everything pypyr needs for a no-frills vanilla run.
+
+Skipping the config initialization will (somewhat) improve performance, but this
+is unlikely to be something you'd notice if you're just running pypyr as a cli.
+
+API users, note that even if you call `config.init()` explicitly, setting
+`PYPYR_SKIP_INIT` to `1` will still bypass the file look-up sequence.
+
+Defaults to 0. When `PYPYR_SKIP_INIT` does not exist or is 0, pypyr will do the
+config file look-up sequence on each run from the CLI.
 
 ## troubleshooting
 You can see what config pypyr has found by running the built-in
