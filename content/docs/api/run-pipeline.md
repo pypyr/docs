@@ -591,3 +591,11 @@ contextparser_cache.clear()
 from pypyr.cache.stepcache import step_cache
 step_cache.clear()
 ```
+
+Regardless of the pypyr caches, remember that the Python runtime caches
+imported modules in `sys.modules` on first load. This means if you are coding a
+custom Python add-on for pypyr, for example a custom step, Python will keep on
+using the original .py file it first loaded during the current Python session.
+You could force a reload here, but be aware that if your custom module has
+initialization side-effects this can cause surprises. This is not something
+you have to worry about if you're calling pypyr from the CLI.
