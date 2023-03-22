@@ -41,4 +41,8 @@ old text.
 
 pypyr runs on Linux, MacOS & Windows - anywhere with a Python runtime, really.
 
+## examples
+You can find full runnable sample pipelines in the [pypyr examples
+repo](https://github.com/pypyr/pypyr-example).
+
 ## documentation sections
