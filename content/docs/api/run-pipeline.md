@@ -153,6 +153,8 @@ out = pypyr.pipelinerunner.run(pipeline_name='arb-pipe',
   - Absolute name of pipeline loader module.
   - If not specified will use `pypyr.loaders.file` - the standard builtin pypyr
     pipeline loader.
+  - See [loaders]({{< ref "/docs/loaders" >}}) for pypyr's built-in loaders.
+  - You can also [create your own custom loader]({{< ref "pipeline-loader" >}}).
 - `py_dir`: Path-like. Optional.
   - Look for custom modules in this directory.
   - Under the hood, pypyr adds this directory to `sys.path`.

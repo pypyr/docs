@@ -27,6 +27,8 @@ You can change this default in [config for default_loader]({{< ref "/docs/gettin
 This default loader loads pipelines from the local file-system, following the
 usual [pypyr pipeline look-up sequence]({{< ref "/docs/pipelines/lookup-order">}}).
 
+You can find all of pypyr's [built-in loaders]({{< ref "/docs/loaders" >}}) here.
+
 If you want to load pipelines from somewhere else, like maybe a shared pipeline
 library, or implement your own caching, or maybe if you want to load a pipeline 
 from something like s3 or consul, you can roll your own pype loader.

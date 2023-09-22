@@ -92,6 +92,8 @@ menu:
       parent: slack
     - name: api
       weight: 90
+    - name: loaders
+      weight: 95
     - name: contributing
       weight: 100
     - name: thank you

@@ -12,7 +12,7 @@ menu:
 weight: -20
 seo_article_headline: Directory lookup order for task-runner pipelines on the filesystem.
 seo_description: Use absolute or relative paths to find a matching pipeline in the file location lookup sequence.
-# topics: [control-of-flow]
+topics: [lookup-order]
 ---
 # pipeline look-up order
 ## absolute vs relative paths
