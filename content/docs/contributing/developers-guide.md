@@ -23,9 +23,9 @@ tests:
 
 ```shell
 # run tests & flake 8 linter
-$ tox ops/build
+$ tox -- ops/build
 # run tests, flake 8 linter, test packaging & validate README.rst
-$ tox ops/build package
+$ tox -- ops/build package
 ```
 
 This of course assumes you have tox installed in your current active Python 
@@ -120,7 +120,7 @@ So definitely do this locally before you PR:
 
 ```shell
 # run tests, flake 8 linter, test packaging & validate README.rst
-$ tox ops/build package
+$ tox -- ops/build package
 ```
 
 Try to keep the commit history tidy.
