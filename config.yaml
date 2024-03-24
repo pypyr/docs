@@ -104,6 +104,16 @@ module:
     - path: github.com/pypyr/pypyr-docs
 # paginate: 3
 paginatePath: archive
+outputs:
+  home:
+    - html
+    - rss
+    - searchIndex
+outputFormats:
+  searchIndex:
+    mediaType: application/json
+    baseName: search-index
+    isPlainText: true
 taxonomies:
   category: categories
   topic: topics
