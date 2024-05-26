@@ -66,4 +66,4 @@ create_pub_subdir:
   - name: pypyr.steps.cmd
     description: --> adding ./public submodule
     in:
-      cmd: git submodule add git@github.com:pypyr/pypyr.github.io.git public
+      cmd: git submodule add --force git@github.com:pypyr/pypyr.github.io.git public
