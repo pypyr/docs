@@ -1,3 +1,14 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3" type="module"></script>
+
+{{ with resources.Get "css/search.css"| minify | fingerprint -}}
+<link rel="stylesheet" href="{{ .Permalink }}" {{ printf "integrity=%q" .Data.Integrity | safeHTMLAttr }} />
+{{- end }}
+
+{{ with resources.Get "js/search.js" | minify | fingerprint -}}
+<script src="{{ .Permalink }}" {{ printf "integrity=%q" .Data.Integrity | safeHTMLAttr }} type="module"></script>
+{{- end }}
+
 <link rel="apple-touch-icon" sizes="180x180" href="{{ (resources.Get "favicons/apple-touch-icon.png" | fingerprint).RelPermalink }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ (resources.Get "favicons/favicon-32x32.png" | fingerprint).RelPermalink }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ (resources.Get "favicons/favicon-16x16.png" | fingerprint).RelPermalink }}">
