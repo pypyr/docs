@@ -192,7 +192,7 @@ params:
   seo_article_thumbnail: images/pypyr-taskrunner-logo-square.svg
   # seo_article_keywords: abc, def, ghi
   seo_article_enable_for_this_page: true
-  seo_article_type: TechArticle # or Article
+  seo_article_type: Article # or TechArticle
   # seo_description: goes in meta head description. if not set, falls back to .Description
   seo_is_carousel: true
   seo_org_id: https://pypyr.io/#organization
@@ -224,7 +224,7 @@ params:
   social_og_image_width: 1200
   social_og_image_type: image/png
   social_og_site_name: pypyr technical documentation
-  social_og_type: "website" # article or website or video.movie
+  social_og_type: article # article or website or video.movie
   social_twitter_card: summary_large_image # summary_large_image or summary
   social_twitter_site: "@pypyrpipes"
   # social_twitter_creator: "@creator"
