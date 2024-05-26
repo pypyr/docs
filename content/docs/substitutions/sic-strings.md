@@ -4,7 +4,7 @@ linktitle: sic string
 date: 2020-06-13T21:38:57+01:00
 description: Literal string values that should not have formatting expressions applied, for simplified escape sequences.
 # categories: [expressions]
-keywords: "literal strings, pipeline execution"
+# keywords: "literal strings, pipeline execution"
 menu:
   docs:
     parent: substitutions

@@ -4,7 +4,7 @@ linktitle: py string
 date: 2020-06-13T21:38:57+01:00
 description: Evaluate dynamic python expressions in your pipeline steps and task automation sequences.
 # categories: [expressions]
-keywords: "dynamic expressions, pipeline execution"
+# keywords: "dynamic expressions, pipeline execution"
 menu:
   docs:
     parent: substitutions
