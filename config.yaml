@@ -208,7 +208,9 @@ params:
     - https://pypi.org/user/pypyr/
     - https://hub.docker.com/u/pypyr/
     - https://en.gravatar.com/pypyr/
-  # seo_title_append_site_name: true. Append " | site .title" to page title. Default true.
+  seo_site_name: pypyr
+  seo_site_alternate_name: ["pypyr technical documentation"]
+  seo_title_append_site_name: false # Append " | site .title" to page title. Default true.
   # seo_validate_title_max: 60
   seo_validate_description_max: 120
   # show_logo_on_home: false
@@ -223,7 +225,7 @@ params:
   social_og_image_height: 628
   social_og_image_width: 1200
   social_og_image_type: image/png
-  social_og_site_name: pypyr technical documentation
+  social_og_site_name: pypyr
   social_og_type: article # article or website or video.movie
   social_twitter_card: summary_large_image # summary_large_image or summary
   social_twitter_site: "@pypyrpipes"
